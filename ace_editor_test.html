@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<title>ACE in Action</title>
+<style type="text/css" media="screen">
+    #editor { 
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+</head>
+<body>
+
+<div id="editor">
+</div>
+<div>
+	<button id="test">test</button>
+</div>
+<script src="https://cdn.jsdelivr.net/ace/1.2.3/noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/csharp");
+	
+	function resizeAce() {
+		var h = window.innerHeight;
+		if (h > 360) {
+			$('.ace_editor').css('height', (h - 290).toString() + 'px');
+		}
+	};
+	$(window).on('resize', function () {
+		resizeAce();
+		editor.resize();
+	});
+	resizeAce();
+	
+	$('#test').on('click', function () {
+		var session = editor.getSession().getDocument().getAllLines();
+		console.log(JSON.stringify(session));
+	})
+
+</script>
+</body>
+</html>
