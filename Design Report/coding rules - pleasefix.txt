@@ -1,0 +1,65 @@
+Fyrirgefið hversu lélegur ég er að þýða þetta ;__; endilega breyta því sem hljómar illa, er vitlaust orðað. 
+Ekkert sem kemur hér fram er sett í stein strax.
+
+general overall rules.
+
+Nota skal lýsandi nöfn við nafngiftir.
+Þegar kóði er dreginn inn þá skal nota eitt "hard tab".
+Það á ekki að nota bil e. space eða "soft tab" við indrátt.
+Allir kóði á að vera indreginn á réttan hátt.
+Það á alltaf að setja eitt bil á milli virkja.
+Þegar þarf að búa til nýja kóða blokk þá á { opinn slaufusvigi að byrja á næstu línu.
+dæmi:
+		if(x == y)
+		{
+			//TODO:
+		}
+
+===============================================================================================================================
+
+general coding conventions for c# ref. microsoft General Naming Conventions
+
+Nota skal camelCase við yfirlýsingu á staðbundnum breytum, færibreytum og prívat breytum.
+Nota skal PascalCase við yfirlýsingu á öðrum hlutum, svo sem föstum og föllum.
+Prívat reytur sem stendur á bak við eigindis á að hafa _ sem forskeyti. ??? e. Private fields that back a property prefix a _.
+Annars eiga nöfn alltaf að byrja á staf.
+
+===============================================================================================================================
+
+general coding conventions for javascript ref. w3schools style guide and coding conventions
+
+Nota skal camelCase við yfirlýsingu á breytum og föllum.
+Nota skal HÁSTAFI við yfirlýsingu á Glóbal breytum og föstum.
+Byrja á nöfn með staf.
+
+===============================================================================================================================
+
+general coding rules for html. Coding convention from the webprogramming course.
+
+html kóðinn verður að innihalda eftirfarandi tög <html>,<head>,<title> og <body>.
+öll tög verða vera hreiðraðar á réttan (almennilegan?) hátt.
+öll tög eiga vera í lágstöfum.
+öll tög eiga vera lokuð á réttan hátt þ.e. <strong></strong> og tóm element (kann ekki þýðingu) eiga vera enda á skástryki <img ... />
+öll gildi af eigindum eiga að vera innan gæsalappa.
+öll eiginda nöfn verða að vera í lágstöfum.
+
+===============================================================================================================================
+
+css style and formatting rules. Google's own formatting rules.
+
+//hérna þarf virkilega að vinna í þýðingu.
+
+Nota skal gilt css þar sem er hægt.
+Nota skal ID og klasa nöfn sem eru eins stutt og mögulega hægt er en eins löng og þarfnast.
+vantar góða þýðingu á þessu: e. Avoid qualifying ID and class names with type selectors.
+Nota á styttingar e."shorthands" þar sem er hægt.
+Ekki tilgreina einingu eftir 0 gildi nema að það þarfnast einingu.
+Sleppa á leiðandi 0 í gildum. .8em vs 0.8em
+Nota skal þriggja stafa hex rithátt þar sem er hægt.
+Ef nöfn á ID's eða klösum innihalda tvö eða fleiri orð á að aðskilja orðin min bandstriki.
+
+Yfirlýsingar eiga að vera í stafrófsröð.
+Yfirlýsingar eiga að enda á semi-kommu.
+Alltaf byrja nýja línu fyrir hvern einasta "selector" og yfirlýsingu.
+Reglur eiga að vera aðskildar með einni tómri línu.
+
