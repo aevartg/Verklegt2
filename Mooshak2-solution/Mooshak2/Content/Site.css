@@ -22,3 +22,9 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*login demo*/
+.login-custom
+{
+    vertical-align: middle;
+}
