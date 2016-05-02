@@ -23,6 +23,7 @@ Nota skal camelCase við yfirlýsingu á staðbundnum breytum, færibreytum og p
 Nota skal PascalCase við yfirlýsingu á öðrum hlutum, svo sem föstum og föllum.
 Prívat reytur sem stendur á bak við eigindis á að hafa _ sem forskeyti. ??? e. Private fields that back a property prefix a _.
 Annars eiga nöfn alltaf að byrja á staf.
+fyrir allar stýrisetningar skal vera slaufusvigar.
 
 ===============================================================================================================================
 
