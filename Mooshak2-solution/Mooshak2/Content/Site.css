@@ -26,9 +26,28 @@ textarea {
 /*Header test data*/
 .navbar-custom
 {
-    background-color: #428BCA;
-    border-color: #428BCA;
+    background-color: #b94a48;
+    border-color: #cccccc;
+    color: #cccccc;
+    margin-top: 7px;
+}
+
+.btn-custom
+{
+    background-color: #b94a48;
+    border-color: #cccccc;
     color: white;
+}
+
+.custom-loginform
+{
+    margin-top: -10px;
+}
+
+.custom-heading
+{
+    margin-top: 60px;
+    text-align: center;
 }
 
 .custom-header
