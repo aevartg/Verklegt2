@@ -1,0 +1,12 @@
+﻿
+@using (Html.BeginForm("Test", "Project", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken();
+    <div class="formgroup">
+        <input type="file" id="file" name="file" />
+    </div>
+    <div class="formgroup">
+        <input type="submit"/>
+    </div>
+}
+
