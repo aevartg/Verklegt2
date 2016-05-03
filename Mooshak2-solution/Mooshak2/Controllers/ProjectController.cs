@@ -11,8 +11,13 @@ namespace Mooshak2.Controllers
 		{
 			return View();
 		}
-		
-		[HttpPost]
+
+        public ActionResult UserSettings()
+        {
+            return View();
+        }
+
+        [HttpPost]
 		public ActionResult Test(HttpPostedFileBase file)
 		{
 			var test = Helper.StreamToBytes(file.InputStream);
