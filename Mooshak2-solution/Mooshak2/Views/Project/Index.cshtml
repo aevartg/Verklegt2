@@ -23,11 +23,17 @@
 
             <div class="tab-content">
                 <div class="tab-pane active" id="1">
-                    <form id="Form1" method="post" enctype="multipart/form-data" runat="server">
-                        <INPUT type=file id=File1 name=File1 runat="server"/>
-                        <br>
-                        <input type="submit" id="Submit" value="Upload" runat="server"/>
-                    </form>
+                    @using (Html.BeginForm("Test", "Project", FormMethod.Post, new {enctype = "multipart/form-data"}))
+                    {
+                        @Html.AntiForgeryToken();
+
+                        <div class="formgroup">
+                            <input type="file" id="file" name="file"/>
+                        </div>
+                        <div class="formgroup">
+                            <input type="submit"/>
+                        </div>
+                    }
                 </div>
 
                 <div class="tab-pane active" id="2">

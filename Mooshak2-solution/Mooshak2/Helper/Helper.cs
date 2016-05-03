@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace Mooshak2.Helper
+namespace Mooshak2
 {
 	public static class Helper
 	{
@@ -34,7 +34,7 @@ namespace Mooshak2.Helper
 
 		public static bool BytesToFile(string filePath, byte[] blob)
 		{
-			using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Write))
+			using (var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write))
 			{
 				fs.Write(blob,0,blob.Length);
 			}
