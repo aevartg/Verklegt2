@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Mooshak2.Helper
@@ -31,12 +32,18 @@ namespace Mooshak2.Helper
 			}
 		}
 
-		public static void BytesToFile(string filePath, byte[] blob)
+		public static bool BytesToFile(string filePath, byte[] blob)
 		{
 			using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Write))
 			{
 				fs.Write(blob,0,blob.Length);
 			}
+			return File.Exists(filePath);
+		}
+
+		public static bool CompareByteArray(byte[] blob1, byte[] blob2)
+		{
+			return blob1.SequenceEqual(blob2);
 		}
 	}
 }
