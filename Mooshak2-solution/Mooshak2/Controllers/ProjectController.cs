@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
@@ -13,6 +11,16 @@ namespace Mooshak2.Controllers
 		{
 			return View();
 		}
-
+		
+		[HttpPost]
+		public ActionResult Test(HttpPostedFileBase file)
+		{
+			var test = Helper.StreamToBytes(file.InputStream);
+			if (Helper.BytesToFile("C:\\Users\\Eythor\\Desktop\\uploadtest.js", test))
+			{
+				return View("Index");
+			}
+			throw new Exception();
+		}
 	}
 }
