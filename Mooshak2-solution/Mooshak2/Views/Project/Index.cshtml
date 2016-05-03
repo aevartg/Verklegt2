@@ -14,57 +14,16 @@
 
     <div class="tab-content custom-tabber">
         <div class="tab-pane active" id="a">
-            <div class="tabbable tabs-left">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#1" data-toggle="tab">Lab 1</a></li>
-                    <li><a href="#2" data-toggle="tab">Lab 2</a></li>
-                    <li><a href="#3" data-toggle="tab">Assignment 1</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="1">
-                        
-                        @using (Html.BeginForm("Test", "Project", FormMethod.Post, new {enctype = "multipart/form-data"}))
-                        {
-                            @Html.AntiForgeryToken();
-
-                            <div class="formgroup">
-                                <input type="file" id="file" name="file"/>
-                            </div>
-                            <div class="formgroup">
-                                <input type="submit"/>
-                            </div>
-                        }
-                    </div>
-                    
-                    <div class="tab-pane active" id="2">
-                        <p>2</p>
-                    </div>
-
-                    <div class="tab-pane active" id="3">
-                        <p>3</p>
-                    </div>
-                </div>
-            </div>
+            @{Html.RenderPartial("SideTabs");}
         </div>
-
         <div class="tab-pane" id="b">
-            <div class="tabbable tabs-left">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#" data-toggle="tab">HÆJHÆJ</a></li>
-                    <li><a href="#" data-toggle="tab">Lab 2</a></li>
-                    <li><a href="#" data-toggle="tab">Assignment 1</a></li>
-                </ul>
-            </div>
+            @{Html.RenderPartial("SideTabs");}
         </div>
-
         <div class="tab-pane" id="c">
-            <div class="tabbable tabs-left">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#" data-toggle="tab">Lab 1</a></li>
-                    <li><a href="#" data-toggle="tab">Lab 2</a></li>
-                    <li><a href="#" data-toggle="tab">Assignment 1</a></li>
-                </ul>
-            </div>
+            @{Html.RenderPartial("SideTabs");}
+        </div>
+        <div class="tab-pane" id="d">
+            @{Html.RenderPartial("SideTabs");}
         </div>
     </div>
 </div>
