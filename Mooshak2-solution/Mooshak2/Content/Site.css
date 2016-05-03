@@ -29,7 +29,6 @@ textarea {
     background-color: #b94a48;
     border-color: #cccccc;
     color: #cccccc;
-    margin-top: 7px;
 }
 
 .btn-custom
@@ -54,6 +53,15 @@ textarea {
 {
     float: right;
 }
+
+/*Student view data test*/
+.custom-student
+{
+    margin-top: 50px;
+    margin-left: 100px;
+
+}
+
 
 /*Tabs data*/
 
