@@ -6,12 +6,13 @@ using System.Web.Mvc;
 
 namespace Mooshak2.Controllers
 {
-    public class ProjectController : Controller
-    {
-        // GET: Project
-        public ActionResult Index()
-        {
-            return View();
-        }
-    }
+	public class ProjectController : Controller
+	{
+		// GET: Project
+		public ActionResult Index()
+		{
+			return View();
+		}
+
+	}
 }

@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#a" data-toggle="tab">Forritun 1</a></li>
+    <li><a href="#b" data-toggle="tab">Verklegt Námskeið</a></li>
+    <li><a href="#c" data-toggle="tab">Gagnaskipan</a></li>
+    <li><a href="#d" data-toggle="tab">Vefforritun</a></li>
+</ul>
+
+<div class="tab-content custom-tabber">
+    <div class="tab-pane active" id="a">
+        <div class="tabbable tabs-left">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#1" data-toggle="tab">Lab 1</a></li>
+                <li><a href="#2" data-toggle="tab">Lab 2</a></li>
+                <li><a href="#3" data-toggle="tab">Assignment 1</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="1">
+                    <form id="Form1" method="post" enctype="multipart/form-data" runat="server">
+                        <INPUT type=file id=File1 name=File1 runat="server"/>
+                        <br>
+                        <input type="submit" id="Submit" value="Upload" runat="server"/>
+                    </form>
+                </div>
+
+                <div class="tab-pane active" id="2">
+                    <p>2</p>
+                </div>
+
+                <div class="tab-pane active" id="3">
+                    <p>3</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane" id="b">
+        <div class="tabbable tabs-left">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#" data-toggle="tab">HÆJHÆJ</a></li>
+                <li><a href="#" data-toggle="tab">Lab 2</a></li>
+                <li><a href="#" data-toggle="tab">Assignment 1</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="tab-pane" id="c">
+        <div class="tabbable tabs-left">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#" data-toggle="tab">Lab 1</a></li>
+                <li><a href="#" data-toggle="tab">Lab 2</a></li>
+                <li><a href="#" data-toggle="tab">Assignment 1</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
