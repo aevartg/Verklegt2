@@ -279,12 +279,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Project\Student.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Project\UserSettings.cshtml" />
-=======
     <Content Include="Views\Project\SideTabs.cshtml" />
     <Content Include="Views\Project\SideTabsData.cshtml" />
->>>>>>> 0d87b5b7110dd703de1c2a263b7068add9b309b6
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
