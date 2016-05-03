@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
+using Mooshak2.Models;
 
 namespace Mooshak2.Controllers
 {
@@ -9,7 +12,19 @@ namespace Mooshak2.Controllers
 		// GET: Project
 		public ActionResult Index()
 		{
-			return View();
+			var model = new List<CourseViewModel>();
+			var a = new CourseViewModel();
+			var b = new CourseViewModel();
+			a.Name = "Forritun";
+			b.Name = "EkkiForrun";
+			model.Add(a);
+			model.Add(b);
+			return View(model);
+		}
+
+		public PartialViewResult SideTabRender()
+		{
+			return PartialView("SideTabs");
 		}
 
         public ActionResult UserSettings()

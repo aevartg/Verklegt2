@@ -1,31 +1,23 @@
-﻿
+﻿@model IEnumerable<Mooshak2.Models.CourseViewModel>
+
 @{
     ViewBag.Title = "Index";
 }
 
 
+
 <div class="custom-student">
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#a" data-toggle="tab">Forritun 1</a></li>
-        <li><a href="#b" data-toggle="tab">Verklegt Námskeið</a></li>
-        <li><a href="#c" data-toggle="tab">Gagnaskipan</a></li>
-        <li><a href="#d" data-toggle="tab">Vefforritun</a></li>
+        @foreach (var x in Model.ToList())
+        {
+            <li>
+                @Ajax.ActionLink(x.Name, "SideTabRender", "Project", new AjaxOptions() {UpdateTargetId = "test", InsertionMode = InsertionMode.Replace, HttpMethod = "GET"})
+            </li>
+        }
     </ul>
+    
 
-    <div class="tab-content custom-tabber">
-        <div class="tab-pane active" id="a">
-            @{Html.RenderPartial("SideTabs");}
-        </div>
-        <div class="tab-pane" id="b">
-            @{Html.RenderPartial("SideTabs");}
-        </div>
-        <div class="tab-pane" id="c">
-            @{Html.RenderPartial("SideTabs");}
-        </div>
-        <div class="tab-pane" id="d">
-            @{Html.RenderPartial("SideTabs");}
-        </div>
+    <div class="tab-content custom-tabber" id="result">
     </div>
 </div>
-
-
+<div id="test"></div>
