@@ -23,9 +23,14 @@ textarea {
     max-width: 280px;
 }
 
-/*login demo*/
-.login-custom
+.navbar-custom
 {
-    vertical-align: middle;
+    background-color: #428BCA;
+    border-color: #428BCA;
+    color: white;
 }
 
+.custom-header
+{
+    float: right;
+}
