@@ -7,5 +7,6 @@ namespace Mooshak2.fonts.Services
 {
 	public class CourseService
 	{
+
 	}
 }

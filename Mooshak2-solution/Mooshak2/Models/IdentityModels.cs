@@ -27,9 +27,9 @@ namespace Mooshak2.Models
 	    public DbSet<InputOutput> InputOutputs { get; set; }
 	    public DbSet<Submission> Submissions { get; set; }
 
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+        public ApplicationDbContext() : base("DefaultConnection", throwIfV1Schema: false)
         {
+
         }
 
         public static ApplicationDbContext Create()
