@@ -9,7 +9,7 @@ namespace Mooshak2.fonts.Services
 	public class UserService
 	{
 
-		public List<ApplicationUser> GetAvailableUsers()
+		/*public List<ApplicationUser> GetAvailableUsers()
 		{
 
 			List<ApplicationUser> users = new List<ApplicationUser>();
@@ -19,6 +19,6 @@ namespace Mooshak2.fonts.Services
 				users.Add(new ApplicationUser() { Value = x.ID.ToString(), Text = x.name });
 			});
 			return users;
-		}
+		}*/
 	}
 }
