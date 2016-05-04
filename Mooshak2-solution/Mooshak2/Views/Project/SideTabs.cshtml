@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Mooshak2.Models.CourseViewModel>
+﻿@model Mooshak2.Models.CourseViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -7,9 +7,12 @@
 
 <div class="tabbable tabs-left" id="result">
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#1" data-toggle="tab">Lab 1</a></li>
-        <li><a href="#2" data-toggle="tab">Lab 2</a></li>
-        <li><a href="#3" data-toggle="tab">Assignment 1</a></li>
+        @foreach (var x in Model.TestList)
+        {
+            <li>
+                @Html.ActionLink(x.ToString(),"Index")
+            </li>
+        }
     </ul>
 </div>
 

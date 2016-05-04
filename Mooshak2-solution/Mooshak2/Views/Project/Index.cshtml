@@ -11,13 +11,13 @@
         @foreach (var x in Model.ToList())
         {
             <li>
-                @Ajax.ActionLink(x.Name, "SideTabRender", "Project", new AjaxOptions() {UpdateTargetId = "test", InsertionMode = InsertionMode.Replace, HttpMethod = "GET"})
+                @Ajax.ActionLink(x.Name, "SideTabRender", "Project", new {id = x.Id}, new AjaxOptions() {UpdateTargetId = "test", InsertionMode = InsertionMode.Replace, HttpMethod = "GET"})
             </li>
         }
     </ul>
-    
 
-    <div class="tab-content custom-tabber" id="result">
+
+    <div class="tab-content custom-tabber" id="test">
+        @Html.Partial("SideTabs",Model.ToList().First())
     </div>
 </div>
-<div id="test"></div>

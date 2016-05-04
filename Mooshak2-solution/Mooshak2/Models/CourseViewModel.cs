@@ -8,5 +8,7 @@ namespace Mooshak2.Models
 	public class CourseViewModel
 	{
 		public String Name { get; set; }
+		public int Id { get; set; }
+		public List<String> TestList { get; set; } = new List<string>();
 	}
 }
