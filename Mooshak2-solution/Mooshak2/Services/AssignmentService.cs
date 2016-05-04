@@ -17,7 +17,7 @@ namespace Mooshak2.Services
 			_db = new ApplicationDbContext();
 		}
 
-		public List<ProjectAssignmentViewModel> GetProjectAssignmentViewModels(int id)
+		public List<AssignmentTabViewModel> GetAssignmentTabViewModels(int id)
 		{
 			var test = (from items in _db.Assignments
 						where items.CourseId == id
@@ -29,10 +29,10 @@ namespace Mooshak2.Services
 			}
 			else
 			{
-				var assignmentViewModels = new List<ProjectAssignmentViewModel>();
+				var assignmentViewModels = new List<AssignmentTabViewModel>();
 				foreach (var item in test)
 				{
-					var temp = new ProjectAssignmentViewModel()
+					var temp = new AssignmentTabViewModel()
 					{
 						Id = item.Id,
 						Name = item.Name

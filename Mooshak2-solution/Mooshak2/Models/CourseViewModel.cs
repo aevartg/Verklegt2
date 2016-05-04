@@ -12,10 +12,10 @@ namespace Mooshak2.Models
 		public string Name { get; set; }
 	}
 
-	public class ProjectCourseViewModel
+	public class CourseTabViewModel
 	{
 		public int Id { get; set; }
 		public string Name { get; set; }
-		public List<ProjectAssignmentViewModel> AssignmentList { get; set; }	
+		public List<AssignmentTabViewModel> AssignmentList { get; set; }	
 	}
 }

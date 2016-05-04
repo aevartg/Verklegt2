@@ -9,7 +9,7 @@ namespace Mooshak2.Models
 	{
 	}
 
-	public class ProjectAssignmentViewModel
+	public class AssignmentTabViewModel
 	{
 		public int Id { get; set; }
 		public string Name { get; set; }

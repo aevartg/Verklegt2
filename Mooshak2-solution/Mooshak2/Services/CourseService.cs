@@ -15,7 +15,7 @@ namespace Mooshak2.Services
 			_db = new ApplicationDbContext();
 		}
 
-		public ProjectCourseViewModel GetProjectCourseViewModel(int id)
+		public CourseTabViewModel GetProjectCourseViewModel(int id)
 		{
 			var course = _db.Courses.SingleOrDefault(x => x.Id == id);
 			if (course == null)
@@ -25,8 +25,8 @@ namespace Mooshak2.Services
 			}
 			else
 			{
-				var assignmentList = new AssignmentService().GetProjectAssignmentViewModels(course.Id);
-				var courseViewModel = new ProjectCourseViewModel()
+				var assignmentList = new AssignmentService().GetAssignmentTabViewModels(course.Id);
+				var courseViewModel = new CourseTabViewModel()
 									{
 										Id = course.Id,
 										Name = course.Name,
@@ -36,9 +36,9 @@ namespace Mooshak2.Services
 			}
 		}
 
-		public List<ProjectCourseViewModel> GetAllProjectCourseViewModel()
+		public List<CourseTabViewModel> GetAllCourseTabViewModels()
 		{
-			var courses = (from items in _db.Courses select items).ToList();
+			var courses = _db.Courses.Select(x => x).ToList();
 			if (courses.Count == 0)
 			{
 				//TODO
@@ -46,11 +46,11 @@ namespace Mooshak2.Services
 			}
 			else
 			{
-				var courseViewModel = new List<ProjectCourseViewModel>();
+				var courseViewModel = new List<CourseTabViewModel>();
 				foreach (var course in courses)
 				{
-					var assignmentList = new AssignmentService().GetProjectAssignmentViewModels(course.Id);
-					var courseViewModeltemp = new ProjectCourseViewModel()
+					var assignmentList = new AssignmentService().GetAssignmentTabViewModels(course.Id);
+					var courseViewModeltemp = new CourseTabViewModel()
 					{
 						Id = course.Id,
 						Name = course.Name,

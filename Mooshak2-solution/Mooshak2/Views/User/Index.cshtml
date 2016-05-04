@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Mooshak2.Models.CourseTabViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div class="custom-student">
+	<ul class="nav nav-tabs">
+		@foreach (var x in Model.ToList())
+		{
+			<li>
+				@Ajax.ActionLink(x.Name, "SideTabRender", "User", new {id = x.Id}, new AjaxOptions() {UpdateTargetId = "test", InsertionMode = InsertionMode.Replace, HttpMethod = "GET"})
+			</li>
+		}
+	</ul>
+
+
+	<div class="tab-content custom-tabber" id="test">
+		@Html.Partial("SideTabs", Model.ToList().First())
+	</div>
+</div>
