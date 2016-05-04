@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit course</h2>
+<h2>New Course</h2>
+@*<div class="tabbable tabs-left" id="result">
+        <ul class="nav nav-tabs">
+            @foreach (var x in Model.TestList)
+            {
+                <li>
+                    @Html.ActionLink(x.ToString(), "Index")
+                </li>
+            }
+        </ul>
+    </div>*@
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label for="model.Name" class="control-label col-md-2">Name:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="model.AvailableTeachers" class="control-label col-md-2">Search Teachers:</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.AllTeachers, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AllTeachers, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<input type="text" class="live-search-box" placeholder="search here" /><br />
+<ul class="live-search-list">
+    <li>Dagur</li>
+    <li>Willard</li>
+    <li>aevar</li>
+    <li>Axel</li>
+    <li>Ólöf</li>
+    <li>Eyþór</li>
+    <li>rasshaus</li>
+    <li>bjór</li>
+    <li>kaffi</li>
+    <li>HæHæ</li>
+    <li>HæGæ</li>
+    <li>iphone</li>
+    <li>drasl</li>
+    <li>köttur</li>
+    <li>eyrnarmergur</li>
+    <li>hljóð</li>
+    <li>epli</li>
+    <li>sjomli</li>
+    <li>áttan</li>
+    <li>amish Willard</li>
+</ul>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('.live-search-list li').each(function () {
+            $(this).attr('data-search-term', $(this).text().toLowerCase());
+        });
+
+        $('.live-search-box').on('keyup', function () {
+
+            var searchTerm = $(this).val().toLowerCase();
+
+            $('.live-search-list li').each(function () {
+
+                if ($(this).filter('[data-search-term *= ' + searchTerm + ']').length > 0 || searchTerm.length < 1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+
+            });
+
+        });
+
+    });
+</script>
