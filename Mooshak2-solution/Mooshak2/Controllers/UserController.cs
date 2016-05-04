@@ -16,13 +16,13 @@ namespace Mooshak2.Controllers
 		// GET: Project
 		public ActionResult Index()
 		{
-			var model = new CourseService().GetAllCourseTabViewModels();
+			var model = new CourseService().GetCourseTabViewModels();
 			return View(model);
 		}
 
 		public PartialViewResult SideTabRender(int id)
 		{
-			var model = new CourseService().GetProjectCourseViewModel(id);
+			var model = new CourseService().GetCourseTabViewModel(id);
 			return PartialView("SideTabs",model);
 		}
 

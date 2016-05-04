@@ -15,7 +15,7 @@ namespace Mooshak2.Services
 			_db = new ApplicationDbContext();
 		}
 
-		public CourseTabViewModel GetProjectCourseViewModel(int id)
+		public CourseTabViewModel GetCourseTabViewModel(int id)
 		{
 			var course = _db.Courses.SingleOrDefault(x => x.Id == id);
 			if (course == null)
@@ -36,7 +36,7 @@ namespace Mooshak2.Services
 			}
 		}
 
-		public List<CourseTabViewModel> GetAllCourseTabViewModels()
+		public List<CourseTabViewModel> GetCourseTabViewModels()
 		{
 			var courses = _db.Courses.Select(x => x).ToList();
 			if (courses.Count == 0)
