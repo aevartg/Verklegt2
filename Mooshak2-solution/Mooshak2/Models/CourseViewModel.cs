@@ -12,5 +12,6 @@ namespace Mooshak2.Models
 		public List<String> TestList { get; set; } = new List<string>();
 
 		public  List<ApplicationUser> AvailableUsers { get; set; } = new List<ApplicationUser>();
+		public List<ApplicationUser> AvailableTeachers { get; set; } = new List<ApplicationUser>();
 	}
 }
