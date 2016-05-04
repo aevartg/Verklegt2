@@ -36,7 +36,7 @@ namespace Mooshak2.Services
 
 				return users;
 				}
-			
+			//þetta fall skilar engu núna, erum ekki með neina usera
 		}
 
 		public Course GetCourseByID(int id)
