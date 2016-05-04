@@ -1,4 +1,4 @@
-﻿@model Mooshak2.Models.CourseViewModel
+﻿@model Mooshak2.Models.ProjectCourseViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -7,10 +7,10 @@
 
 <div class="tabbable tabs-left" id="result">
     <ul class="nav nav-tabs">
-        @foreach (var x in Model.TestList)
+        @foreach (var x in Model.AssignmentList)
         {
             <li>
-                @Html.ActionLink(x.ToString(),"Index")
+                @Html.ActionLink(x.Name,"Index")
             </li>
         }
     </ul>

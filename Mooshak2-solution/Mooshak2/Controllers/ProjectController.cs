@@ -8,42 +8,23 @@ using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using Antlr.Runtime;
 using Mooshak2.Models;
+using Mooshak2.Services;
 
 namespace Mooshak2.Controllers
 {
 	public class ProjectController : Controller
 	{
-		public List<CourseViewModel> getmodel()
-		{ 
-			var model = new List<CourseViewModel>();
-			var a = new CourseViewModel();
-			var b = new CourseViewModel();
-			a.Name = "Forritun";
-			a.Id = 1;
-			var test1 = "Test1";
-			a.TestList.Add(test1);
-			b.Name = "EkkiForrun";
-			var test2 = "Test2";
-			b.TestList.Add(test2);
-			b.TestList.Add(test1);
-			b.Id = 2;
-			model.Add(a);
-			model.Add(b);
-			return model;
-		}
-
 		// GET: Project
 		public ActionResult Index()
 		{
-			var model = getmodel();
+			var model = new CourseService().GetAllProjectCourseViewModel();
 			return View(model);
 		}
 
 		public PartialViewResult SideTabRender(int id)
 		{
-			var model = getmodel();
-			var test = model.First(i => i.Id == id);
-			return PartialView("SideTabs",test);
+			var model = new CourseService().GetProjectCourseViewModel(id);
+			return PartialView("SideTabs",model);
 		}
 
         public ActionResult UserSettings()

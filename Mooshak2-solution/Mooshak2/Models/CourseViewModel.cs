@@ -11,4 +11,11 @@ namespace Mooshak2.Models
 
 		public String Name { get; set; }
 	}
+
+	public class ProjectCourseViewModel
+	{
+		public int Id { get; set; }
+		public string Name { get; set; }
+		public List<ProjectAssignmentViewModel> AssignmentList { get; set; }	
+	}
 }
