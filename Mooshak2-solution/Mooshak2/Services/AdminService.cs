@@ -32,9 +32,9 @@ namespace Mooshak2.Services
 				users.Add(user);
 			};
 
-			if (users == null)
+			if (users.Count == 0)
 			{
-				//TODO held við þurfum að villumeðhöndla í controllernum...
+				//TODO 
 				return null;
 			}
 			else
@@ -66,7 +66,7 @@ namespace Mooshak2.Services
 			model.AllTeachers = GetAllUsers(); //nær í alla notendur núna, kann ekki að ná bara í teachers
 			model.Id = id;
 
-			if (model == null)
+			if (model == null)  //hvernig á að villumeðhöndla her?
 			{
 				//TODO
 				return null;
@@ -87,7 +87,7 @@ namespace Mooshak2.Services
 
 			//velja alla kennara, útfrá roleID?
 
-			if (teachers == null)
+			if (teachers.Count == 0)
 			{
 				//TODO
 				return null;
@@ -106,7 +106,7 @@ namespace Mooshak2.Services
 			
 			//velja alla kennara, útfrá roleID?
 
-			if (students == null)
+			if (students.Count == 0)
 			{
 				//TODO
 				return null;
@@ -121,6 +121,7 @@ namespace Mooshak2.Services
 		public Assignment GetAssignmentByID(int id)
 		{
 			var assign = _db.Assignments.SingleOrDefault(x => x.Id == id);
+
 			if (assign == null)
 			{
 				//TODO
@@ -134,21 +135,16 @@ namespace Mooshak2.Services
 
 		public List<Course> GetAllCourses()
 		{
-			var courses = new List<Course>();
-			
-			_db.Courses.ToList().ForEach((x) =>
-			{
-				courses.Add(x);
-			});
+			var allCourses = (from x in _db.Courses select x).ToList();
 
-			if (courses == null)
+			if (allCourses.Count == 0)
 			{
 				//TODO
 				return null;
 			}
 			else
 			{
-				return courses;
+				return allCourses;
 			}
 			
 			
@@ -156,38 +152,26 @@ namespace Mooshak2.Services
 
 		public List<Assignment> GetAllAssignments()
 		{
-			var assigns = new List<Assignment>();
+			var allAssigns = (from x in _db.Assignments select x).ToList();
+			
+			
 
-			_db.Assignments.ToList().ForEach((x) =>
-			{
-				assigns.Add(x);
-			});
-
-			if (assigns == null)
+			if (allAssigns.Count == 0)
 			{
 				//TODO
 				return null;
 			}
 			else
 			{
-				return assigns;
+				return allAssigns;
 			}
 		}
 
 		public List<Submission> GetSubmissionsByMilestoneID(int id)
 		{
-			var subs = new List<Submission>();
-			//var subs = _db.Submissions.Where(x => x.IdMilestone == id);     -    virkar þetta?
+			var subs = (from x in _db.Submissions where x.IdMilestone == id select x).ToList();
 
-			_db.Submissions.ToList().ForEach((x) =>
-			{
-				if (x.IdMilestone == id)
-				{
-					subs.Add(x);
-				}
-			});
-
-			if (subs == null)
+			if (subs.Count == 0)
 			{
 				//TODO
 				return null;
@@ -200,18 +184,9 @@ namespace Mooshak2.Services
 
 		public List<Submission> GetSubmissionsByUserID(int UserID, int milestoneID)
 		{
-			var subs = new List<Submission>();
-			//var subs = _db.Submissions.Where(x => x.IdUser == id);     -    virkar þetta?
+			var subs = (from x in _db.Submissions where x.IdMilestone == milestoneID && x.IdUser == UserID select x).ToList();
 
-			_db.Submissions.ToList().ForEach((x) =>
-			{
-				if (x.IdUser == UserID && x.IdMilestone == milestoneID)
-				{
-					subs.Add(x);
-				}
-			});
-
-			if (subs == null)
+			if (subs.Count == 0)
 			{
 				//TODO
 				return null;
