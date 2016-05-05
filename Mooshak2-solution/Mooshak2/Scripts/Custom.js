@@ -21,3 +21,18 @@
     });
 
 });
+
+$(".accordion-anchor").click(function (x)
+{
+	var y = x.target.parentNode.getElementsByClassName("w3-accordion-content")[0];
+	if (y != null)
+	{
+		if (y.className.indexOf("w3-show") == -1)
+		{
+			y.className += " w3-show";
+		} else
+		{
+			y.className = y.className.replace(" w3-show", "");
+		}
+	}
+})

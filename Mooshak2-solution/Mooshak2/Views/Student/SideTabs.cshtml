@@ -1,49 +1,28 @@
-<<<<<<< HEAD
-﻿@model List<Mooshak2.Models.AssignmentNavViewModel>
-=======
-﻿@model Mooshak2.Models.CourseTabViewModel
->>>>>>> refs/remotes/origin/master
+@model List<Mooshak2.Models.AssignmentNavViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
 
 <div class="custom-student">
-<<<<<<< HEAD
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-3">
-				<div class="sidebar-nav">
-					<div class="tabbable tabs-left">
-						<ul class="nav nav-list">
-							@foreach (var x in Model)
-							{
-								<li class="nav-header">@x.Name</li>
-								if (x.List != null)
-								{
-									foreach (var y in x.List)
-									{
-										<li><a>@y.Name</a></li>
-									}
-								}
-							}
-						</ul>
+	<div class="w3-sidenav w3-light-grey w3-card-2">
+		@foreach (var x in Model)
+		{
+			<div class="accordion-wrapper">
+				<a href="#" class="accordion-anchor">
+					@x.Name
+				</a>
+				@if (x.List != null)
+				{
+					<div class="w3-accordion-content w3-white w3-card-4">
+						@foreach (var y in x.List)
+						{
+						<a>@y.Name</a>
+						}
+
 					</div>
-				</div>
-			</div>
+				}
 		</div>
-=======
-    <div class="tabbable tabs-left" id="result">
-        <ul class="nav nav-tabs">
-            @foreach (var x in Model.AssignmentList)
-            {
-                <li>
-                    @Html.ActionLink(x.Name, "Index")
-                </li>
-            }
-        </ul>
-        <div class="tab-content custom-tabber" id="test">
-		@Html.Partial("SideTabs", Model.ToList().First())
->>>>>>> refs/remotes/origin/master
+		}
 	</div>
 </div>

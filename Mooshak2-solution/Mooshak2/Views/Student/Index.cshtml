@@ -16,9 +16,7 @@
 			</li>
 		}
 	</ul>
-
-
-	<div class="tab-content custom-tabber" id="test">
+	<div id="test">
 		@Html.Partial("SideTabs", new AssignmentService().GetAssignmentNavViewModels(Model.First().Id))
 	</div>
 </div>
