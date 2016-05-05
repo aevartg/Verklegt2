@@ -43,9 +43,9 @@
 }
 <input type="text" class="live-search-box" placeholder="search here" /><br />
 <ul class="live-search-list">
-    @for (int i = 0; i < @Model.AllTeachers.Count; i++)
+    @foreach(var item in Model.AllTeachers)
     {
-        <li>@Model.AllTeachers[i]</li>
+        <li>@item.username</li>
     }
 </ul>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Mooshak2.Models;
 using Mooshak2.Services;
 
 namespace Mooshak2.Controllers
@@ -17,7 +18,10 @@ namespace Mooshak2.Controllers
 
 	    public ActionResult Create()
 	    {
-		    return View();
+			AdminService connection = new AdminService();
+			AdminCourseViewModel model = new AdminCourseViewModel();
+		    model.AllTeachers = connection.GetAllUsers();//náum i alla usera ekki bara teachers
+		    return View(model);
 	    }
 
 	    public ActionResult Edit(int id)

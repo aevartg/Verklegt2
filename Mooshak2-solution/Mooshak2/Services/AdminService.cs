@@ -19,18 +19,22 @@ namespace Mooshak2.Services
 			_db = new ApplicationDbContext();
 		}
 
-		public List<ApplicationUser> GetAllUsers()
+		public List<UserViewModel> GetAllUsers()
 		{
-			var users = new List<ApplicationUser>();
-					
-			_db.Users.ToList().ForEach((x) =>
+			var users = new List<UserViewModel>();
+			var allUsers = (from x in _db.Users select x).ToList();
+
+			for(int i = 0; i < allUsers.Count(); i++)
 			{
-				users.Add(x);
-			});
+				UserViewModel user = new UserViewModel();
+				user.Id = allUsers[i].Id;
+				user.username = allUsers[i].UserName;
+				users.Add(user);
+			};
 
 			if (users == null)
 			{
-				//TODO
+				//TODO held við þurfum að villumeðhöndla í controllernum...
 				return null;
 			}
 			else
