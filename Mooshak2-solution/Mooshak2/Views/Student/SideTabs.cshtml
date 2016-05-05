@@ -1,0 +1,21 @@
+﻿@model Mooshak2.Models.CourseTabViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="custom-student">
+    <div class="tabbable tabs-left" id="result">
+        <ul class="nav nav-tabs">
+            @foreach (var x in Model.AssignmentList)
+            {
+                <li>
+                    @Html.ActionLink(x.Name, "Index")
+                </li>
+            }
+        </ul>
+        <div class="tab-content custom-tabber" id="test">
+		@Html.Partial("SideTabs", Model.ToList().First())
+	</div>
+    </div>
+</div>

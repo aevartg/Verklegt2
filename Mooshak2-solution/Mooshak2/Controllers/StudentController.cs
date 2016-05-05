@@ -11,7 +11,7 @@ using Mooshak2.Services;
 
 namespace Mooshak2.Controllers
 {
-	public class UserController : Controller
+	public class StudentController : Controller
 	{
 		// GET: Project
 		public ActionResult Index()

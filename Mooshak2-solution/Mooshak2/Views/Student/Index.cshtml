@@ -11,7 +11,7 @@
 		@foreach (var x in Model.ToList())
 		{
 			<li>
-				@Ajax.ActionLink(x.Name, "SideTabRender", "User", new {id = x.Id}, new AjaxOptions() {UpdateTargetId = "test", InsertionMode = InsertionMode.Replace, HttpMethod = "GET"})
+				@Ajax.ActionLink(x.Name, "SideTabRender", "Student", new {id = x.Id}, new AjaxOptions() {UpdateTargetId = "test", InsertionMode = InsertionMode.Replace, HttpMethod = "GET"})
 			</li>
 		}
 	</ul>
