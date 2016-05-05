@@ -1,10 +1,38 @@
+<<<<<<< HEAD
+﻿@model List<Mooshak2.Models.AssignmentNavViewModel>
+=======
 ﻿@model Mooshak2.Models.CourseTabViewModel
+>>>>>>> refs/remotes/origin/master
 
 @{
     ViewBag.Title = "Index";
 }
 
 <div class="custom-student">
+<<<<<<< HEAD
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="sidebar-nav">
+					<div class="tabbable tabs-left">
+						<ul class="nav nav-list">
+							@foreach (var x in Model)
+							{
+								<li class="nav-header">@x.Name</li>
+								if (x.List != null)
+								{
+									foreach (var y in x.List)
+									{
+										<li><a>@y.Name</a></li>
+									}
+								}
+							}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+=======
     <div class="tabbable tabs-left" id="result">
         <ul class="nav nav-tabs">
             @foreach (var x in Model.AssignmentList)
@@ -16,6 +44,6 @@
         </ul>
         <div class="tab-content custom-tabber" id="test">
 		@Html.Partial("SideTabs", Model.ToList().First())
+>>>>>>> refs/remotes/origin/master
 	</div>
-    </div>
 </div>

@@ -202,6 +202,24 @@ color: #000;
   overflow-y:scroll;
 }
 
+.leitarlisti2
+{
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+padding: 1em;
+background-color: #fff;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+font-family: 'Lato', sans-serif;
+color: #000;
+
+  height:200px; 
+  width: 25%; 
+  overflow: hidden; 
+  overflow-y:scroll;
+}
 
 .leitarbox 
 {

@@ -23,7 +23,7 @@ namespace Mooshak2.Controllers
 
 		public PartialViewResult SideTabRender(int id)
 		{
-			var model = new CourseService().GetCourseTabViewModel(id);
+			var model = new AssignmentService().GetAssignmentNavViewModels(id);
 			return PartialView("SideTabs",model);
 		}
 
