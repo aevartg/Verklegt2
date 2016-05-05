@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using Antlr.Runtime;
+using Microsoft.AspNet.Identity;
 using Mooshak2.Models;
 using Mooshak2.Services;
 
@@ -40,6 +41,14 @@ namespace Mooshak2.Controllers
 				return View("Index");
 			}
 			throw new Exception();
+		}
+
+		public PartialViewResult SideTabDataRender(int milestoneID)
+		{
+			
+			//var model = new AdminService().GetAssignmentViewModel(HttpContext.User.Identity.GetUserId(), mileStoneID);
+			var model = new AssignmentViewModel();
+			return PartialView("SideTabsData", model);
 		}
 	}
 }

@@ -10,7 +10,6 @@ namespace Mooshak2.Services
 	
 	public class AdminService
 	{
-		//ApplicationDbContext db = new ApplicationDbContext();  -  afhverju má þetta ekki?-SDS
 
 		private ApplicationDbContext _db;
 
@@ -118,21 +117,6 @@ namespace Mooshak2.Services
 
 		}
 
-		public Assignment GetAssignmentByID(int id)
-		{
-			var assign = _db.Assignments.SingleOrDefault(x => x.Id == id);
-
-			if (assign == null)
-			{
-				//TODO
-				return null;
-			}
-			else
-			{
-				return assign;
-			}
-		}
-
 		public List<Course> GetAllCourses()
 		{
 			var allCourses = (from x in _db.Courses select x).ToList();
@@ -182,9 +166,13 @@ namespace Mooshak2.Services
 			}
 		}
 
-		public List<Submission> GetSubmissionsByUserID(int UserID, int milestoneID)
+
+		//eftirfarandi fer inní assignmentService, föll sem búa til assignmentviewmodel(ekkert submission í db þannig virkar ekki)
+		//nota getSubByUseandMiles og getAssignByID föllin lika
+
+		public List<Submission> GetSubmissionsByUserAndMilestoneID(string UserID, int milestoneID)
 		{
-			var subs = (from x in _db.Submissions where x.IdMilestone == milestoneID && x.IdUser == UserID select x).ToList();
+			var subs = (from x in _db.Submissions where x.IdMilestone == milestoneID && x.IdUser.ToString() == UserID select x).ToList();
 
 			if (subs.Count == 0)
 			{
@@ -196,6 +184,95 @@ namespace Mooshak2.Services
 				
 				return subs;
 			}
+		}
+
+		public Assignment GetAssignmentByID(int id)
+		{
+			var assign = _db.Assignments.SingleOrDefault(x => x.Id == id);
+
+			if (assign == null)
+			{
+				//TODO
+				return null;
+			}
+			else
+			{
+				return assign;
+			}
+		}
+
+		public List<InputOutput> GetExpectedInputOutputsByMilestoneId(int id)
+		{
+			var exp = (from x in _db.InputOutputs where x.IdMilestone == id select x).ToList();
+			if (exp.Count == 0)
+			{
+				//TODO
+				return null;
+			}
+			else
+			{
+				return exp;
+			}
+		}
+
+		public List<InputOutputViewModel> getInputsOutputsViewModel(int milestoneID)
+		{
+			var model = new List<InputOutputViewModel>();
+			var allExpInputs = GetExpectedInputOutputsByMilestoneId(milestoneID);
+			foreach (var item in allExpInputs)
+			{
+				var x = new InputOutputViewModel();
+				x.Input = item.Input;
+				x.ExpectedOutput = item.Output;
+				x.RealOutput = item.Output; //þessi lína myndi ekki ná í expected output heldur raunverulegt output notandans
+				model.Add(x);
+			}
+			if (model.Count == 0)
+			{
+				//TODO
+				return null;
+			}
+			else
+			{
+				return model;
+			}
+		}
+
+		public Milestone getMilestoneByID(int id)
+		{
+			var model = (from x in _db.Milestones where x.Id == id select x).SingleOrDefault();
+
+			if (model == null)
+			{
+				//TODO
+				return null;
+			}
+			else
+			{
+				return model;
+			}
+
+		}
+
+		public AssignmentViewModel GetAssignmentViewModel(string userID, int milestoneID)
+		{
+			var model = new AssignmentViewModel();
+			var milestone = getMilestoneByID(milestoneID);
+			model.Id = GetAssignmentByID(milestone.IdAssignment).Id;
+			model.Name = GetAssignmentByID(milestone.Id).Name;
+			model.Submissions = GetSubmissionsByUserAndMilestoneID(userID, milestoneID);
+			model.InputOutputs = getInputsOutputsViewModel(milestoneID);
+
+			if (model == null)
+			{
+				//TODO
+				return null;
+			}
+			else
+			{
+				return model;
+			}
+
 		}
 	}
 }

@@ -215,6 +215,7 @@
     <Compile Include="Models\EntityClasses\UserCourse.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\EntityClasses\InputOutput.cs" />
+    <Compile Include="Models\InputOutputViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\EntityClasses\Milestone.cs" />
     <Compile Include="Models\EntityClasses\Submission.cs" />
@@ -240,6 +241,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Custom.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

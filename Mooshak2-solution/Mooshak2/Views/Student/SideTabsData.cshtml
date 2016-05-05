@@ -4,12 +4,7 @@
 
 <div>
     <h2>@Model.Name</h2>
-    <ul>
-        @foreach (var item in Model.Milestones)
-        {
-            <li>@item.Name</li>
-        }
-    </ul>
+    
     @using (Html.BeginForm("Test", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken();
@@ -20,34 +15,35 @@
             <input type="submit" />
         </div>
     }
+
     <div class="inputlists">
         <div class="yourInputs">
             <ul>
-                @foreach (var item in Model.YourInputOutputs)
+                @foreach (var item in Model.InputOutputs)
                 {
                     <li>Input: @item.Input</li>
-                    <li>Output: @item.Output</li>
+                    <li>Output: @item.RealOutput</li>
                 }
             </ul>
         </div>
         <div class="expectedInputs">
             <ul>
-                @foreach (var item in Model.ExpectedInputOutputs)
+                @foreach (var item in Model.InputOutputs)
                 {
                     <li>Input: @item.Input</li>
-                    <li>Output: @item.Output</li>
+                    <li>Output: @item.ExpectedOutput</li>
                 }
             </ul>
         </div>
     </div>
-    <div>
+
+    <div class="submissionTable">
         <table>
             <thead>
             <tr>
                 <th>#</th>
                 <th>Time</th>
                 <th>User</th>
-                <th>Problem</th>
                 <th>Result</th>
             </tr>
             </thead>
@@ -55,11 +51,17 @@
             @foreach (var item in Model.Submissions)
             {
                 <tr>
-                    <th>@item.Id</th>
-                    <th>@item.SubmissionDate.Date</th>
-                    <th>@User.Identity.GetUserName()</th>
-                    <th>@item.</th>
-
+                    <td>@item.Id</td>
+                    <td>@item.SubmissionDate.Date</td>
+                    <td>@User.Identity.GetUserName()</td>
+                    @if (item.TestFailed == 0)
+                    {
+                        <td class="acceptedTd">Accepted</td>
+                    }
+                    else
+                    {
+                        <td class="failedTd"></td>
+                    }       
                 </tr>
             }
             </tbody>
