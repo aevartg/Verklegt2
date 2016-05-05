@@ -22,6 +22,12 @@ namespace Mooshak2.Services
 		public List<ApplicationUser> GetAllUsers()
 		{
 			var users = new List<ApplicationUser>();
+					
+			_db.Users.ToList().ForEach((x) =>
+			{
+				users.Add(x);
+			});
+
 			if (users == null)
 			{
 				//TODO
@@ -29,14 +35,8 @@ namespace Mooshak2.Services
 			}
 			else
 			{
-				_db.Users.ToList().ForEach((x) =>
-				{
-					users.Add(x);
-				});
-
 				return users;
-				}
-			//þetta fall skilar engu núna, erum ekki með neina usera
+			}				
 		}
 
 		public Course GetCourseByID(int id)
@@ -57,6 +57,11 @@ namespace Mooshak2.Services
 		public AdminCourseViewModel GetAdminCourseViewModel(int id)
 		{
 			var model = new AdminCourseViewModel();
+			
+			model.Name = GetCourseByID(id).Name;
+			model.AllTeachers = GetAllUsers(); //nær í alla notendur núna, kann ekki að ná bara í teachers
+			model.Id = id;
+
 			if (model == null)
 			{
 				//TODO
@@ -64,12 +69,10 @@ namespace Mooshak2.Services
 			}
 			else
 			{
-				model.Name = GetCourseByID(id).Name;
-				model.AllTeachers = GetAllUsers(); //nær í alla notendur núna, kann ekki að ná bara í teachers
-				model.Id = id;
 				return model;
 			}
 			
+				
 		}
 
 		//fleiri föll sem munu vera notuð annarsstaðar liklega
@@ -77,6 +80,9 @@ namespace Mooshak2.Services
 		public List<ApplicationUser> GetAllTeachers()
 		{
 			var teachers = new List<ApplicationUser>();
+
+			//velja alla kennara, útfrá roleID?
+
 			if (teachers == null)
 			{
 				//TODO
@@ -84,14 +90,18 @@ namespace Mooshak2.Services
 			}
 			else
 			{
-				//velja alla kennara, útfrá roleID?
 				return teachers;
 			}
+			
+			
 		}
 
 		public List<ApplicationUser> GetAllStudents()
 		{
 			var students = new List<ApplicationUser>();
+			
+			//velja alla kennara, útfrá roleID?
+
 			if (students == null)
 			{
 				//TODO
@@ -99,9 +109,9 @@ namespace Mooshak2.Services
 			}
 			else
 			{
-				//velja alla nemendur, útfrá roleID?
 				return students;
 			}
+
 		}
 
 		public Assignment GetAssignmentByID(int id)
@@ -121,6 +131,12 @@ namespace Mooshak2.Services
 		public List<Course> GetAllCourses()
 		{
 			var courses = new List<Course>();
+			
+			_db.Courses.ToList().ForEach((x) =>
+			{
+				courses.Add(x);
+			});
+
 			if (courses == null)
 			{
 				//TODO
@@ -128,18 +144,21 @@ namespace Mooshak2.Services
 			}
 			else
 			{
-				_db.Courses.ToList().ForEach((x) =>
-				{
-					courses.Add(x);
-				});
-
 				return courses;
 			}
+			
+			
 		}
 
 		public List<Assignment> GetAllAssignments()
 		{
 			var assigns = new List<Assignment>();
+
+			_db.Assignments.ToList().ForEach((x) =>
+			{
+				assigns.Add(x);
+			});
+
 			if (assigns == null)
 			{
 				//TODO
@@ -147,11 +166,6 @@ namespace Mooshak2.Services
 			}
 			else
 			{
-				_db.Assignments.ToList().ForEach((x) =>
-				{
-					assigns.Add(x);
-				});
-
 				return assigns;
 			}
 		}
@@ -160,6 +174,15 @@ namespace Mooshak2.Services
 		{
 			var subs = new List<Submission>();
 			//var subs = _db.Submissions.Where(x => x.IdMilestone == id);     -    virkar þetta?
+
+			_db.Submissions.ToList().ForEach((x) =>
+			{
+				if (x.IdMilestone == id)
+				{
+					subs.Add(x);
+				}
+			});
+
 			if (subs == null)
 			{
 				//TODO
@@ -167,21 +190,23 @@ namespace Mooshak2.Services
 			}
 			else
 			{
-				_db.Submissions.ToList().ForEach((x) =>
-				{
-					if (x.IdMilestone == id)
-					{
-						subs.Add(x);
-					}
-				});
 				return subs;
 			}
 		}
 
-		public List<Submission> GetSubmissionsByUserID(int id)
+		public List<Submission> GetSubmissionsByUserID(int UserID, int milestoneID)
 		{
 			var subs = new List<Submission>();
 			//var subs = _db.Submissions.Where(x => x.IdUser == id);     -    virkar þetta?
+
+			_db.Submissions.ToList().ForEach((x) =>
+			{
+				if (x.IdUser == UserID && x.IdMilestone == milestoneID)
+				{
+					subs.Add(x);
+				}
+			});
+
 			if (subs == null)
 			{
 				//TODO
@@ -189,13 +214,7 @@ namespace Mooshak2.Services
 			}
 			else
 			{
-				_db.Submissions.ToList().ForEach((x) =>
-				{
-					if (x.IdUser == id)
-					{
-						subs.Add(x);
-					}
-				});
+				
 				return subs;
 			}
 		}
