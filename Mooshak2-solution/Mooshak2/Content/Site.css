@@ -176,3 +176,51 @@ a
 {
     margin-left: -116px;
 }
+
+
+
+
+/*Fyrir search listana*/
+/*Source: https://www.html5andbeyond.com/live-search-a-html-list-using-jquery-no-plugin-needed/ */
+
+.live-search-list 
+{
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+padding: 1em;
+background-color: #fff;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+font-family: 'Lato', sans-serif;
+color: #000;
+
+  height:200px; 
+  width: 18%; 
+  overflow: hidden; 
+  overflow-y:scroll;
+}
+
+
+.live-search-box 
+{
+width: 100%;
+display: block;
+padding: 1em;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+}
+
+.live-search-list option 
+{
+color: #000;
+list-style: none;
+padding: 0;
+margin: 5px 0;
+}
