@@ -30,5 +30,13 @@ namespace Mooshak2.Controllers
 		    var model = connection.GetAdminCourseViewModel(id);
 		    return View(model);
 	    }
+
+        public ActionResult ListUsers()
+        {
+            AdminService connection = new AdminService();
+            AdminCourseViewModel model = new AdminCourseViewModel();
+            model.AllTeachers = connection.GetAllUsers();//náum i alla usera ekki bara teachers
+            return View(model);
+        }
     }
 }

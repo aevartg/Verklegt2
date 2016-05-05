@@ -1,12 +1,72 @@
-﻿
-@using (Html.BeginForm("Test", "Project", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken();
-    <div class="formgroup">
-        <input type="file" id="file" name="file" />
+﻿@using Microsoft.AspNet.Identity
+@model Mooshak2.Models.AssignmentViewModel
+
+
+<div>
+    <h2>@Model.Name</h2>
+    <ul>
+        @foreach (var item in Model.Milestones)
+        {
+            <li>@item.Name</li>
+        }
+    </ul>
+    @using (Html.BeginForm("Test", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken();
+        <div class="formgroup">
+            <input type="file" id="file" name="file" />
+        </div>
+        <div class="formgroup">
+            <input type="submit" />
+        </div>
+    }
+    <div class="inputlists">
+        <div class="yourInputs">
+            <ul>
+                @foreach (var item in Model.YourInputOutputs)
+                {
+                    <li>Input: @item.Input</li>
+                    <li>Output: @item.Output</li>
+                }
+            </ul>
+        </div>
+        <div class="expectedInputs">
+            <ul>
+                @foreach (var item in Model.ExpectedInputOutputs)
+                {
+                    <li>Input: @item.Input</li>
+                    <li>Output: @item.Output</li>
+                }
+            </ul>
+        </div>
     </div>
-    <div class="formgroup">
-        <input type="submit"/>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Time</th>
+                <th>User</th>
+                <th>Problem</th>
+                <th>Result</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.Submissions)
+            {
+                <tr>
+                    <th>@item.Id</th>
+                    <th>@item.SubmissionDate.Date</th>
+                    <th>@User.Identity.GetUserName()</th>
+                    <th>@item.</th>
+
+                </tr>
+            }
+            </tbody>
+        </table>
     </div>
-}
+
+</div>
+
+
 
