@@ -3,5 +3,18 @@
     ViewBag.Title = "ListUsers";
 }
 
-<h2>ListUsers</h2>
+<h2>Users</h2>
 
+<div class="form-group">
+    <label for="model.AllTeachers" class="control-label col-md-2">Search Users:</label>
+    <div class="col-md-10">
+        <input type="text" class="form-control leitarbox" placeholder="search here"/><br/>
+        <select class="leitarlisti" name="users" size="15">
+            @foreach (var item in Model.AllTeachers)
+            {
+                <option value="@item.Id">@item.username</option>
+            }
+        </select>
+        <input type="button" value="Edit" />
+    </div>
+</div>
