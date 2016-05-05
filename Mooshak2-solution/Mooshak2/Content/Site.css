@@ -183,7 +183,7 @@ a
 /*Fyrir search listana*/
 /*Source: https://www.html5andbeyond.com/live-search-a-html-list-using-jquery-no-plugin-needed/ */
 
-.live-search-list 
+.leitarlisti
 {
 -webkit-box-sizing: border-box;
 -moz-box-sizing: border-box;
@@ -203,7 +203,7 @@ color: #000;
 }
 
 
-.live-search-box 
+.leitarbox 
 {
 width: 100%;
 display: block;
@@ -217,7 +217,7 @@ box-sizing: border-box;
 border-radius: 5px;
 }
 
-.live-search-list option 
+.leitarlisti option 
 {
 color: #000;
 list-style: none;
