@@ -31,7 +31,13 @@
         <div class="form-group">
             <label for="model.AvailableTeachers" class="control-label col-md-2">Search Teachers:</label>
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.AllTeachers, new { @class = "form-control" })
+                <input type="text" class="form-control leitarbox" placeholder="search here" /><br />
+                <select class="leitarlisti" name="users" size="15">
+                    @foreach (var item in Model.AllTeachers)
+                    {
+                        <option value="@item.Id">@item.username</option>
+                    }
+                </select>
                 @Html.ValidationMessageFor(model => model.AllTeachers, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -42,37 +48,3 @@
         </div>
     </div>
 }
-<input type="text" class="live-search-box" placeholder="search here" /><br />
-<ul class="live-search-list">
-    @foreach (var item in Model.AllTeachers)
-    {
-        <li>@item.username</li>
-    }
-</ul>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
-<script language="JavaScript" type="text/javascript">
-
-    $(document).ready(function () {
-
-        $('.live-search-list li').each(function () {
-            $(this).attr('data-search-term', $(this).text().toLowerCase());
-        });
-
-        $('.live-search-box').on('keyup', function () {
-
-            var searchTerm = $(this).val().toLowerCase();
-
-            $('.live-search-list li').each(function () {
-
-                if ($(this).filter('[data-search-term *= ' + searchTerm + ']').length > 0 || searchTerm.length < 1) {
-                    $(this).show();
-                } else {
-                    $(this).hide();
-                }
-
-            });
-
-        });
-
-    });
-</script>
