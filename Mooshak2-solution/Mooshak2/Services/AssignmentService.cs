@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
+using System.Web.Mvc;
 using Mooshak2.Models;
 using Mooshak2.Models.EntityClasses;
 
@@ -40,6 +41,34 @@ namespace Mooshak2.Services
 					assignmentViewModels.Add(temp);
 				}
 				return assignmentViewModels;
+			}
+		}
+
+		public List<AssignmentNavViewModel> GetAssignmentNavViewModels(int id)
+		{
+			var assignments = (from items in _db.Assignments
+						where items.CourseId == id
+						select items).ToList();
+			if (assignments.Count == 0)
+			{
+				//TODO
+				return null;
+			}
+			else
+			{
+				var assignmentNavViewModels = new List<AssignmentNavViewModel>();
+				var service = new MilestoneService();
+				foreach (var item in assignments)
+				{
+					var temp = new AssignmentNavViewModel()
+								{
+									Id = item.Id,
+									List = service.GetMilestoneNavById(item.Id),
+									Name = item.Name
+								};
+					assignmentNavViewModels.Add(temp);
+				}
+				return assignmentNavViewModels;
 			}
 		}
 	}
