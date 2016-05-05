@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Mooshak2.Models.CourseTabViewModel>
+﻿@using Mooshak2.Services
+@model IEnumerable<Mooshak2.Models.CourseTabViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -18,6 +19,6 @@
 
 
 	<div class="tab-content custom-tabber" id="test">
-		@Html.Partial("SideTabs", Model.ToList().First())
+		@Html.Partial("SideTabs", new AssignmentService().GetAssignmentNavViewModels(Model.First().Id))
 	</div>
 </div>

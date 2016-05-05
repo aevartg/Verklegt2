@@ -14,4 +14,11 @@ namespace Mooshak2.Models
 		public int Id { get; set; }
 		public string Name { get; set; }
 	}
+
+	public class AssignmentNavViewModel
+	{
+		public int Id { get; set; }
+		public string Name { get; set; }
+		public List<MilestoneNavViewModel> List { get; set; }
+	}
 }
