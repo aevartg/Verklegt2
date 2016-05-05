@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Dynamic;
+using System.Web.UI.WebControls;
 
 namespace Mooshak2.Models
 {
@@ -86,6 +87,11 @@ namespace Mooshak2.Models
 
         [Display(Name = "SSN")]
         public string SSN { get; set; }
+
+        [Required(ErrorMessage = "User type Required")]
+        [Display(Name = "Teacher? ")]
+        public bool UserType { get; set; }
+
     }
 
     public class ResetPasswordViewModel
