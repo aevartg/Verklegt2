@@ -258,7 +258,7 @@ namespace Mooshak2.Services
 		{
 			var model = new AssignmentViewModel();
 			var milestone = getMilestoneByID(milestoneID);
-			model.Id = GetAssignmentByID(milestone.IdAssignment).Id;
+			model.Id = GetAssignmentByID(milestone.AssignmentId).Id;
 			model.Name = GetAssignmentByID(milestone.Id).Name;
 			model.Submissions = GetSubmissionsByUserAndMilestoneID(userID, milestoneID);
 			model.InputOutputs = getInputsOutputsViewModel(milestoneID);
