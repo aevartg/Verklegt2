@@ -30,5 +30,10 @@ namespace Mooshak2.Controllers
 		    var model = connection.GetAdminCourseViewModel(id);
 		    return View(model);
 	    }
+
+        public ActionResult ListUsers()
+        {
+            return View();
+        }
     }
 }
