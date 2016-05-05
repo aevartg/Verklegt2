@@ -19,13 +19,18 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Mooshak 2.0", "Login", "Account", new { area = "" }, new { @class = "navbar-brand navbar-custom" })
+				@if (User.Identity.IsAuthenticated)
+				{
+					@Html.ActionLink("Logout", "LogOff", "Account", new {area = ""}, new {@class = "navbar-brand navbar-custom"})
+				}
             </div>
             <div class="navbar-collapse collapse">
                 @*<ul class="nav navbar-nav">
-        <li>@Html.ActionLink("Home", "Login", "Account")</li>
-        <li>@Html.ActionLink("About", "About", "Home")</li>
-        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-    </ul>*@
+	                <li>@Html.ActionLink("Home", "Login", "Account")</li>
+	                <li>@Html.ActionLink("About", "About", "Home")</li>
+	                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+	            </ul>*@
+
     @Html.Partial("_LoginPartial")
                 <p align="right" class="navbar-brand custom-header navbar-custom">VLN2 - Hópur 35</p>
             </div>
