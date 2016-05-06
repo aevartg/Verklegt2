@@ -80,11 +80,19 @@ namespace Mooshak2.Services
 
 		//fleiri föll sem munu vera notuð annarsstaðar liklega
 
-		public List<ApplicationUser> GetAllTeachers()
+		public List<UserViewModel> GetAllTeachers()
 		{
-			var teachers = new List<ApplicationUser>();
+			var teachers = new List<UserViewModel>();
+			var allUsers = GetAllUsers();
+			IdentityManager connection = new IdentityManager();
 
-			//velja alla kennara, útfrá roleID?
+			foreach (var item in allUsers)
+			{
+				if (connection.UserIsInRole(item.Id, "Teacher") == true)
+				{
+					teachers.Add(item);
+				}
+			}
 
 			if (teachers.Count == 0)
 			{
@@ -95,8 +103,6 @@ namespace Mooshak2.Services
 			{
 				return teachers;
 			}
-			
-			
 		}
 
 		public List<ApplicationUser> GetAllStudents()

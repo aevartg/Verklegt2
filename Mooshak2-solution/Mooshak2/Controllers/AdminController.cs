@@ -20,7 +20,7 @@ namespace Mooshak2.Controllers
 	    {
 			AdminService connection = new AdminService();
 			AdminCourseViewModel model = new AdminCourseViewModel();
-		    model.AllTeachers = connection.GetAllUsers();//náum i alla usera ekki bara teachers
+		    model.AllTeachers = connection.GetAllTeachers();
 		    return View(model);
 	    }
 
