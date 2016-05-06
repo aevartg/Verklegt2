@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using LinqToDB;
 using Mooshak2.Models.EntityClasses;
 
 namespace Mooshak2.Services
@@ -290,6 +291,22 @@ namespace Mooshak2.Services
 			userVM.username = user.UserName;
 			userVM.Id = user.Id;
 			model.TeachersInCourse.Add(userVM);
+		}
+
+		public void CreateCourse(AdminCourseViewModel model)
+		{
+			var course = new Course()
+						{
+							Id = model.Id,
+							Name = model.Name
+						};
+			foreach (var x in model.TeachersInCourse)
+			{
+				var tempTeacher = (from u in _db.Users where x.Id == u.Id select u).First();
+				course.Users.Add(tempTeacher);
+			}
+			_db.Courses.Add(course);
+			_db.SaveChanges();
 		}
 	}
 }

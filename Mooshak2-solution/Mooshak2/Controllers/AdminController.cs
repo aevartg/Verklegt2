@@ -32,9 +32,14 @@ namespace Mooshak2.Controllers
 	    [HttpPost]
 	    public ActionResult Create(AdminCourseViewModel model)
 	    {
-		    Course newCourse = new Course();
-		    newCourse.Id = model.Id;
-		    newCourse.Name = model.Name;
+			if (!ModelState.IsValid)
+			{
+				//eitthvað er að
+			}
+			else
+			{
+				new AdminService().CreateCourse(model);
+			}
 			//hér þarf að taka alla Teachera úr TeachersInCourse úr modelinu og linka þá við nýja coursinn
 			//og svo að lokum save'a nýja coursinn í database
 		    return View("Index"); // eigum eftir að gera index view fyrir Admin
