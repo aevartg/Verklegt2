@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Mooshak2.Models;
 
@@ -16,27 +17,6 @@ namespace Mooshak2.Services
 			_db = new ApplicationDbContext();
 		}
 
-		public CourseTabViewModel GetCourseTabViewModel(int id)
-		{
-			var course = _db.Courses.SingleOrDefault(x => x.Id == id);
-			if (course == null)
-			{
-				//TODO
-				return null;
-			}
-			else
-			{
-				var assignmentList = new AssignmentService().GetAssignmentTabViewModels(course.Id);
-				var courseViewModel = new CourseTabViewModel()
-									{
-										Id = course.Id,
-										Name = course.Name,
-										AssignmentList = assignmentList
-									};
-				return courseViewModel;
-			}
-		}
-
 		public List<CourseTabViewModel> GetCourseTabViewModels()
 		{
 			var userid = HttpContext.Current.User.Identity.GetUserId();
@@ -47,7 +27,11 @@ namespace Mooshak2.Services
 			if (courses.Count == 0)
 			{
 				//TODO
-				return null;
+				var exception = new EmptyModelException
+				{
+					Message = "Course Tab View Model Is Empty"
+				};
+				throw exception;
 			}
 			else
 			{
@@ -55,6 +39,15 @@ namespace Mooshak2.Services
 				foreach (var course in courses)
 				{
 					var assignmentList = new AssignmentService().GetAssignmentTabViewModels(course.Id);
+					if (assignmentList.Count == 0)
+					{
+						//TODO
+						var exception = new EmptyModelException
+						{
+							Message = "Assignment Tab View Model Is Empty"
+						};
+						throw exception;
+					}
 					var courseViewModeltemp = new CourseTabViewModel()
 					{
 						Id = course.Id,

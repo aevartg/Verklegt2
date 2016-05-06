@@ -224,6 +224,7 @@
     <Compile Include="Services\AdminService.cs" />
     <Compile Include="Services\AssignmentService.cs" />
     <Compile Include="Services\CourseService.cs" />
+    <Compile Include="Services\EmptyModelException.cs" />
     <Compile Include="Services\MilestoneService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
