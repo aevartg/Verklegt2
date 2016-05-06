@@ -212,7 +212,6 @@
     <Compile Include="Models\CourseViewModel.cs" />
     <Compile Include="Models\EntityClasses\Assignment.cs" />
     <Compile Include="Models\EntityClasses\Course.cs" />
-    <Compile Include="Models\EntityClasses\UserCourse.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\EntityClasses\InputOutput.cs" />
     <Compile Include="Models\InputOutputViewModel.cs" />
