@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
 
-    $(".leitarlisti option").each(function () {
+    $("#leitarfunction option").each(function () {
         $(this).attr("data-search-term", $(this).text().toLowerCase());
     });
 
@@ -8,7 +8,7 @@
 
         var searchTerm = $(this).val().toLowerCase();
 
-        $(".leitarlisti option").each(function () {
+        $("#leitarfunction option").each(function () {
 
             if ($(this).filter("[data-search-term *= " + searchTerm + "]").length > 0 || searchTerm.length < 1) {
                 $(this).show();

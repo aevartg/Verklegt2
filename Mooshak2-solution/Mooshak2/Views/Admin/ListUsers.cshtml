@@ -18,7 +18,7 @@
         <label for="Students">Students</label>
     </div>
     <div>
-        <select class="leitarlisti2" name="users" size="15">
+        <select class="leitarlisti2" id="leitarfunction" name="users" size="15">
             @foreach (var item in Model.AllTeachers)
             {
                 <option value="@item.Id">@item.username</option>
