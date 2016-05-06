@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Mooshak2.Models;
+using Mooshak2.Models.EntityClasses;
 using Mooshak2.Services;
 
 namespace Mooshak2.Controllers
@@ -15,13 +16,39 @@ namespace Mooshak2.Controllers
         {
             return View();
         }
-
+		[HttpGet]
 	    public ActionResult Create()
 	    {
 			AdminService connection = new AdminService();
 			AdminCourseViewModel model = new AdminCourseViewModel();
 		    model.AllTeachers = connection.GetAllTeachers();
 		    return View(model);
+	    }
+		[HttpGet]
+		public ActionResult Create(string userName)//tekur við updateuðu AdminCourseViewmodeli úr Add ActionResultinu sem færir teacher yfir i teacherinCourse 
+		{
+			AdminService c = new AdminService();
+			AdminCourseViewModel model = new AdminCourseViewModel();
+			c.UpdateAdminCourseViewModel(model, userName);
+			//Update'a aðeins TeachersInCourse listann í AdminCourseViewModelinu, ss lata user sem er valinn her að ofan inn i þann lista og kalla aftur á create nema með uppfært viewmodel?
+			return View(model);
+		}
+
+	    [HttpPost]
+	    public ActionResult Create(AdminCourseViewModel model)
+	    {
+		    Course newCourse = new Course();
+		    newCourse.Id = model.Id;
+		    newCourse.Name = model.Name;
+			//hér þarf að taka alla Teachera úr TeachersInCourse úr modelinu og linka þá við nýja coursinn
+			//og svo að lokum save'a nýja coursinn í database
+		    return View("Index"); // eigum eftir að gera index view fyrir Admin
+	    }
+
+		[HttpPost]
+	    public ActionResult Add(string userName) //er með þetta fall því eg kann ekki að tengja takka við ActionResult, held að valueið á takkanum(sem er Add eins og er) kalli á þetta method
+	    {
+		    return View("Create", userName);
 	    }
 
 	    public ActionResult Edit(int id)

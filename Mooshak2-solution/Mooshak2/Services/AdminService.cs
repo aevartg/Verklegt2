@@ -62,7 +62,7 @@ namespace Mooshak2.Services
 			var model = new AdminCourseViewModel();
 			
 			model.Name = GetCourseByID(id).Name;
-			model.AllTeachers = GetAllUsers(); //nær í alla notendur núna, kann ekki að ná bara í teachers
+			model.AllTeachers = GetAllTeachers(); 
 			model.Id = id;
 
 			if (model == null)  //hvernig á að villumeðhöndla her?
@@ -279,6 +279,17 @@ namespace Mooshak2.Services
 				return model;
 			}
 
+		}
+
+		//fall sem tengist því að færa teacher úr AllTeacher yfir í TeachersInCourse í New Course fyrir admin
+		public void UpdateAdminCourseViewModel(AdminCourseViewModel model, string userName)
+		{
+			IdentityManager connection = new IdentityManager();
+			ApplicationUser user = connection.GetUser(userName);
+			UserViewModel userVM = new UserViewModel();
+			userVM.username = user.UserName;
+			userVM.Id = user.Id;
+			model.TeachersInCourse.Add(userVM);
 		}
 	}
 }
