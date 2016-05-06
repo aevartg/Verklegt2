@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -22,17 +23,11 @@ namespace Mooshak2.Controllers
 			AdminService connection = new AdminService();
 			AdminCourseViewModel model = new AdminCourseViewModel();
 		    model.AllTeachers = connection.GetAllTeachers();
+
 		    return View(model);
 	    }
 		[HttpGet]
-		public ActionResult Create(string userName)//tekur við updateuðu AdminCourseViewmodeli úr Add ActionResultinu sem færir teacher yfir i teacherinCourse 
-		{
-			AdminService c = new AdminService();
-			AdminCourseViewModel model = new AdminCourseViewModel();
-			c.UpdateAdminCourseViewModel(model, userName);
-			//Update'a aðeins TeachersInCourse listann í AdminCourseViewModelinu, ss lata user sem er valinn her að ofan inn i þann lista og kalla aftur á create nema með uppfært viewmodel?
-			return View(model);
-		}
+		
 
 	    [HttpPost]
 	    public ActionResult Create(AdminCourseViewModel model)
@@ -46,8 +41,12 @@ namespace Mooshak2.Controllers
 	    }
 
 		[HttpPost]
-	    public ActionResult Add(string userName) //er með þetta fall því eg kann ekki að tengja takka við ActionResult, held að valueið á takkanum(sem er Add eins og er) kalli á þetta method
+	    public ActionResult Add(string userName) //tekur við userName, færir þann user yfir í TeachersInCourse og kallar aftur a create nema með því viewi
 	    {
+			AdminService c = new AdminService();
+			AdminCourseViewModel model = new AdminCourseViewModel();
+			c.UpdateAdminCourseViewModel(model, userName);
+			//Update'a aðeins TeachersInCourse listann í AdminCourseViewModelinu, ss lata user sem er valinn her að ofan inn i þann lista og kalla aftur á create nema með uppfært viewmodel?
 		    return View("Create", userName);
 	    }
 

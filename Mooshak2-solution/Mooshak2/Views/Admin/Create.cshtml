@@ -47,12 +47,23 @@
                 </div>
                 <div class="form-group col-md-3">
                     <div>
-                        <select class="leitarlisti" id="leitarfunction" name="users" size="15">
-                            @foreach (var item in Model.TeachersInCourse)
-                            {
-                                <option value="@item.username">@item.username</option>
-                            }
-                        </select>
+                        @if (Model.TeachersInCourse.Count == 0)
+                        {
+                            <select class="leitarlisti" id="leitarfunction" name="users" size="15">
+                               
+                                    <option></option>
+
+                            </select>
+                        }else
+                        {
+                            <select class="leitarlisti" id="leitarfunction" name="users" size="15">
+                                @foreach (var item in Model.TeachersInCourse)
+                                {
+                                    <option value="@item.username">@item.username</option>
+                                }
+                            </select>
+                        }
+                        
                         @Html.ValidationMessageFor(model => model.AllTeachers, "", new {@class = "text-danger"})
                     </div>
                 </div>

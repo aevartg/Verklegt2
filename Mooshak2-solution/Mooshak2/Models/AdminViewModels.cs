@@ -13,8 +13,8 @@ namespace Mooshak2.Models
 	{
 		public int Id { get; set; }
 		public string Name { get; set; }
-		public List<UserViewModel> AllTeachers { get; set; }
-		public List<UserViewModel> TeachersInCourse { get; set; }
+		public List<UserViewModel> AllTeachers = new List<UserViewModel>();
+		public List<UserViewModel> TeachersInCourse = new List<UserViewModel>();
 
 	}
 }
