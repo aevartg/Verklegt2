@@ -45,11 +45,12 @@
             <div class="form-group col-md-3">
                 <div>
                     <select class="leitarlisti" id="leitarfunction" name="users" size="15">
-                        @foreach (var item in Model.AllTeachers)
+                        @foreach (var item in Model.TeachersInCourse)
                         {
                             <option value="@item.Id">@item.username</option>
-                        }
+}
                     </select>
+
                     @Html.ValidationMessageFor(model => model.AllTeachers, "", new { @class = "text-danger" })
                 </div>
             </div>
