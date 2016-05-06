@@ -41,7 +41,7 @@ namespace Mooshak2.Controllers
 	    }
 
 		[HttpPost]
-	    public ActionResult Add(string userName) //tekur við userName, færir þann user yfir í TeachersInCourse og kallar aftur a create nema með því viewi
+	    public ActionResult Add(string userName) //tekur við userName, færir þann user yfir í TeachersInCourse og kallar aftur a create nema með því viewi   -   kann ekki að tengja þetta við takkann thob
 	    {
 			AdminService c = new AdminService();
 			AdminCourseViewModel model = new AdminCourseViewModel();
