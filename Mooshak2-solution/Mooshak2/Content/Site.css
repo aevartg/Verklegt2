@@ -261,3 +261,15 @@ margin: 5px 0;
 {
     border: 1px solid red;
 }
+
+.custom-leitarboxkennara
+{
+    width: 17%;
+    height: 27px;
+    padding-left: 34px;
+}
+
+.custom-coursename
+{
+    width: 550px;
+}
