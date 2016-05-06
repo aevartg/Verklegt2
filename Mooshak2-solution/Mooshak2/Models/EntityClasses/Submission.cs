@@ -10,6 +10,6 @@ namespace Mooshak2.Models.EntityClasses
 		public int TestPassed { get; set; }
 		public int TestFailed { get; set; }
 		public DateTime SubmitDate { get; set; }
-		public byte[] SubmissionBlob { get; set; }
+		public byte[] Blob { get; set; }
 	}
 }

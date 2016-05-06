@@ -174,7 +174,7 @@ namespace Mooshak2.Services
 		{
 			var subs = (from x in _db.Submissions where (x.UserId == userID && x.MilestoneId == milestoneID) select x).ToList();
 
-			if (true)
+			if (subs.Count == 0)
 			{
 				//TODO
 				return null;
@@ -182,7 +182,7 @@ namespace Mooshak2.Services
 			else
 			{
 
-				return null; //subs;
+				return subs;
 			}
 		}
 
@@ -203,7 +203,7 @@ namespace Mooshak2.Services
 
 		public List<InputOutput> GetExpectedInputOutputsByMilestoneId(int id)
 		{
-			var exp = (from x in _db.InputOutputs where x.IdMilestone == id select x).ToList();
+			var exp = (from x in _db.InputOutputs where x.MilestoneId == id select x).ToList();
 			if (exp.Count == 0)
 			{
 				//TODO

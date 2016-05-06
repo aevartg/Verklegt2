@@ -1,6 +1,3 @@
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-
 namespace Mooshak2.Migrations
 {
     using System;
@@ -29,8 +26,6 @@ namespace Mooshak2.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
-
         }
     }
 }
