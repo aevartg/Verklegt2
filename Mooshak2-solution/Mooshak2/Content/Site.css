@@ -197,7 +197,7 @@ font-family: 'Lato', sans-serif;
 color: #000;
 
   height:200px; 
-  width: 18%; 
+  width: 80%; 
   overflow: hidden; 
   overflow-y:scroll;
 }
@@ -242,4 +242,22 @@ color: #000;
 list-style: none;
 padding: 0;
 margin: 5px 0;
+}
+
+/*Submission Tafla*/
+.acceptedTd
+{
+    color: green; 
+}
+
+.failedTd
+{
+    color: red; 
+}
+
+/*Create course*/
+
+.teachercontainer
+{
+    border: 1px solid red;
 }
