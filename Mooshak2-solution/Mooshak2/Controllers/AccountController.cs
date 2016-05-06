@@ -137,7 +137,7 @@ namespace Mooshak2.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult CreateUser()
         {
             return View();
         }
@@ -147,7 +147,7 @@ namespace Mooshak2.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> CreateUser(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {

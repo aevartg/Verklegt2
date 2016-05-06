@@ -46,8 +46,7 @@ namespace Mooshak2.Controllers
 		public PartialViewResult SideTabDataRender(int milestoneID)
 		{
 			
-			//var model = new AdminService().GetAssignmentViewModel(HttpContext.User.Identity.GetUserId(), mileStoneID);
-			var model = new AssignmentViewModel();
+			var model = new AdminService().GetAssignmentViewModel(HttpContext.User.Identity.GetUserId(), milestoneID);
 			return PartialView("SideTabsData", model);
 		}
 	}
