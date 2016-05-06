@@ -153,7 +153,7 @@ namespace Mooshak2.Services
 
 		public List<Submission> GetSubmissionsByMilestoneID(int id)
 		{
-			var subs = (from x in _db.Submissions where x.IdMilestone == id select x).ToList();
+			var subs = (from x in _db.Submissions where x.MilestoneId == id select x).ToList();
 
 			if (subs.Count == 0)
 			{
@@ -170,19 +170,19 @@ namespace Mooshak2.Services
 		//eftirfarandi fer inní assignmentService, föll sem búa til assignmentviewmodel(ekkert submission í db þannig virkar ekki)
 		//nota getSubByUseandMiles og getAssignByID föllin lika
 
-		public List<Submission> GetSubmissionsByUserAndMilestoneID(string UserID, int milestoneID)
+		public List<Submission> GetSubmissionsByUserAndMilestoneID(string userID, int milestoneID)
 		{
-			var subs = (from x in _db.Submissions where x.IdMilestone == milestoneID && x.IdUser.ToString() == UserID select x).ToList();
+			var subs = (from x in _db.Submissions where (x.UserId == userID && x.MilestoneId == milestoneID) select x).ToList();
 
-			if (subs.Count == 0)
+			if (true)
 			{
 				//TODO
 				return null;
 			}
 			else
 			{
-				
-				return subs;
+
+				return null; //subs;
 			}
 		}
 

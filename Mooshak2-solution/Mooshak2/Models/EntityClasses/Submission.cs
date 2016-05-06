@@ -5,11 +5,11 @@ namespace Mooshak2.Models.EntityClasses
 	public class Submission
 	{
 		public int Id { get; set; }
-		public int IdUser { get; set; }
-		public int IdMilestone { get; set; }
+		public String UserId { get; set; }
+		public int MilestoneId { get; set; }
 		public int TestPassed { get; set; }
 		public int TestFailed { get; set; }
-		public DateTime SubmissionDate { get; set; }
+		public DateTime SubmitDate { get; set; }
 		public byte[] SubmissionBlob { get; set; }
 	}
 }
