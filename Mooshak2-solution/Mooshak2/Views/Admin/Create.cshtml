@@ -31,7 +31,7 @@
             <label for="model.AllTeachers" class="control-label col-md-2">Search Teachers:</label>
             <div class="col-md-10">
                 <input type="text" class="form-control leitarbox" placeholder="search here"/><br/>
-                    <select class="leitarlisti" name="users" size="15">
+                    <select class="leitarlisti" id="leitarfunction" name="users" size="15">
                         @foreach (var item in Model.AllTeachers)
                         {
                             <option value="@item.Id">@item.username</option>
