@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Microsoft.AspNet.Identity;
 using Mooshak2.Models;
 
 namespace Mooshak2.Services
@@ -38,7 +39,11 @@ namespace Mooshak2.Services
 
 		public List<CourseTabViewModel> GetCourseTabViewModels()
 		{
-			var courses = _db.Courses.Select(x => x).ToList();
+			var userid = HttpContext.Current.User.Identity.GetUserId();
+			var courses = _db.Users
+				.Where(x => x.Id == userid)
+				.SelectMany(x => x.Courses)
+				.ToList();
 			if (courses.Count == 0)
 			{
 				//TODO

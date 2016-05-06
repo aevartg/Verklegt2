@@ -16,8 +16,15 @@ namespace Mooshak2.Controllers
 
 		public ActionResult About()
 		{
+			var manager = new IdentityManager();
+			var user = new ApplicationUser();
+			user.UserName = "admin@admin.com";
+			user.Email = "admin@admin.com";
+			if (!manager.UserExists("admin@admin.com"))
+			{
+				manager.CreateUser(user, "123456");
+			}
 			ViewBag.Message = "Your application description page.";
-
 			return View();
 		}
 
