@@ -106,11 +106,19 @@ namespace Mooshak2.Services
 			}
 		}
 
-		public List<ApplicationUser> GetAllStudents()
+		public List<UserViewModel> GetAllStudents()
 		{
-			var students = new List<ApplicationUser>();
-			
-			//velja alla kennara, útfrá roleID?
+			var students = new List<UserViewModel>();
+			var allUsers = GetAllUsers();
+			IdentityManager connection = new IdentityManager();
+
+			foreach (var item in allUsers)
+			{
+				if (connection.UserIsInRole(item.Id, "Teacher") == false)
+				{
+					students.Add(item);
+				}
+			}
 
 			if (students.Count == 0)
 			{
