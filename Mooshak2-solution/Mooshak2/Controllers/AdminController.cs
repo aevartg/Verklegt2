@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Net.Mime;
 using System.Web;
 using System.Web.Mvc;
 using Mooshak2.Models;
@@ -21,16 +22,15 @@ namespace Mooshak2.Controllers
 	    public ActionResult Create()
 	    {
 			AdminService connection = new AdminService();
-			AdminCourseViewModel model = new AdminCourseViewModel();
-		    model.AllTeachers = connection.GetAllTeachers();
+			var model = new CreateCourseViewModel();
+		    model.Teachers = new SelectList(connection.GetAllTeachers(),"Id","username");;
 
-		    return View(model);
+			return View(model);
 	    }
-		[HttpGet]
 		
 
 	    [HttpPost]
-	    public ActionResult Create(AdminCourseViewModel model)
+	    public ActionResult Create(CreateCourseViewModel model)
 	    {
 			if (!ModelState.IsValid)
 			{
@@ -38,7 +38,7 @@ namespace Mooshak2.Controllers
 			}
 			else
 			{
-				new AdminService().CreateCourse(model);
+				//new AdminService().CreateCourse(model);
 			}
 			//hér þarf að taka alla Teachera úr TeachersInCourse úr modelinu og linka þá við nýja coursinn
 			//og svo að lokum save'a nýja coursinn í database

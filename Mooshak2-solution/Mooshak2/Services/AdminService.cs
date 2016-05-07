@@ -301,16 +301,15 @@ namespace Mooshak2.Services
 			model.TeachersInCourse.Add(userVM);
 		}
 
-		public void CreateCourse(AdminCourseViewModel model)
+		public void CreateCourse(CreateCourseViewModel model)
 		{
 			var course = new Course()
 						{
-							Id = model.Id,
 							Name = model.Name
 						};
-			foreach (var x in model.TeachersInCourse)
+			foreach (var x in model.SelectedTeachers)
 			{
-				var tempTeacher = (from u in _db.Users where x.Id == u.Id select u).First();
+				var tempTeacher = (from u in _db.Users where x == u.Id select u).First();
 				course.Users.Add(tempTeacher);
 			}
 			_db.Courses.Add(course);
