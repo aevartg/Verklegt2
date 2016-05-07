@@ -1,0 +1,24 @@
+﻿@using System.Web.Services.Protocols
+
+@{
+    ViewBag.Title = "CreateAssignment";
+}
+
+<h2>CreateCourse</h2>
+
+@{
+	using (Html.BeginForm("CreateAssignment", "Teacher", FormMethod.Post, new {id = "assignmentform"}))
+	{
+		<div class="form-group">
+			<label class="col-xs-3 control-label">Assignment Name</label>
+			<div>
+				@* TODO: Html.TextBoxFor(MODEL)*@
+				<input type="text" name="assignment name" class="form-control"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-3 control-label">Milestones</label>
+
+		</div>
+	}
+}
