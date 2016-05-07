@@ -1,85 +1,105 @@
-﻿@model Mooshak2.Models.AdminCourseViewModel
+﻿@model Mooshak2.Models.CreateCourseViewModel
 @{
     ViewBag.Title = "Create";
 }
 <h2>New Course</h2>
 @*<div class="tabbable tabs-left" id="result">
-        <ul class="nav nav-tabs">
-            @foreach (var x in Model.TestList)
-            {
-                <li>
-                    @Html.ActionLink(x.ToString(), "Index")
-                </li>
-            }
-        </ul>
-    </div>*@
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+			<ul class="nav nav-tabs">
+				@foreach (var x in Model.TestList)
+				{
+					<li>
+						@Html.ActionLink(x.ToString(), "Index")
+					</li>
+				}
+			</ul>
+		</div>
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group custom-coursename">
-            <label for="model.Name" class="control-label col-md-2">Name:</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-10 custom-leitarboxkennara">
-                <input type="text" class="form-control leitarbox" placeholder="search here"/><br/>
-            </div>
-        </div>
-        @using (Html.BeginForm())
-        {
-            <div class="container">
-                <div class="form-group col-md-3">
-                    <select class="leitarlisti" id="leitarfunction" name="users" size="15">
-                        @foreach (var item in Model.AllTeachers)
-                        {
-                            <option value="@item.username">@item.username</option>
-                        }
-                    </select>
-                    @Html.ValidationMessageFor(model => model.AllTeachers, "", new {@class = "text-danger"})
+		<div class="form-horizontal">
+			<hr />
+			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+			<div class="form-group custom-coursename">
+				<label for="model.Name" class="control-label col-md-2">Name:</label>
+				<div class="col-md-10">
+					@Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class = "form-control"}})
+					@Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-10 custom-leitarboxkennara">
+					<input type="text" class="form-control leitarbox" placeholder="search here"/><br/>
+				</div>
+			</div>
+			@using (Html.BeginForm())
+			{
+				<div class="container">
+					<div class="form-group col-md-3">
+						<select class="leitarlisti" id="leitarfunction" name="users" size="15">
+							@foreach (var item in Model.AllTeachers)
+							{
+								<option value="@item.username">@item.username</option>
+							}
+						</select>
+						@Html.ValidationMessageFor(model => model.AllTeachers, "", new {@class = "text-danger"})
 
-                </div>
-                <div class="form-group col-md-3">
-                    <div>
-                        @if (Model.TeachersInCourse.Count == 0)
-                        {
-                            <select class="leitarlisti" id="leitarfunction" name="users" size="15">
-                               
-                                    <option></option>
+					</div>
+					<div class="form-group col-md-3">
+						<div>
+							@if (Model.TeachersInCourse.Count == 0)
+							{
+								<select class="leitarlisti" id="leitarfunction" name="users" size="15">
 
-                            </select>
-                        }else
-                        {
-                            <select class="leitarlisti" id="leitarfunction" name="users" size="15">
-                                @foreach (var item in Model.TeachersInCourse)
-                                {
-                                    <option value="@item.username">@item.username</option>
-                                }
-                            </select>
-                        }
-                        
-                        @Html.ValidationMessageFor(model => model.AllTeachers, "", new {@class = "text-danger"})
-                    </div>
-                </div>
-            </div>
+										<option></option>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Add" class="btn btn-default" />
-                </div>
-            </div>
-        }
-        
-        </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
-    }
+								</select>
+							}else
+							{
+								<select class="leitarlisti" id="leitarfunction" name="users" size="15">
+									@foreach (var item in Model.TeachersInCourse)
+									{
+										<option value="@item.username">@item.username</option>
+									}
+								</select>
+							}
+
+							@Html.ValidationMessageFor(model => model.AllTeachers, "", new {@class = "text-danger"})
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-10">
+						<input type="submit" value="Add" class="btn btn-default" />
+					</div>
+				</div>
+			}
+
+			</div>
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-10">
+						<input type="submit" value="Create" class="btn btn-default" />
+					</div>
+				</div>
+		}*@
+<div>
+	@{
+		using (Html.BeginForm("Create", "Admin", FormMethod.Post, new { id = "createform" }))
+		{
+			<div class="form-horizontal">
+				@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+			</div>
+			<div>
+				@Html.ListBoxFor(x => x.SelectedTeachers, Model.Teachers, new {id = "notselected"})
+				@Html.ListBoxFor(x => x.SelectedTeachers, new List<SelectListItem>(), new {id = "selected"})
+			</div>
+			<div>
+				<input type="button" id="add" value="add"/>
+			</div>
+			<div>
+				<input type="submit" value="create"/>
+			</div>
+		}
+	}
+</div>

@@ -22,14 +22,32 @@
 
 });
 
-$(document).on("click",".accordion-anchor", function (x)
+$(document)
+	.on("click",
+		".accordion-anchor",
+		function(x)
+		{
+			var y = x.target.parentNode.getElementsByClassName("w3-accordion-content")[0];
+			if (y.className.indexOf("w3-show") == -1)
+			{
+				y.className += " w3-show";
+			}
+			else
+			{
+				y.className = y.className.replace(" w3-show", "");
+			}
+		});
+
+
+$("#add")
+	.click(function()
+	{
+		$("#notselected option:selected").appendTo("#selected").removeAttr("selected");
+	});
+
+$("#createform").submit(function()
 {
-	var y = x.target.parentNode.getElementsByClassName("w3-accordion-content")[0];
-	if (y.className.indexOf("w3-show") == -1)
-	{
-		y.className += " w3-show";
-	} else
-	{
-		y.className = y.className.replace(" w3-show", "");
-	}
+	$("#notselected option:selected").removeAttr("selected");
+	var select = $("#selected");
+	$("option", select).prop("selected", true);
 })
