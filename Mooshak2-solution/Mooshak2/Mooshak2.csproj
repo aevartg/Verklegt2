@@ -220,6 +220,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\EntityClasses\InputOutput.cs" />
     <Compile Include="Models\InputOutputViewModel.cs" />
+    <Compile Include="Models\ListUsersViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\EntityClasses\Milestone.cs" />
     <Compile Include="Models\EntityClasses\Submission.cs" />

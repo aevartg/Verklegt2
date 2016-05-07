@@ -65,8 +65,11 @@ namespace Mooshak2.Controllers
         public ActionResult ListUsers()
         {
             AdminService connection = new AdminService();
-            AdminCourseViewModel model = new AdminCourseViewModel();
-            model.AllTeachers = connection.GetAllUsers();//náum i alla usera ekki bara teachers
+            ListUsersViewModel model = new ListUsersViewModel();
+            model.AllTeachers = connection.GetAllTeachers();
+	        model.AllUsers = connection.GetAllUsers();
+	        model.AllStudents = connection.GetAllStudents();
+
             return View(model);
         }
 

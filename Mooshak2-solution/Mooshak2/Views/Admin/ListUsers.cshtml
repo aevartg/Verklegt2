@@ -1,4 +1,4 @@
-﻿
+﻿@model Mooshak2.Models.ListUsersViewModel
 @{
     ViewBag.Title = "ListUsers";
 }
@@ -10,20 +10,39 @@
     <div class="col-md-10">
         <input type="text" class="form-control leitarbox" placeholder="Search user.."/><br/>
         <div class="col-md-10"/>
-        <input type="radio" value="selected" id="All"/>
+        <input type="radio"" id="All" name="users" value="1" checked="checked"/>
         <label for="All">All users</label>
-        <input type="radio" id="Teachers"/>
+        <input type="radio" id="Teachers" name="users" value="2"/>
         <label for="Teachers">Teachers</label>
-        <input type="radio" id="Students"/>
+        <input type="radio" id="Students" name="users" value="3"/>
         <label for="Students">Students</label>
     </div>
     <div>
-        <select class="leitarlisti2" id="leitarfunction" name="users" size="15">
-            @foreach (var item in Model.AllTeachers)
-            {
-                <option value="@item.Id">@item.username</option>
-            }
-        </select>
-        <input type="button" value="Edit" />
+        <div class="userlist1 hider">
+            <select class="leitarlisti2 allusers" id="leitarfunction" name="users" size="15">
+                @foreach (var item in Model.AllUsers)
+                {
+                    <option value="@item.Id">@item.username</option>}
+            </select>
+
+        </div>
+
+        <div class="userlist2 hider">
+            <select class="leitarlisti2 allteachers" id="leitarfunction" name="users" size="15">
+                @foreach (var item in Model.AllTeachers)
+                {
+                    <option value="@item.Id">@item.username</option>}
+            </select>
+        </div>
+
+        <div class="userlist3 hider">
+            <select class="leitarlisti2 allstudents" id="leitarfunction" name="users" size="15">
+                @foreach (var item in Model.AllStudents)
+                {
+                    <option value="@item.Id">@item.username</option>}
+            </select>
+        </div>
+
+        <input type="button" value="Edit"/>
     </div>
 </div>
