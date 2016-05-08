@@ -26,9 +26,9 @@ namespace Mooshak2.Controllers
 		{
 			if (!ModelState.IsValid)
 			{
-				
+				return View(model);
 			}
-			return View();
+			return RedirectToAction("Index");
 		}
 	}
 }
