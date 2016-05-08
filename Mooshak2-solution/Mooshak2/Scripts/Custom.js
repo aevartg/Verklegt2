@@ -92,3 +92,15 @@ $(document).ready(function()
 				$row.remove();
 			});
 });
+
+
+
+/*sýnir mismunandi töflur fyrir users, teachers og students*/
+$(document).ready(function () {
+    $(".userlist1").show();
+    $("input[name$='users']").click(function () {
+        $(".hider").hide();
+        var radio = $(this).val();
+        $(".userlist" + radio).show();
+    })
+})

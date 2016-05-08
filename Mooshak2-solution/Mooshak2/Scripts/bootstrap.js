@@ -2012,17 +2012,3 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   })
 
 }(window.jQuery);
-
-
-
-
-$(document).ready(function()
-{
-    $(".userlist1").show();
-    $("input[name$='users']").click(function()
-    {
-        $(".hider").hide();
-        var radio = $(this).val();
-        $(".userlist" + radio).show();
-    })
-})
