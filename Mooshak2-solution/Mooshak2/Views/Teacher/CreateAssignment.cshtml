@@ -1,4 +1,4 @@
-﻿@using System.Web.Services.Protocols
+﻿@model Mooshak2.Models.CreateAssignmentViewModel
 
 @{
     ViewBag.Title = "CreateAssignment";
@@ -7,14 +7,13 @@
 <h2>CreateCourse</h2>
 
 @{
-	using (Html.BeginForm("CreateAssignment", "Teacher", FormMethod.Post, new { id = "assignmentform" }))
+	using (Html.BeginForm("CreateAssignment", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data", id = "assignmentform" }))
 	{
 		<div class="row">
 			<div class="form-group">
 				<label class="col-xs-3 control-label">Assignment Name</label>
 				<div>
-					@* TODO: Html.TextBoxFor(MODEL)*@
-					<input type="text" name="assignment name" class="form-control"/>
+					<input type="text" name="name" class="form-control"/>
 				</div>
 			</div>
 		</div>
@@ -26,14 +25,14 @@
 			</div>
 			<div class ="row">
 				<div class="col-xs-3">
-					<input type="text" class="form-control" name="title[0]" placeholder="Title"/>
+					<input type="text" class="form-control" name="milestones[0].name" placeholder="Title"/>
 				</div>
 				<div class="col-xs-2">
-					<input type="text" class="form-control" name="weight[0]" placeholder="Weight"/>
+					<input type="text" class="form-control" name="milestones[0].weight" placeholder="Weight"/>
 				</div>
 				<div class="col-xs-1">
 					<span class="btn btn-default btn-file">
-						Browse <input type="file" name="file[0]" />
+						Browse <input type="file" name="milestones[0].file" />
 					</span>
 				</div>
 				<div class="col-xs-1">
@@ -48,7 +47,7 @@
 		<div class="form-group hide" id="assignmenttempplate">
 			<div class="row">
 				<div class="col-xs-3">
-					<input type="text" class="form-control" name="title" placeholder="Title"/>
+					<input type="text" class="form-control" name="name" placeholder="Title"/>
 				</div>
 				<div class="col-xs-2">
 					<input type="text" class="form-control" name="weight" placeholder="Weight"/>

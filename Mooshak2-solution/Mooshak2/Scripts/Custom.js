@@ -70,14 +70,14 @@ $(document).ready(function()
 						.insertBefore($template);
 
 				$clone
-					.find("[name=title]")
-					.attr("name", "title[" + index + "]")
+					.find("[name=name]")
+					.attr("name", "milestones[" + index + "].name")
 					.end()
 					.find("[name=weight]")
-					.attr("name", "weight[" + index + "]")
+					.attr("name", "milestones[" + index + "].weight")
 					.end()
 					.find("[name=file]")
-					.attr("name", "file[" + index + "]")
+					.attr("name", "milestones[" + index + "].file")
 					.end();
 			});
 
