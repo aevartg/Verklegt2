@@ -251,7 +251,7 @@ margin: 5px 0;
 {
     width: 17%;
     height: 27px;
-    padding-left: 34px;
+    padding-left: 16px;
 }
 
 .custom-coursename
@@ -289,4 +289,20 @@ margin: 5px 0;
     background: white;
     cursor: inherit;
     display: block;
+}
+
+.custom-button
+{
+    margin-bottom: 20px;
+}
+
+.custom-container
+{
+    padding-left: 90px;
+}
+
+.custom-radio
+{
+    margin-bottom: 7px;
+    margin-top: 18px;
 }

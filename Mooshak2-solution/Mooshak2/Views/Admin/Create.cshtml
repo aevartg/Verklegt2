@@ -21,7 +21,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group custom-container">
                 <div class="col-md-10 custom-leitarboxkennara userlist1 hider">
                     <input type="text" class="form-control leitarbox" placeholder="Search Teachers"/><br/>
                 </div>
@@ -29,14 +29,14 @@
                     <input type="text" class="form-control leitarbox" placeholder="Search Students" /><br />
                 </div>
             </div>
-            <div>
+            <div class="custom-container custom-radio">
                 <input type="radio" id="Teachers" name="users" value="1" checked="checked"/>
                 <label for="Teachers">Teachers</label>
                 <input type="radio" id="Students" name="users" value="2" />
                 <label for="Students">Students</label>
             </div>
 
-            <div class="container">
+            <div class="container custom-container">
                 
                 <div class="form-group col-md-3 userlist1 hider">
                     @Html.ListBoxFor(x => x.SelectedTeachers, Model.Teachers, new {id = "notselected", @class = "leitarlisti searchclass", size = "15"})
@@ -55,18 +55,21 @@
                     @Html.ListBoxFor(x => x.SelectedStudents, new List<SelectListItem>(), new {id = "selectedstudent", @class = "leitarlisti notsearch", size = "15"})
                     @Html.ValidationMessageFor(model => model.SelectedTeachers, "", new {@class = "text-danger"})
                 </div>
+                <div class="form-group col-md-3">
+                    <div class="custom-button">
+                        <input type="submit" value="Create course" class="btn btn-default" />
+                    </div>
+                    <div class="custom-button">
+                        <input type="submit" value="Delete course" class="btn btn-default" />
+                    </div>
+                </div>
             </div>
 
-            <div class = "userlist1 hider">
+            <div class = "userlist1 hider custom-container">
                 <input type="button" id="add" value="Add Teacher" class="btn btn-default"/>
             </div>
-            <div class ="userlist2 hider">
+            <div class ="userlist2 hider custom-container">
                 <input type="button" id="addstudent" value="Add Student" class="btn btn-default" />
-            </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
             </div>
         </div>
 
