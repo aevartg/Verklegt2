@@ -3,16 +3,7 @@
     ViewBag.Title = "Create";
 }
 <h2>New Course</h2>
-@*<div class="tabbable tabs-left" id="result">
-        <ul class="nav nav-tabs">
-            @foreach (var x in Model.TestList)
-            {
-                <li>
-                    @Html.ActionLink(x.ToString(), "Index")
-                </li>
-            }
-        </ul>
-    </div>*@
+
 
 	 @{using (Html.BeginForm("Create", "Admin", FormMethod.Post, new { id = "createform" }))
         {
@@ -43,15 +34,10 @@
 
                 </div>
                 <div class="form-group col-md-3">
-                        @*<select class="leitarlisti" id="leitarfunction" name="users" size="15">
-        @foreach (var item in Model.Teachers)
-        {
-            <option value="@item">@item</option>
-        }
-    </select>*@
-                    @Html.ListBoxFor(x => x.SelectedTeachers, new List<SelectListItem>(), new { id = "selected", @class = "leitarlisti", size = "15" })
+                    
+                    @Html.ListBoxFor(x => x.SelectedTeachers, new List<SelectListItem>(), new {id = "selected", @class = "leitarlisti", size = "15"})
 
-                        @Html.ValidationMessageFor(model => model.SelectedTeachers, "", new {@class = "text-danger"})
+                    @Html.ValidationMessageFor(model => model.SelectedTeachers, "", new {@class = "text-danger"})
                 </div>
             </div>
             <div>
@@ -65,8 +51,10 @@
         </div>
 
         }
-    }
-     @*<div>
+	 }
+
+
+@*<div>
 
 
 
@@ -88,3 +76,4 @@
           }
         }
     </div>*@
+
