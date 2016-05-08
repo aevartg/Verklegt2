@@ -51,3 +51,44 @@ $("#createform").submit(function()
 	var select = $("#selected");
 	$("option", select).prop("selected", true);
 })
+
+$(document).ready(function()
+{
+	var index = 0;
+	$("#assignmentform")
+		.on("click",
+			".addbutton",
+			function()
+			{
+				index++;
+				var $template = $("#assignmenttempplate"),
+					$clone = $template
+						.clone()
+						.removeClass("hide")
+						.removeAttr("id")
+						.attr("data-index", index)
+						.insertBefore($template);
+
+				$clone
+					.find("[name=title]")
+					.attr("name", "title[" + index + "]")
+					.end()
+					.find("[name=weight]")
+					.attr("name", "weight[" + index + "]")
+					.end()
+					.find("[name=file]")
+					.attr("name", "file[" + index + "]")
+					.end();
+			});
+
+	$("#assignmentform")
+		.on("click",
+			".removebtn",
+			function()
+			{
+				var $row = $(this).parents(".form-group"),
+					index = $row.attr("data-index");
+
+				$row.remove();
+			});
+});
