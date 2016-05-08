@@ -27,6 +27,12 @@ namespace Mooshak2.Controllers
 			return PartialView("_SideTabs",model);
 		}
 
+		public PartialViewResult SideTabDataRender(int id)
+		{
+			var model = new AdminService().GetAssignmentViewModel(HttpContext.User.Identity.GetUserId(), id);
+			return PartialView("SideTabsData", model);
+		}
+
         public ActionResult UserSettings()
         {
             return View();
@@ -38,16 +44,9 @@ namespace Mooshak2.Controllers
 			var test = Helper.StreamToBytes(file.InputStream);
 			if (Helper.BytesToFile("C:\\Users\\Eythor\\Desktop\\uploadtest.js", test))
 			{
-				return View("Index");
+				return RedirectToAction("Index");
 			}
 			throw new Exception();
-		}
-
-		public PartialViewResult SideTabDataRender()
-		{
-			int milestoneID = 1;
-			var model = new AdminService().GetAssignmentViewModel(HttpContext.User.Identity.GetUserId(), milestoneID);
-			return PartialView("SideTabsData", model);
 		}
 	}
 }

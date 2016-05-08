@@ -26,7 +26,6 @@ namespace Mooshak2.Services
 				.ToList();
 			if (courses.Count == 0)
 			{
-				//TODO
 				var exception = new EmptyModelException
 				{
 					Message = "Course Tab View Model Is Empty"
@@ -41,7 +40,6 @@ namespace Mooshak2.Services
 					var assignmentList = new AssignmentService().GetAssignmentTabViewModels(course.Id);
 					if (assignmentList.Count == 0)
 					{
-						//TODO
 						var exception = new EmptyModelException
 						{
 							Message = "Assignment Tab View Model Is Empty"

@@ -43,7 +43,7 @@ namespace Mooshak2.Controllers
 				new AdminService().CreateCourse(model);//new AdminService().CreateCourse(model);
 			}
 
-		    return View("Index"); // eigum eftir að gera index view fyrir Admin
+		    return RedirectToAction("Index"); // eigum eftir að gera index view fyrir Admin
 	    }
 
 		[HttpPost]

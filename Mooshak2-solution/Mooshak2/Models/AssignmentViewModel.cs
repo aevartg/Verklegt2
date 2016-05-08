@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Mooshak2.Models.EntityClasses;
@@ -29,7 +30,9 @@ namespace Mooshak2.Models
 
 	public class CreateAssignmentViewModel
 	{
+		[Required]
 		public string Name { get; set; }
+		[Required]
 		public IEnumerable<CreateMilestoneViewModel> Milestones { get; set; }
 	}
 }
