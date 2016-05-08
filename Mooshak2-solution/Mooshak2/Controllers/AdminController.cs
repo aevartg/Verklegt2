@@ -39,10 +39,9 @@ namespace Mooshak2.Controllers
 			}
 			else
 			{
-				//new AdminService().CreateCourse(model);
+				new AdminService().CreateCourse(model);//new AdminService().CreateCourse(model);
 			}
-			//hér þarf að taka alla Teachera úr TeachersInCourse úr modelinu og linka þá við nýja coursinn
-			//og svo að lokum save'a nýja coursinn í database
+
 		    return View("Index"); // eigum eftir að gera index view fyrir Admin
 	    }
 

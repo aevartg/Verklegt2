@@ -303,14 +303,22 @@ namespace Mooshak2.Services
 
 		public void CreateCourse(CreateCourseViewModel model)
 		{
+			ICollection<ApplicationUser> tempList = new List<ApplicationUser>();
 			var course = new Course()
 						{
 							Name = model.Name
 						};
+			course.Users = tempList;
 			foreach (var x in model.SelectedTeachers)
 			{
-				var tempTeacher = (from u in _db.Users where x == u.Id select u).First();
+				var tempTeacher = (from u in _db.Users where x == u.Id select u).FirstOrDefault();
+				
 				course.Users.Add(tempTeacher);
+			}
+			foreach (var s in model.SelectedStudents)
+			{
+				var tempStudent = (from u in _db.Users where s == u.Id select u).First();
+				course.Users.Add(tempStudent);
 			}
 			_db.Courses.Add(course);
 			_db.SaveChanges();
