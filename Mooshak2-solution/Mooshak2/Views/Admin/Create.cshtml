@@ -22,26 +22,46 @@
             </div>
 
             <div class="form-group">
-                <div class="col-md-10 custom-leitarboxkennara">
-                    <input type="text" class="form-control leitarbox" placeholder="search here"/><br/>
+                <div class="col-md-10 custom-leitarboxkennara userlist1 hider">
+                    <input type="text" class="form-control leitarbox" placeholder="Search Teachers"/><br/>
                 </div>
-            </div>
-
-            <div class="container">
-                <div class="form-group col-md-3">
-                    @Html.ListBoxFor(x => x.SelectedTeachers, Model.Teachers, new { id = "notselected", @class = "leitarlisti", size = "15"})
-                    @Html.ValidationMessageFor(model => model.Teachers, "", new { @class = "text-danger" })
-
-                </div>
-                <div class="form-group col-md-3">
-                    
-                    @Html.ListBoxFor(x => x.SelectedTeachers, new List<SelectListItem>(), new {id = "selected", @class = "leitarlisti", size = "15"})
-
-                    @Html.ValidationMessageFor(model => model.SelectedTeachers, "", new {@class = "text-danger"})
+                <div class="col-md-10 custom-leitarboxkennara userlist2 hider">
+                    <input type="text" class="form-control leitarbox" placeholder="Search Students" /><br />
                 </div>
             </div>
             <div>
-                <input type="button" id="add" value="Add" class="btn btn-default" />
+                <input type="radio" id="Teachers" name="users" value="1" checked="checked"/>
+                <label for="Teachers">Teachers</label>
+                <input type="radio" id="Students" name="users" value="2" />
+                <label for="Students">Students</label>
+            </div>
+
+            <div class="container">
+                
+                <div class="form-group col-md-3 userlist1 hider">
+                    @Html.ListBoxFor(x => x.SelectedTeachers, Model.Teachers, new {id = "notselected", @class = "leitarlisti searchclass", size = "15"})
+                    @Html.ValidationMessageFor(model => model.Teachers, "", new {@class = "text-danger"})
+                </div>
+                <div class="form-group col-md-3 userlist2 hider">
+                    @Html.ListBoxFor(x => x.SelectedStudents, Model.Students, new {id = "notselectedstudent", @class = "leitarlisti searchclass", size = "15"})
+                    @Html.ValidationMessageFor(model => model.Students, "", new {@class = "text-danger"})
+                </div>
+
+                <div class="form-group col-md-3">
+                    @Html.ListBoxFor(x => x.SelectedTeachers, new List<SelectListItem>(), new {id = "selected", @class = "leitarlisti notsearch", size = "15"})
+                    @Html.ValidationMessageFor(model => model.SelectedTeachers, "", new {@class = "text-danger"})
+                </div>
+                <div class="form-group col-md-3">
+                    @Html.ListBoxFor(x => x.SelectedStudents, new List<SelectListItem>(), new {id = "selectedstudent", @class = "leitarlisti notsearch", size = "15"})
+                    @Html.ValidationMessageFor(model => model.SelectedTeachers, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+            <div class = "userlist1 hider">
+                <input type="button" id="add" value="Add Teacher" class="btn btn-default"/>
+            </div>
+            <div class ="userlist2 hider">
+                <input type="button" id="addstudent" value="Add Student" class="btn btn-default" />
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">

@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
 
-    $(".leitarlisti option").each(function () {
+    $(".searchclass option").each(function () {
         $(this).attr("data-search-term", $(this).text().toLowerCase());
     });
 
@@ -8,7 +8,7 @@
 
         var searchTerm = $(this).val().toLowerCase();
 
-        $(".leitarlisti option").each(function () {
+        $(".searchclass option").each(function () {
 
             if ($(this).filter("[data-search-term *= " + searchTerm + "]").length > 0 || searchTerm.length < 1) {
                 $(this).show();
@@ -50,6 +50,17 @@ $("#createform").submit(function()
 	$("#notselected option:selected").removeAttr("selected");
 	var select = $("#selected");
 	$("option", select).prop("selected", true);
+})
+
+$("#addstudent")
+	.click(function () {
+	    $("#notselectedstudent option:selected").appendTo("#selectedstudent").removeAttr("selected");
+	});
+
+$("#createform").submit(function () {
+    $("#notselectedstudent option:selected").removeAttr("selected");
+    var select = $("#selectedstudent");
+    $("option", select).prop("selected", true);
 })
 
 $(document).ready(function()

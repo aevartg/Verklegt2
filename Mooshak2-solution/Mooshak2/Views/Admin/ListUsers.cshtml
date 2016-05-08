@@ -9,8 +9,7 @@
     <label for="model.AllTeachers" class="control-label col-md-2">Search Users:</label>
     <div class="col-md-10">
         <input type="text" class="form-control leitarbox" placeholder="Search user.."/><br/>
-        <div class="col-md-10"/>
-        <input type="radio"" id="All" name="users" value="1" checked="checked"/>
+        <input type="radio" id="All" name="users" value="1" checked="checked"/>
         <label for="All">All users</label>
         <input type="radio" id="Teachers" name="users" value="2"/>
         <label for="Teachers">Teachers</label>
@@ -19,7 +18,7 @@
     </div>
     <div>
         <div class="userlist1 hider">
-            <select class="leitarlisti allusers leitarlisti2" name="users" size="15">
+            <select class="leitarlisti allusers leitarlisti2 searchclass" name="users" size="15">
                 @foreach (var item in Model.AllUsers)
                 {
                     <option value="@item.Id">@item.username</option>}
@@ -28,7 +27,7 @@
         </div>
 
         <div class="userlist2 hider">
-            <select class="leitarlisti allteachers leitarlisti2" name="users" size="15">
+            <select class="leitarlisti allteachers leitarlisti2 searchclass" name="users" size="15">
                 @foreach (var item in Model.AllTeachers)
                 {
                     <option value="@item.Id">@item.username</option>}
@@ -36,7 +35,7 @@
         </div>
 
         <div class="userlist3 hider">
-            <select class="leitarlisti allstudents leitarlisti2" name="users" size="15">
+            <select class="leitarlisti allstudents leitarlisti2 searchclass" name="users" size="15">
                 @foreach (var item in Model.AllStudents)
                 {
                     <option value="@item.Id">@item.username</option>}

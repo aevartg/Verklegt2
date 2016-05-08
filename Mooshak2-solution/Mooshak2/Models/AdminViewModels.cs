@@ -22,6 +22,8 @@ namespace Mooshak2.Models
 	{
 		public string Name { get; set; }
 		public string[] SelectedTeachers { get; set; }
+		public string [] SelectedStudents { get; set; }
 		public SelectList Teachers { get; set; }
+		public SelectList Students { get; set; }
 	}
 }

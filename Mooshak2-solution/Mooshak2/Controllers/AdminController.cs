@@ -24,6 +24,7 @@ namespace Mooshak2.Controllers
 			AdminService connection = new AdminService();
 			var model = new CreateCourseViewModel();
 		    model.Teachers = new SelectList(connection.GetAllTeachers(),"Id","username");;
+			model.Students = new SelectList(connection.GetAllStudents(), "Id", "username");
 
 			return View(model);
 	    }
