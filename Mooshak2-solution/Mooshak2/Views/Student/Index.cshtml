@@ -6,17 +6,18 @@
 }
 
 
-
-<div class="custom-student">
-	<ul class="nav nav-tabs">
-		@foreach (var x in Model.ToList())
-		{
-			<li>
-				@Ajax.ActionLink(x.Name, "SideTabRender", "Student", new {id = x.Id}, new AjaxOptions() {UpdateTargetId = "navbar", InsertionMode = InsertionMode.Replace, HttpMethod = "GET"})
-			</li>
-		}
-	</ul>
-</div>
-<div id="navbar">
-	@Html.Partial("_SideTabs", new AssignmentService().GetAssignmentNavViewModels(Model.First().Id))
+<div class="container">
+    <div class="custom-student">
+        <ul class="nav nav-tabs">
+            @foreach (var x in Model.ToList())
+            {
+                <li>
+                    @Ajax.ActionLink(x.Name, "SideTabRender", "Student", new { id = x.Id }, new AjaxOptions() { UpdateTargetId = "navbar", InsertionMode = InsertionMode.Replace, HttpMethod = "GET" })
+                </li>
+            }
+        </ul>
+    </div>
+    <div id="navbar">
+        @Html.Partial("_SideTabs", new AssignmentService().GetAssignmentNavViewModels(Model.First().Id))
+    </div>
 </div>
