@@ -79,19 +79,27 @@ namespace Mooshak2.Controllers
 	    {
 		    string username = model.Get("users1");
 		    TempData["username"] = username;
-		    return RedirectToAction("EditUser");
+			return RedirectToAction("EditUser");
 	    }
 
 		[HttpGet]
 	    public ActionResult EditUser()
 		{
-			string username = Convert.ToString(TempData["username"]);
-			IdentityManager connection = new IdentityManager();
-		    ApplicationUser user = connection.GetUser(username);
-			var model = new RegisterViewModel();
-			model.Email = user.Email;
-			model.UserType = connection.UserIsInRole(user.Id, "Teacher");
-			return View(model);
+			if(TempData["username"] == null)
+			{ 	
+				return RedirectToAction("ListUsers");
+			}
+			else
+			{
+				string username = Convert.ToString(TempData["username"]);
+				IdentityManager connection = new IdentityManager();
+				ApplicationUser user = connection.GetUser(username);
+				var model = new RegisterViewModel();
+				model.Email = user.Email;
+				model.UserType = connection.UserIsInRole(user.Id, "Teacher");
+				return View(model);
+			}
+			
 	    }
 
 	    [HttpPost]

@@ -331,3 +331,8 @@ margin: 5px 0;
     width: 200px;
     position: relative!important;
 }
+
+.container-custom
+{
+    margin-left: -130px;
+}
