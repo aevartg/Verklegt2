@@ -18,7 +18,12 @@ namespace Mooshak2.Controllers
 	    [HttpGet]
 	    public ActionResult CreateAssignment()
 	    {
-		    return View();
+		    var courseId = 1;
+		    var model = new CreateAssignmentViewModel()
+						{
+							CourseId = courseId
+						};
+		    return View(model);
 	    }
 
 		[HttpPost]
@@ -28,6 +33,7 @@ namespace Mooshak2.Controllers
 			{
 				return View(model);
 			}
+
 			return RedirectToAction("Index");
 		}
 	}

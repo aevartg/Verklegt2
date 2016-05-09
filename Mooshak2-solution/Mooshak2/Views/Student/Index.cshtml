@@ -12,11 +12,11 @@
 		@foreach (var x in Model.ToList())
 		{
 			<li>
-				@Ajax.ActionLink(x.Name, "SideTabRender", "Student", new {id = x.Id}, new AjaxOptions() {UpdateTargetId = "test", InsertionMode = InsertionMode.Replace, HttpMethod = "GET"})
+				@Ajax.ActionLink(x.Name, "SideTabRender", "Student", new {id = x.Id}, new AjaxOptions() {UpdateTargetId = "navbar", InsertionMode = InsertionMode.Replace, HttpMethod = "GET"})
 			</li>
 		}
 	</ul>
 </div>
-<div id="test">
+<div id="navbar">
 	@Html.Partial("_SideTabs", new AssignmentService().GetAssignmentNavViewModels(Model.First().Id))
 </div>

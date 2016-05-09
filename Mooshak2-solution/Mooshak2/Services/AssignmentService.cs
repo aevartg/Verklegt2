@@ -71,5 +71,10 @@ namespace Mooshak2.Services
 				return assignmentNavViewModels;
 			}
 		}
+
+		public bool CreateAssignment(string name)
+		{
+			return (_db.SaveChanges() > 0) ? true : false;
+		}
 	}
 }

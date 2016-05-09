@@ -31,6 +31,8 @@ namespace Mooshak2.Models
 	public class CreateAssignmentViewModel
 	{
 		[Required]
+		public int CourseId { get; set; }
+		[Required]
 		public string Name { get; set; }
 		[Required]
 		public IEnumerable<CreateMilestoneViewModel> Milestones { get; set; }
