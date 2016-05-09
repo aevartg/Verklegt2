@@ -17,7 +17,7 @@ namespace Mooshak2.Services
 			_db = new ApplicationDbContext();
 		}
 
-		public List<CourseTabViewModel> GetCourseTabViewModels()
+		public List<CourseViewModel> GetCourseViewModels()
 		{
 			var userid = HttpContext.Current.User.Identity.GetUserId();
 			var courses = _db.Users
@@ -34,10 +34,10 @@ namespace Mooshak2.Services
 			}
 			else
 			{
-				var courseViewModel = new List<CourseTabViewModel>();
+				var courseViewModel = new List<CourseViewModel>();
 				foreach (var course in courses)
 				{
-					var assignmentList = new AssignmentService().GetAssignmentTabViewModels(course.Id);
+					var assignmentList = new AssignmentService().GetAssignmentNavViewModels(course.Id);
 					if (assignmentList.Count == 0)
 					{
 						var exception = new EmptyModelException
@@ -46,11 +46,11 @@ namespace Mooshak2.Services
 						};
 						throw exception;
 					}
-					var courseViewModeltemp = new CourseTabViewModel()
+					var courseViewModeltemp = new CourseViewModel()
 					{
 						Id = course.Id,
 						Name = course.Name,
-						AssignmentList = assignmentList
+						Assignments = assignmentList
 					};
 					courseViewModel.Add(courseViewModeltemp);
 				}

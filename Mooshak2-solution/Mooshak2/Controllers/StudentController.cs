@@ -17,7 +17,7 @@ namespace Mooshak2.Controllers
 		// GET: Project
 		public ActionResult Index()
 		{
-			var model = new CourseService().GetCourseTabViewModels();
+			var model = new CourseService().GetCourseViewModels();
 			return View(model);
 		}
 

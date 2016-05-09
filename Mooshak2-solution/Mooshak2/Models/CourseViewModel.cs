@@ -8,8 +8,8 @@ namespace Mooshak2.Models
 	public class CourseViewModel
 	{
 		public int Id { get; set; }
-
 		public string Name { get; set; }
+		public List<AssignmentNavViewModel> Assignments { get; set; }
 	}
 
 	public class CourseTabViewModel
@@ -18,4 +18,6 @@ namespace Mooshak2.Models
 		public string Name { get; set; }
 		public List<AssignmentTabViewModel> AssignmentList { get; set; }	
 	}
+
+
 }
