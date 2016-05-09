@@ -8,26 +8,24 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-            
+        <nav class="w3-sidenav w3-light-grey w3-card-2 custom-nav" style ="width: 200px;">
                 @foreach (var c in Model.ToList())
                 {
-                    <ul id="navbar">
-                        <a href="#">@c.Name</a>
-
-                        @foreach (var a in c.Assignments)
+                    <h4>@c.Name</h4>
+                    foreach (var a in c.Assignments)
+                    {
+                        <div class ="w3-accordion">                                       
+                        <a href="#" class="accordion-anchor">@a.Name</a>
+                        @foreach (var m in a.Milestones)
                         {
-                            <a href="#">@a.Name</a>
-
-                            foreach (var m in a.Milestones)
-                            {
+                            <div class="w3-accordion-content w3-white w3-card-4">
                                 <a href="#">@m.Name</a>
-                            }
+                            </div> 
                         }
-                    </ul>
-                }
-                    
-        </div>
+                        </div>
+                    }
+                }        
+        </nav>
     </div>  
 </div>
 

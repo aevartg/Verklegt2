@@ -322,3 +322,12 @@ margin: 5px 0;
 {
     margin-top: 3%;
 }
+
+/*Nav*/
+
+.custom-nav
+{
+    margin-top: 3%;
+    width: 200px;
+    position: relative!important;
+}
