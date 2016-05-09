@@ -28,7 +28,7 @@ namespace Mooshak2.Services
 			{
 				var exception = new EmptyModelException
 				{
-					Message = "Course Tab View Model Is Empty"
+					Message = "Course Nav View Model Is Empty"
 				};
 				throw exception;
 			}
@@ -43,7 +43,7 @@ namespace Mooshak2.Services
 					{
 						var exception = new EmptyModelException
 						{
-							Message = "Assignment Tab View Model Is Empty"
+							Message = "Assignment Nav View Model Is Empty"
 						};
 						throw exception;
 					}

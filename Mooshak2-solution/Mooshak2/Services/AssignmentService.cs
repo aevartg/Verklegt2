@@ -51,8 +51,11 @@ namespace Mooshak2.Services
 						select items).ToList();
 			if (assignments.Count == 0)
 			{
-				//TODO
-				return null;
+				var exception = new EmptyModelException
+				{
+					Message = "Assignment Nav View Model Is Empty"
+				};
+				throw exception;
 			}
 			else
 			{
