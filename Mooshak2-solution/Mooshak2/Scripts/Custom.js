@@ -104,6 +104,38 @@ $(document).ready(function()
 			});
 });
 
+/*
+ * https://stackoverflow.com/questions/14972470/c-sharp-mvc3-ajax-beginform-to-upload-file-not-working
+ * Used answer 2 unfortunatelly this does mean that IE is not supported.
+ */
+
+
+window.addEventListener("submit", function (e) {
+	var form = e.target;
+	if (form.getAttribute("enctype") === "multipart/form-data") {
+		if (form.dataset.ajax) {
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			var xhr = new XMLHttpRequest();
+			xhr.open(form.method, form.action);
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					if (form.dataset.ajaxUpdate) {
+						var updateTarget = document.querySelector(form.dataset.ajaxUpdate);
+						if (updateTarget) {
+							updateTarget.innerHTML = xhr.responseText;
+						}
+					}
+				}
+			};
+			xhr.send(new FormData(form));
+		}
+	}
+}, true);
+
+
+
+
 
 
 /*sýnir mismunandi töflur fyrir users, teachers og students*/

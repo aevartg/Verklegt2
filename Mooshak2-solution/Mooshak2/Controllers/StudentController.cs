@@ -44,7 +44,7 @@ namespace Mooshak2.Controllers
 			var test = Helper.StreamToBytes(file.InputStream);
 			if (Helper.BytesToFile("C:\\Users\\Eythor\\Desktop\\uploadtest.js", test))
 			{
-				return RedirectToAction("Index");
+				
 			}
 			throw new Exception();
 		}

@@ -13,6 +13,7 @@
 			<div class="form-group">
 				<label class="col-xs-3 control-label">Assignment Name</label>
 				<div>
+					@Html.HiddenFor(x => Model.CourseId)
 					<input type="text" name="name" class="form-control"/>
 				</div>
 			</div>
