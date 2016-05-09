@@ -63,7 +63,7 @@ namespace Mooshak2.Services
 					var temp = new AssignmentNavViewModel()
 								{
 									Id = item.Id,
-									List = service.GetMilestoneNavById(item.Id),
+									Milestones = service.GetMilestoneNavById(item.Id),
 									Name = item.Name
 								};
 					assignmentNavViewModels.Add(temp);

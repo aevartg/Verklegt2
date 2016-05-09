@@ -1,5 +1,5 @@
 ﻿@using Mooshak2.Services
-@model IEnumerable<Mooshak2.Models.CourseTabViewModel>
+@model IEnumerable<Mooshak2.Models.CourseViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -7,7 +7,41 @@
 
 
 <div class="container">
-    <div class="custom-student">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            
+                @foreach (var c in Model.ToList())
+                {
+                    <ul id="navbar">
+                        <a href="#">@c.Name</a>
+
+                        @foreach (var a in c.Assignments)
+                        {
+                            <a href="#">@a.Name</a>
+
+                            foreach (var m in a.Milestones)
+                            {
+                                <a href="#">@m.Name</a>
+                            }
+                        }
+                    </ul>
+                }
+                    
+        </div>
+    </div>  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+@*<div class="custom-student">
         <ul class="nav nav-tabs">
             @foreach (var x in Model.ToList())
             {
@@ -17,7 +51,6 @@
             }
         </ul>
     </div>
-    <div id="navbar">
+    <div class="col-sm-3 col-md-2" id="navbar">
         @Html.Partial("_SideTabs", new AssignmentService().GetAssignmentNavViewModels(Model.First().Id))
-    </div>
-</div>
+    </div>*@

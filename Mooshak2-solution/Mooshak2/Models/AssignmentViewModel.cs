@@ -25,7 +25,7 @@ namespace Mooshak2.Models
 	{
 		public int Id { get; set; }
 		public string Name { get; set; }
-		public List<MilestoneNavViewModel> List { get; set; }
+		public List<MilestoneNavViewModel> Milestones { get; set; }
 	}
 
 	public class CreateAssignmentViewModel
