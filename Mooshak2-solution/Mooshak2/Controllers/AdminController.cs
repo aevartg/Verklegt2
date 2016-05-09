@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Mime;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Owin.Security.Provider;
 using Mooshak2.Models;
 using Mooshak2.Models.EntityClasses;
 using Mooshak2.Services;
@@ -73,19 +74,23 @@ namespace Mooshak2.Controllers
             return View(model);
         }
 
+	    [HttpPost]
+	    public ActionResult ListUsers(FormCollection model)
+	    {
+		    string username = model.Get("users1");
+		    TempData["username"] = username;
+		    return RedirectToAction("EditUser");
+	    }
+
 		[HttpGet]
 	    public ActionResult EditUser()
 		{
-			string name = "test@test.com";
-
+			string username = Convert.ToString(TempData["username"]);
 			IdentityManager connection = new IdentityManager();
-		    ApplicationUser user = connection.GetUser(name);
-			RegisterViewModel model = new RegisterViewModel();
+		    ApplicationUser user = connection.GetUser(username);
+			var model = new RegisterViewModel();
 			model.Email = user.Email;
 			model.UserType = connection.UserIsInRole(user.Id, "Teacher");
-			model.Password = "hér kæmi password?";
-			model.ConfirmPassword = "hér kæmi password?";
-
 			return View(model);
 	    }
     }
