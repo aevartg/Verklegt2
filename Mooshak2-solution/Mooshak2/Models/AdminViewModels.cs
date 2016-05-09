@@ -26,4 +26,11 @@ namespace Mooshak2.Models
 		public SelectList Teachers { get; set; }
 		public SelectList Students { get; set; }
 	}
+
+	public class EditUserViewModel
+	{
+		public string Username { get; set; }
+		public string Email { get; set; }
+		
+	}
 }

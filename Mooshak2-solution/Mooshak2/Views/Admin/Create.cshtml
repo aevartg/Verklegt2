@@ -60,7 +60,8 @@
                         <input type="submit" value="Create course" class="btn btn-default" />
                     </div>
                     <div class="custom-button">
-                        <input type="submit" value="Delete course" class="btn btn-default" />
+                        @Html.ActionLink("Cancel", "Index", "Admin", null, new { @class = "btn btn-default" })
+                       
                     </div>
                 </div>
             </div>

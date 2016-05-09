@@ -24,7 +24,7 @@ namespace Mooshak2.Controllers
 	    {
 			AdminService connection = new AdminService();
 			var model = new CreateCourseViewModel();
-		    model.Teachers = new SelectList(connection.GetAllTeachers(),"Id","username");;
+		    model.Teachers = new SelectList(connection.GetAllTeachers(),"Id","username");
 			model.Students = new SelectList(connection.GetAllStudents(), "Id", "username");
 
 			return View(model);
@@ -92,6 +92,13 @@ namespace Mooshak2.Controllers
 			model.Email = user.Email;
 			model.UserType = connection.UserIsInRole(user.Id, "Teacher");
 			return View(model);
+	    }
+
+	    [HttpPost]
+	    public ActionResult EditUser(RegisterViewModel model)
+	    {
+
+		    return View("Index");
 	    }
     }
 }
