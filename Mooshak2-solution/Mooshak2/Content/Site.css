@@ -204,7 +204,8 @@ color: #000;
 
 .leitarlisti2
 {
-  width: 25%; 
+  width: 25%;
+  margin-left: 34%;
 }
 
 .leitarbox 
@@ -305,4 +306,19 @@ margin: 5px 0;
 {
     margin-bottom: 7px;
     margin-top: 18px;
+}
+
+.listuser-center
+{
+    margin-left: 34%;
+}
+
+.listuser-center2
+{
+    margin-left: 33%
+}
+
+.h2-custom
+{
+    margin-top: 3%;
 }

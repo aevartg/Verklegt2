@@ -3,14 +3,13 @@
     ViewBag.Title = "ListUsers";
 }
 
-<h2>Users</h2>
+<h2 class="h2-custom">Users</h2>
 
 @{
     using (Html.BeginForm("ListUsers", "Admin", FormMethod.Post))
     {
         <div class="form-group">
-            <label for="model.AllTeachers" class="control-label col-md-2">Search Users:</label>
-            <div class="col-md-10">
+            <div class="col-md-10 listuser-center2">
                 <input type="text" class="form-control leitarbox" placeholder="Search user.." /><br />
                 <input type="radio" id="All" name="users" value="1" checked="checked" />
                 <label for="All">All users</label>
@@ -45,7 +44,7 @@
                     </select>
                 </div>
 
-                <input type="submit" value="Edit" class ="btn btn-default"/>
+                <input type="submit" value="Edit" class ="btn btn-default listuser-center"/>
             </div>
         </div>
 
