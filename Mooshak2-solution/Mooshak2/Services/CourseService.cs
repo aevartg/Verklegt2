@@ -37,7 +37,8 @@ namespace Mooshak2.Services
 				var courseViewModel = new List<CourseViewModel>();
 				foreach (var course in courses)
 				{
-					var assignmentList = new AssignmentService().GetAssignmentNavViewModels(course.Id);
+					var assignmentList = new List<AssignmentNavViewModel>();
+						assignmentList = new AssignmentService().GetAssignmentNavViewModels(course.Id);
 					if (assignmentList.Count == 0)
 					{
 						var exception = new EmptyModelException
