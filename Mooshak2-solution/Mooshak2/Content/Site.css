@@ -64,7 +64,8 @@ textarea {
 }
 a
 {
-    color: #b94a48;
+    color: grey;
+	text-align: center;
 }
 
 /*Tabs data*/
@@ -348,12 +349,13 @@ margin: 5px 0;
 
 .h4-custom
 {
-	color: #ffffff;
-	background-color: #CD5C5C;
+	color: rgb(150,0,0);
 	line-height: 1.8;
+	background-color: #ddd;
 	margin-top: 0;
-	text-align: center;
+	text-align: left;
 	margin-bottom: 0px;
+	padding-left: 10%; 
 }
 
 body {
