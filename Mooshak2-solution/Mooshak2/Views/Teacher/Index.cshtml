@@ -1,27 +1,44 @@
 ﻿@model IEnumerable<Mooshak2.Models.CourseViewModel>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Teacher Index";
 }
+
 
 <div class="container container-custom">
 	<div class="row">
 		<div class="col-md-2">
 			<nav class="w3-sidenav w3-light-grey w3-card-2 custom-nav">
-				@foreach (var c in Model.ToList())
+				@if (Model.ToList().Count == 0)
 				{
-					<h4>@c.Name</h4>foreach (var a in c.Assignments)
+					<p>No courses</p>
+				}
+				else
+				{
+					foreach (var c in Model.ToList())
 					{
-						<div class="w3-accordion">
-							<a href="#" class="accordion-anchor">@a.Name</a>
-							<div class="w3-accordion-content w3-white w3-card-4">
-								@foreach (var m in a.Milestones)
-								{
-									<a href="#">@m.Name</a>
-									@*@Ajax.ActionLink(m.Name, "ContentRender", "Student", new { id = m.Id }, new AjaxOptions() { UpdateTargetId = "content", InsertionMode = InsertionMode.Replace })*@
-								}
-							</div>
+						<h4>@c.Name</h4>
+						if (c.Assignments.Count == 0)
+						{
+							<p>No Assignments</p>
+						}
+						else
+						{
 
-						</div>
+							foreach (var a in c.Assignments)
+							{
+								<div class="w3-accordion">
+									<a href="#" class="accordion-anchor">@a.Name</a>
+									<div class="w3-accordion-content w3-white w3-card-4">
+										@foreach (var m in a.Milestones)
+										{
+											<a  href="#">@m.Name</a>
+											@*@Ajax.ActionLink(m.Name, "ContentRender", "Student", new { id = m.Id }, new AjaxOptions() { UpdateTargetId = "content", InsertionMode = InsertionMode.Replace })*@
+										}
+									</div>
+								</div>
+							}
+						}
+						@Html.ActionLink("Add assignment", "CreateAssignment")
 					}
 				}
 			</nav>
@@ -30,3 +47,4 @@
 		</div>
 	</div>
 </div>
+
