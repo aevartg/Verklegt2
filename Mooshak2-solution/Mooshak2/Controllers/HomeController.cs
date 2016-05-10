@@ -11,7 +11,15 @@ namespace Mooshak2.Controllers
 	{
 		public ActionResult Index()
 		{
-			return View();
+			if(HttpContext.User.IsInRole("Teacher"))
+			{
+				return RedirectToAction("Index", "Teacher");
+			}
+			else//tjekka hvort hann sé student
+			{
+				return RedirectToAction("Index", "Student");
+			}
+				
 		}
 
 		public ActionResult About()
