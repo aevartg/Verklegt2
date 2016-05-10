@@ -29,7 +29,7 @@ namespace Mooshak2.Controllers
 
 		public PartialViewResult SideTabDataRender(int id)
 		{
-			var model = new AdminService().GetAssignmentViewModel(HttpContext.User.Identity.GetUserId(), id);
+			var model = new AssignmentService().GetAssignmentViewModel(HttpContext.User.Identity.GetUserId(), id);
 			return PartialView("SideTabsData", model);
 		}
 

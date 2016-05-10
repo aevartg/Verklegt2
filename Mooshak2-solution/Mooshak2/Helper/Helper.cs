@@ -1,7 +1,10 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Microsoft.VisualBasic.FileIO;
 
 namespace Mooshak2
 {
@@ -81,6 +84,24 @@ namespace Mooshak2
 			using (var reader = process.StandardOutput)
 			{
 				return reader.ReadToEnd();
+			}
+		}
+
+		public static List<String []> PareInputOutput(Stream inputStream)
+		{
+			var temp = new List<String[]>();
+			using (var tfp = new TextFieldParser(inputStream)
+							{
+								Delimiters = new []{";"},
+								HasFieldsEnclosedInQuotes = false,
+								TextFieldType = FieldType.Delimited
+							})
+			{
+				while (!tfp.EndOfData)
+				{
+					temp.Add(tfp.ReadFields());
+				}
+				return temp;
 			}
 		}
 	}

@@ -75,9 +75,72 @@ namespace Mooshak2.Services
 			}
 		}
 
-		public bool CreateAssignment(string name)
+		public bool CreateAssignment(string name, int courseId)
 		{
+			var course = (from x in _db.Courses where x.Id == courseId select x).Single();
+			var temp = new Assignment()
+						{
+							Course = course,
+							CourseId = course.Id,
+							Name = name
+						};
+			_db.Assignments.Add(temp);
 			return (_db.SaveChanges() > 0) ? true : false;
+		}
+
+		public List<Assignment> GetAllAssignments()
+		{
+			var allAssigns = (from x in _db.Assignments select x).ToList();
+
+
+
+			if (allAssigns.Count == 0)
+			{
+				//TODO
+				return null;
+			}
+			else
+			{
+				return allAssigns;
+			}
+		}
+
+		public Assignment GetAssignmentByID(int id)
+		{
+			var assign = _db.Assignments.SingleOrDefault(x => x.Id == id);
+
+			if (assign == null)
+			{
+				//TODO
+				return null;
+			}
+			else
+			{
+				return assign;
+			}
+		}
+		public AssignmentViewModel GetAssignmentViewModel(string userID, int milestoneID)
+		{
+			var model = new AssignmentViewModel();
+			MilestoneService m = new MilestoneService();
+			SubmissionService s = new SubmissionService();
+			InputOutputService i = new InputOutputService();
+			var milestone = m.getMilestoneByID(milestoneID);
+			model.Id = GetAssignmentByID(milestone.AssignmentId).Id;
+			model.Name = GetAssignmentByID(milestone.Id).Name;
+			model.Submissions = s.GetSubmissionsByUserAndMilestoneID(userID, milestoneID);
+			model.InputOutputs = i.getInputsOutputsViewModel(milestoneID);
+
+			if (model == null)
+			{
+				//TODO
+				return null;
+			}
+			else
+			{
+				return model;
+			}
+
 		}
 	}
 }
