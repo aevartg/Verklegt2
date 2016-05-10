@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Mooshak2.Models;
+using Mooshak2.Models.EntityClasses;
 using Mooshak2.Services;
 
 namespace Mooshak2.Controllers
@@ -38,6 +39,18 @@ namespace Mooshak2.Controllers
 			}
 			var assign = new AssignmentService().GetAssignmentById(model.CourseId);
 			return RedirectToAction("Index");
+		}
+
+		public PartialViewResult ContentRender(int id)
+		{
+			TeacherAssignmentViewModel model = new TeacherAssignmentViewModel();
+			Milestone milestone = new MilestoneService().getMilestoneByID(id);
+			model.MilestoneName = milestone.Name;
+			model.AssignmentName = new AssignmentService().GetAssignmentById(milestone.AssignmentId).Name;
+			model.Submissions = new SubmissionService().GetSubmissionsByMilestoneID(id);
+			model.AllStudents = new UserService().GetAllStudents();
+
+			return PartialView("Content", model);
 		}
 	}
 }

@@ -31,8 +31,7 @@
 									<div class="w3-accordion-content w3-white w3-card-4">
 										@foreach (var m in a.Milestones)
 										{
-											<a  href="#">@m.Name</a>
-											@*@Ajax.ActionLink(m.Name, "ContentRender", "Student", new { id = m.Id }, new AjaxOptions() { UpdateTargetId = "content", InsertionMode = InsertionMode.Replace })*@
+											@Ajax.ActionLink(m.Name, "ContentRender", "Teacher", new { id = m.Id }, new AjaxOptions() { UpdateTargetId = "content", InsertionMode = InsertionMode.Replace })
 										}
 									</div>
 								</div>

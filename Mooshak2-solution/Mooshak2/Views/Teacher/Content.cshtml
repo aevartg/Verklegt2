@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNet.Identity
+@model Mooshak2.Models.TeacherAssignmentViewModel
+@{
+    ViewBag.Title = "Content";
+}
+
+<h2>Content</h2>
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<input type="text" class="form-control leitarbox" placeholder="Search user.." /><br />
+			<select class="leitarlisti allstudents leitarlisti2 searchclass" name="users1" size="15">
+				@foreach (var item in Model.AllStudents)
+				{
+					<option value="@item.username">@item.username</option>
+				}
+			</select>
+		</div>
+		<div class="col-md-10">
+			<div class="submissionTable">
+				<table>
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Time</th>
+							<th>User</th>
+							<th>Result</th>
+							<th>Get Submission</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model.Submissions)
+			{
+							<tr>
+								<td>@item.Id</td>
+								<td>@item.SubmitDate.Day</td>
+								<td>@User.Identity.GetUserName()</td>
+								@if (item.TestFailed == 0)
+								{
+									<td class="acceptedTd">Accepted</td>
+								}
+								else
+								{
+									<td class="failedTd" style="color: red;">Failed</td>
+								}
+								<td><a href="#">Download</a></td>@*Hér þarf action link sem downloadar submissioninu*@
+							</tr>
+			}
+					</tbody>
+				</table>
+			</div>
+	</div>
+</div>

@@ -38,4 +38,12 @@ namespace Mooshak2.Models
 		[Required(ErrorMessage = "Milestones Required")]
 		public IEnumerable<CreateMilestoneViewModel> Milestones { get; set; }
 	}
+
+	public class TeacherAssignmentViewModel
+	{
+		public string AssignmentName { get; set; }
+		public string MilestoneName { get; set; }
+		public List<UserViewModel> AllStudents { get; set; }
+		public List<Submission> Submissions { get; set; }
+	}
 }
