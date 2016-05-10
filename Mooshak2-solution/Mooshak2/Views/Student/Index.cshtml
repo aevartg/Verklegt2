@@ -1,5 +1,4 @@
-﻿@using Mooshak2.Services
-@model IEnumerable<Mooshak2.Models.CourseViewModel>
+﻿@model IEnumerable<Mooshak2.Models.CourseViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -19,7 +18,7 @@
                                             <div class="w3-accordion-content w3-white w3-card-4">
                                                 @foreach (var m in a.Milestones)
                                                 {
-	                                                @Ajax.ActionLink(m.Name, "SideTabDataRender", "Student", new { id = m.Id }, new AjaxOptions() {UpdateTargetId = "content", InsertionMode = InsertionMode.Replace})
+	                                                @Ajax.ActionLink(m.Name, "ContentRender", "Student", new { id = m.Id }, new AjaxOptions() {UpdateTargetId = "content", InsertionMode = InsertionMode.Replace})
                                                 }
                                             </div>
 

@@ -21,32 +21,17 @@ namespace Mooshak2.Controllers
 			return View(model);
 		}
 
-		public PartialViewResult SideTabRender(int id)
-		{
-			var model = new AssignmentService().GetAssignmentNavViewModels(id);
-			return PartialView("_SideTabs",model);
-		}
-
-		public PartialViewResult SideTabDataRender(int id)
+		public PartialViewResult ContentRender(int id)
 		{
 			var model = new AssignmentService().GetAssignmentViewModel(HttpContext.User.Identity.GetUserId(), id);
-			return PartialView("SideTabsData", model);
+			return PartialView("_content", model);
 		}
 
-        public ActionResult UserSettings()
-        {
-            return View();
-        }
-
-        [HttpPost]
-		public ActionResult Test(HttpPostedFileBase file)
+		[HttpPost]
+		public PartialViewResult SubmitForm(int id,HttpPostedFileBase file)
 		{
-			var test = Helper.StreamToBytes(file.InputStream);
-			if (Helper.BytesToFile("C:\\Users\\Eythor\\Desktop\\uploadtest.js", test))
-			{
-				
-			}
-			throw new Exception();
+			var model = new AssignmentService().GetAssignmentViewModel(HttpContext.User.Identity.GetUserId(), id);
+			return PartialView("_content",model);
 		}
 	}
 }
