@@ -32,9 +32,10 @@ namespace Mooshak2.Models
 	{
 		[Required]
 		public int CourseId { get; set; }
-		[Required]
+		[Required(ErrorMessage = "Name Required")]
 		public string Name { get; set; }
-		[Required]
+
+		[Required(ErrorMessage = "Milestones Required")]
 		public IEnumerable<CreateMilestoneViewModel> Milestones { get; set; }
 	}
 }
