@@ -94,8 +94,9 @@ namespace Mooshak2.Controllers
 				string username = Convert.ToString(TempData["username"]);
 				IdentityManager connection = new IdentityManager();
 				ApplicationUser user = connection.GetUser(username);
-				var model = new RegisterViewModel();
-				model.Email = user.Email;
+				var model = new EditUserSettingsViewModel();
+			    model.Username = user.UserName;
+                model.Email = user.Email;
 				model.UserType = connection.UserIsInRole(user.Id, "Teacher");
 				return View(model);
 			}

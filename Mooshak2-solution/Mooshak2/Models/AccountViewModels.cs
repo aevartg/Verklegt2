@@ -88,6 +88,21 @@ namespace Mooshak2.Models
 
     }
 
+    public class EditUserSettingsViewModel
+    {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Display(Name = "Username")]
+        public string Username { get; set; }
+
+        [Required(ErrorMessage = "User type Required")]
+        [Display(Name = "Teacher? ")]
+        public bool UserType { get; set; }
+    }
+
     public class ResetPasswordViewModel
     {
         [Required]
