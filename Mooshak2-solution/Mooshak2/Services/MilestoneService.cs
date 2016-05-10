@@ -55,5 +55,21 @@ namespace Mooshak2.Services
 			_db.Milestones.Add(temp);
 			return (_db.SaveChanges() > 0);
 		}
+
+		public Milestone getMilestoneByID(int id)
+		{
+			var model = (from x in _db.Milestones where x.Id == id select x).SingleOrDefault();
+
+			if (model == null)
+			{
+				//TODO
+				return null;
+			}
+			else
+			{
+				return model;
+			}
+
+		}
 	}
 }

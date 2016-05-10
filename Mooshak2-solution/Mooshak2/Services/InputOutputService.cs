@@ -28,5 +28,42 @@ namespace Mooshak2.Services
 			_db.InputOutputs.Add(temp);
 			return (_db.SaveChanges() > 0);
 		}
+
+		public List<InputOutput> GetExpectedInputOutputsByMilestoneId(int id)
+		{
+			var exp = (from x in _db.InputOutputs where x.MilestoneId == id select x).ToList();
+			if (exp.Count == 0)
+			{
+				//TODO
+				return null;
+			}
+			else
+			{
+				return exp;
+			}
+		}
+		//input output service
+		public List<InputOutputViewModel> getInputsOutputsViewModel(int milestoneID)
+		{
+			var model = new List<InputOutputViewModel>();
+			var allExpInputs = GetExpectedInputOutputsByMilestoneId(milestoneID);
+			foreach (var item in allExpInputs)
+			{
+				var x = new InputOutputViewModel();
+				x.Input = item.Input;
+				x.ExpectedOutput = item.Output;
+				x.RealOutput = item.Output; //þessi lína myndi ekki ná í expected output heldur raunverulegt output notandans
+				model.Add(x);
+			}
+			if (model.Count == 0)
+			{
+				//TODO
+				return null;
+			}
+			else
+			{
+				return model;
+			}
+		}
 	}
 }
