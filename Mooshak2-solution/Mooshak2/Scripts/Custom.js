@@ -138,12 +138,14 @@ window.addEventListener("submit", function (e) {
 
 
 
-/*sýnir mismunandi töflur fyrir users, teachers og students*/
+/*sýnir mismunandi töflur fyrir users, teachers og students og afhakar þann sem er valið ef annar listi er valinn*/
 $(document).ready(function () {
-    $(".userlist1").show();
-    $("input[name$='users']").click(function () {
-        $(".hider").hide();
-        var radio = $(this).val();
-        $(".userlist" + radio).show();
-    })
+	$(".userlist1").show();
+	$("input[name$='users']").click(function () {
+		var selected = $('option:selected');
+		selected.removeAttr("selected");
+		$(".hider").hide();
+		var radio = $(this).val();
+		$(".userlist" + radio).show();
+	})
 })
