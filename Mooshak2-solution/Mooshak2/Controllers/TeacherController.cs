@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Mooshak2.Models;
+using Mooshak2.Services;
 
 namespace Mooshak2.Controllers
 {
@@ -31,9 +32,8 @@ namespace Mooshak2.Controllers
 		{
 			if (!ModelState.IsValid)
 			{
-				return View(model);
 			}
-
+			var assign = new AssignmentService().GetAssignmentById(model.CourseId);
 			return RedirectToAction("Index");
 		}
 	}

@@ -43,10 +43,10 @@ namespace Mooshak2.Services
 			}
 		}
 		//input output service
-		public List<InputOutputViewModel> getInputsOutputsViewModel(int milestoneID)
+		public List<InputOutputViewModel> GetInputsOutputsViewModel(int milestoneId)
 		{
 			var model = new List<InputOutputViewModel>();
-			var allExpInputs = GetExpectedInputOutputsByMilestoneId(milestoneID);
+			var allExpInputs = GetExpectedInputOutputsByMilestoneId(milestoneId);
 			foreach (var item in allExpInputs)
 			{
 				var x = new InputOutputViewModel();

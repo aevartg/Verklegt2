@@ -18,32 +18,6 @@ namespace Mooshak2.Services
 			_db = new ApplicationDbContext();
 		}
 
-		public List<AssignmentTabViewModel> GetAssignmentTabViewModels(int id)
-		{
-			var test = (from items in _db.Assignments
-						where items.CourseId == id
-						select items).ToList();
-			if (test.Count == 0)
-			{
-				//TODO
-				return null;
-			}
-			else
-			{
-				var assignmentViewModels = new List<AssignmentTabViewModel>();
-				foreach (var item in test)
-				{
-					var temp = new AssignmentTabViewModel()
-					{
-						Id = item.Id,
-						Name = item.Name
-					};
-					assignmentViewModels.Add(temp);
-				}
-				return assignmentViewModels;
-			}
-		}
-
 		public List<AssignmentNavViewModel> GetAssignmentNavViewModels(int id)
 		{
 			var assignments = (from items in _db.Assignments
@@ -105,7 +79,7 @@ namespace Mooshak2.Services
 			}
 		}
 
-		public Assignment GetAssignmentByID(int id)
+		public Assignment GetAssignmentById(int id)
 		{
 			var assign = _db.Assignments.SingleOrDefault(x => x.Id == id);
 
@@ -126,10 +100,10 @@ namespace Mooshak2.Services
 			SubmissionService s = new SubmissionService();
 			InputOutputService i = new InputOutputService();
 			var milestone = m.getMilestoneByID(milestoneID);
-			model.Id = GetAssignmentByID(milestone.AssignmentId).Id;
-			model.Name = GetAssignmentByID(milestone.Id).Name;
+			model.Id = GetAssignmentById(milestone.AssignmentId).Id;
+			model.Name = GetAssignmentById(milestone.Id).Name;
 			model.Submissions = s.GetSubmissionsByUserAndMilestoneID(userID, milestoneID);
-			model.InputOutputs = i.getInputsOutputsViewModel(milestoneID);
+			model.InputOutputs = i.GetInputsOutputsViewModel(milestoneID);
 
 			if (model == null)
 			{

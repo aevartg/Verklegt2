@@ -60,7 +60,7 @@ namespace Mooshak2.Services
 			}
 		}
 
-		public Course GetCourseByID(int id)
+		public Course GetCourseById(int id)
 		{
 			var course = _db.Courses.SingleOrDefault(x => x.Id == id);
 			if (course == null)
@@ -79,7 +79,7 @@ namespace Mooshak2.Services
 		{
 			var model = new AdminCourseViewModel();
 			UserService c = new UserService();
-			model.Name = GetCourseByID(id).Name;
+			model.Name = GetCourseById(id).Name;
 			model.AllTeachers = c.GetAllTeachers();
 			model.Id = id;
 
