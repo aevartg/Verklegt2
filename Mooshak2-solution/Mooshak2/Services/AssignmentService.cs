@@ -96,7 +96,7 @@ namespace Mooshak2.Services
 			MilestoneService m = new MilestoneService();
 			SubmissionService s = new SubmissionService();
 			InputOutputService i = new InputOutputService();
-			var milestone = m.getMilestoneByID(milestoneID);
+			var milestone = m.GetMilestoneByID(milestoneID);
 			model.Id = milestoneID;
 			model.Name = milestone.Name;
 			model.Submissions = s.GetSubmissionsByUserAndMilestoneID(userID, milestoneID);

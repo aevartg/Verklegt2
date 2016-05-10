@@ -9,28 +9,40 @@
 	<div class="row">
 		<div class="col-md-3">
 			<input type="text" class="form-control leitarbox" placeholder="Search user.." /><br />
-			<select class="leitarlisti allstudents leitarlisti2 searchclass" name="users1" size="15">
+			<select class="leitarlisti" name="students" size="15">
 				@foreach (var item in Model.AllStudents)
 				{
 					<option value="@item.username">@item.username</option>
 				}
 			</select>
 		</div>
-		<div class="col-md-10">
+		<div class="col-md-9">
 			<div class="submissionTable">
 				<table>
 					<thead>
-						<tr>
-							<th>#</th>
-							<th>Time</th>
-							<th>User</th>
-							<th>Result</th>
-							<th>Get Submission</th>
-						</tr>
+					<tr>
+						<th>#</th>
+						<th>Time</th>
+						<th>User</th>
+						<th>Result</th>
+						<th>Get Submission</th>
+					</tr>
 					</thead>
 					<tbody>
-						@foreach (var item in Model.Submissions)
-			{
+					@if (Model.Submissions.Count == 0)
+					{
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					}
+					else
+					{
+						foreach (var item in Model.Submissions)
+						{
 							<tr>
 								<td>@item.Id</td>
 								<td>@item.SubmitDate.Day</td>
@@ -45,9 +57,12 @@
 								}
 								<td><a href="#">Download</a></td>@*Hér þarf action link sem downloadar submissioninu*@
 							</tr>
-			}
+						}
+					}
+					
 					</tbody>
 				</table>
 			</div>
+		</div>
 	</div>
 </div>

@@ -44,7 +44,7 @@ namespace Mooshak2.Controllers
 		public PartialViewResult ContentRender(int id)
 		{
 			TeacherAssignmentViewModel model = new TeacherAssignmentViewModel();
-			Milestone milestone = new MilestoneService().getMilestoneByID(id);
+			Milestone milestone = new MilestoneService().GetMilestoneByID(id);
 			model.MilestoneName = milestone.Name;
 			model.AssignmentName = new AssignmentService().GetAssignmentById(milestone.AssignmentId).Name;
 			model.Submissions = new SubmissionService().GetSubmissionsByMilestoneID(id);

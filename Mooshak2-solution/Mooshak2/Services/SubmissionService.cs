@@ -22,8 +22,8 @@ namespace Mooshak2.Services
 
 			if (subs.Count == 0)
 			{
-				//TODO
-				return null;
+				List<Submission> emptyList = new List<Submission>();
+				return emptyList;
 			}
 			else
 			{
@@ -37,12 +37,11 @@ namespace Mooshak2.Services
 
 			if (subs.Count == 0)
 			{
-				//TODO
-				return null;
+				List<Submission> emptyList = new List<Submission>();
+				return emptyList;
 			}
 			else
 			{
-
 				return subs;
 			}
 		}

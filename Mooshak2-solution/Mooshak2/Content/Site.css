@@ -338,7 +338,6 @@ margin: 5px 0;
 
 .container-custom
 {
-    margin-left: 14%;
     margin-top: 1%;
 }
 
@@ -360,4 +359,12 @@ margin: 5px 0;
 
 body {
   margin: -18px;
+}
+
+/*færa student content nær navinu*/
+
+div.container-custom div.row div#content
+{
+	position: fixed;
+    left: 250px;
 }
