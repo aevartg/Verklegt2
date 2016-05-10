@@ -101,11 +101,6 @@ namespace Mooshak2.Controllers
 				model.UserType = connection.UserIsInRole(user.Id, "Teacher");
 				return View(model);
 			}
-<<<<<<< HEAD
-	    }
-=======
->>>>>>> origin/master
-
 		}
 
 		[HttpPost]
