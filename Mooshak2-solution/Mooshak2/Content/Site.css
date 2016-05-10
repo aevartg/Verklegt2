@@ -28,9 +28,10 @@ textarea {
 .navbar-custom
 {
     background-color: #b94a48;
-    border-color: #cccccc;
+    border-color: #CD5C5C;
     color: #cccccc;
 }
+
 
 .btn-custom
 {
@@ -343,4 +344,18 @@ margin: 5px 0;
 .col-md-103
 {
     margin-top: 2%;
+}
+
+.h4-custom
+{
+	color: #ffffff;
+	background-color: #CD5C5C;
+	line-height: 1.8;
+	margin-top: 0;
+	text-align: center;
+	margin-bottom: 0px;
+}
+
+body {
+  margin: -18px;
 }
