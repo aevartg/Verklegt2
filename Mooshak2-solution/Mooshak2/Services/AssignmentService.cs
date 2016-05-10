@@ -75,8 +75,16 @@ namespace Mooshak2.Services
 			}
 		}
 
-		public bool CreateAssignment(string name)
+		public bool CreateAssignment(string name, int courseId)
 		{
+			var course = (from x in _db.Courses where x.Id == courseId select x).Single();
+			var temp = new Assignment()
+						{
+							Course = course,
+							CourseId = course.Id,
+							Name = name
+						};
+			_db.Assignments.Add(temp);
 			return (_db.SaveChanges() > 0) ? true : false;
 		}
 	}
