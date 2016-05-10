@@ -17,14 +17,14 @@
 				{
 					foreach (var c in Model.ToList())
 					{
-						<a href ="#">New Course</a>
+						<h4>@c.Name</h4>
 						if (c.Assignments.Count == 0)
 						{
 							<p>No Assignments</p>
 						}
 						else
 						{
-							<h4>@c.Name</h4>
+							
 							foreach (var a in c.Assignments)
 							{
 								<div class="w3-accordion">
@@ -35,7 +35,6 @@
 											@Ajax.ActionLink(m.Name, "ContentRender", "Student", new { id = m.Id }, new AjaxOptions() { UpdateTargetId = "content", InsertionMode = InsertionMode.Replace })
 										}
 									</div>
-
 								</div>
 							}
 						}
