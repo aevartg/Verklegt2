@@ -12,6 +12,7 @@ using Mooshak2.Services;
 
 namespace Mooshak2.Controllers
 {
+	[Authorize]
 	public class StudentController : Controller
 	{
 		// GET: Project

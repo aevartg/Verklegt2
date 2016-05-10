@@ -7,11 +7,16 @@ namespace Mooshak2.Models.EntityClasses
 	{
 		[Key]
 		public int Id { get; set; }
+
 		[ForeignKey("Assignment")]
 		public int AssignmentId { get; set; }
+
 		[Required]
 		public string Name { get; set; }
-		public string Description { get; set; }
+
+		[Required]
+		public int Weight { get; set; }
+
 		public virtual Assignment Assignment { get; set; }
 	}
 }
