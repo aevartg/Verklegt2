@@ -34,6 +34,7 @@ namespace Mooshak2.Controllers
 		{
 			if (!ModelState.IsValid)
 			{
+				return View(model);
 			}
 			var assign = new AssignmentService().GetAssignmentById(model.CourseId);
 			return RedirectToAction("Index");
