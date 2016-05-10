@@ -9,7 +9,7 @@ namespace Mooshak2.Services
 	{
 		public string Message { get; set; }
 
-		public override string ToString()
+		public string GetMessage()
 		{
 			return Message;
 		}

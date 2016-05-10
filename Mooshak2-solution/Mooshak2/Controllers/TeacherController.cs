@@ -8,6 +8,7 @@ using Mooshak2.Services;
 
 namespace Mooshak2.Controllers
 {
+	[Authorize(Roles = "Teacher")]
     public class TeacherController : Controller
     {
         // GET: Teacher

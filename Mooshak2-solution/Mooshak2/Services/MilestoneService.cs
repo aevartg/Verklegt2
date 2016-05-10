@@ -49,7 +49,7 @@ namespace Mooshak2.Services
 						{
 							Assignment = assignment,
 							AssignmentId = assignment.Id,
-							Description = weight.ToString(),
+							Weight = weight,
 							Name = name
 						};
 			_db.Milestones.Add(temp);
