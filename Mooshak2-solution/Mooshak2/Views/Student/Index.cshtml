@@ -6,10 +6,10 @@
 }
 
 
-<div class="container">
+<div class="container container-custom">
     <div class="row">
         <div class="col-md-2">
-            <nav class="w3-sidenav w3-white w3-card-2 custom-nav">
+            <nav class="w3-sidenav w3-light-grey w3-card-2 custom-nav">
                 @foreach (var c in Model.ToList())
                 {
                     <h4>@c.Name</h4>foreach (var a in c.Assignments)
