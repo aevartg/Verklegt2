@@ -133,11 +133,6 @@ window.addEventListener("submit", function (e) {
 	}
 }, true);
 
-
-
-
-
-
 /*sýnir mismunandi töflur fyrir users, teachers og students og afhakar þann sem er valið ef annar listi er valinn*/
 $(document).ready(function () {
 	$(".userlist1").show();
