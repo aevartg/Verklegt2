@@ -13,8 +13,9 @@ namespace Mooshak2.Controllers
         // GET: Teacher
         public ActionResult Index()
         {
-            return View();
-        }
+			var model = new CourseService().GetCourseViewModels();
+			return View(model);
+		}
 
 	    [HttpGet]
 	    public ActionResult CreateAssignment()

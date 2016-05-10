@@ -27,11 +27,8 @@ namespace Mooshak2.Services
 				.ToList();
 			if (courses.Count == 0)
 			{
-				var exception = new EmptyModelException
-				{
-					Message = "Course Nav View Model Is Empty"
-				};
-				throw exception;
+				List<CourseViewModel> emptyList = new List<CourseViewModel>();
+				return emptyList;
 			}
 			else
 			{
@@ -40,14 +37,7 @@ namespace Mooshak2.Services
 				{
 					var assignmentList = new List<AssignmentNavViewModel>();
 						assignmentList = new AssignmentService().GetAssignmentNavViewModels(course.Id);
-					if (assignmentList.Count == 0)
-					{
-						var exception = new EmptyModelException
-						{
-							Message = "Assignment Nav View Model Is Empty"
-						};
-						throw exception;
-					}
+
 					var courseViewModeltemp = new CourseViewModel()
 					{
 						Id = course.Id,

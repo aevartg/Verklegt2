@@ -7,6 +7,7 @@ using Mooshak2.Models;
 
 namespace Mooshak2.Controllers
 {
+	[Authorize]
 	public class HomeController : Controller
 	{
 		public ActionResult Index()

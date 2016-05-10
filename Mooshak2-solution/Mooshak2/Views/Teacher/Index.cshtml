@@ -1,7 +1,32 @@
-﻿
+﻿@model IEnumerable<Mooshak2.Models.CourseViewModel>
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Teacher Index</h2>
+<div class="container container-custom">
+	<div class="row">
+		<div class="col-md-2">
+			<nav class="w3-sidenav w3-light-grey w3-card-2 custom-nav">
+				@foreach (var c in Model.ToList())
+				{
+					<h4>@c.Name</h4>foreach (var a in c.Assignments)
+					{
+						<div class="w3-accordion">
+							<a href="#" class="accordion-anchor">@a.Name</a>
+							<div class="w3-accordion-content w3-white w3-card-4">
+								@foreach (var m in a.Milestones)
+								{
+									<a href="#">@m.Name</a>
+									@*@Ajax.ActionLink(m.Name, "ContentRender", "Student", new { id = m.Id }, new AjaxOptions() { UpdateTargetId = "content", InsertionMode = InsertionMode.Replace })*@
+								}
+							</div>
 
+						</div>
+					}
+				}
+			</nav>
+		</div>
+		<div id="content" class="col-md-10">
+		</div>
+	</div>
+</div>

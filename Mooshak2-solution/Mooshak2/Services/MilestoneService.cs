@@ -23,8 +23,8 @@ namespace Mooshak2.Services
 						select items).ToList();
 			if (milestones.Count == 0)
 			{
-				//TODO
-				return null;
+				List<MilestoneNavViewModel> emptyList = new List<MilestoneNavViewModel>();
+				return emptyList;
 			}
 			else
 			{
