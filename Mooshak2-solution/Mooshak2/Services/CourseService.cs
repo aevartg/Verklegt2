@@ -37,7 +37,7 @@ namespace Mooshak2.Services
 				foreach (var course in courses)
 				{
 					var assignmentList = new List<AssignmentNavViewModel>();
-						assignmentList = new AssignmentService().GetAssignmentNavViewModels(course.Id);
+					assignmentList = new AssignmentService().GetAssignmentNavViewModels(course.Id);
 
 					var courseViewModeltemp = new CourseViewModel()
 					{
@@ -74,7 +74,7 @@ namespace Mooshak2.Services
 			model.AllTeachers = c.GetAllTeachers();
 			model.Id = id;
 
-			if (model.Name == null && model.AllTeachers.Count == 0)  //hvernig á að villumeðhöndla her?
+			if (model.Name == null && model.AllTeachers.Count == 0) //hvernig á að villumeðhöndla her?
 			{
 				//TODO
 				return null;
@@ -152,20 +152,48 @@ namespace Mooshak2.Services
 			EdtiCourseViewModel model = new EdtiCourseViewModel();
 			model.Id = course.Id;
 			model.Name = course.Name;
-			model.Teachers = new SelectList(new UserService().GetAllTeachers(), "Id", "username");
-			model.Students = new SelectList(new UserService().GetAllStudents(), "Id", "username");
-			var t = new UserService().GetTeachersInCourse(course.Id);
-			for (int i = 0; i < t.Count; i++)
+
+			List<UserViewModel> tempTeachersList = new UserService().GetAllTeachers();
+			List<UserViewModel> tempTeachersInCourseList = new UserService().GetTeachersInCourse(course.Id);
+			List<UserViewModel> tempRemoveTeacherList = new List<UserViewModel>();
+			foreach (var t in tempTeachersList)
 			{
-				model.TeachersInCourse[i] = t[i].username;
+				foreach (var t2 in tempTeachersInCourseList)
+				{
+					if (t.Id == t2.Id)
+					{
+						tempRemoveTeacherList.Add(t);
+					}
+				}
 			}
-			var s = new UserService().GetStudentsInCourse(course.Id);
-			for (int i = 0; i < t.Count; i++)
+			foreach (var item in tempRemoveTeacherList)
 			{
-				model.StudentsInCourse[i] = s[i].username;
+				tempTeachersList.Remove(item);
 			}
+
+			model.Teachers = new SelectList(tempTeachersList, "Id", "username");
+			model.TeachersInCourse = new SelectList(tempTeachersInCourseList, "Id", "username");
+
+			List<UserViewModel> tempStudentList = new UserService().GetAllStudents();
+			List<UserViewModel> tempStudentsInCourseList = new UserService().GetStudentsInCourse(course.Id);
+			List<UserViewModel> tempRemovestudentList = new List<UserViewModel>();
+			foreach (var s in tempStudentList)
+			{
+				foreach (var s2 in tempStudentsInCourseList)
+				{
+					if (s.Id == s2.Id)
+					{
+						tempRemovestudentList.Add(s);
+					}
+				}
+			}
+			foreach (var item in tempRemovestudentList)
+			{
+				tempStudentList.Remove(item);
+			}
+			model.Students = new SelectList(tempStudentList, "Id", "username");
+			model.StudentsInCourse = new SelectList(tempStudentsInCourseList, "Id", "username");
 			return model;
 		}
-
 	}
 }

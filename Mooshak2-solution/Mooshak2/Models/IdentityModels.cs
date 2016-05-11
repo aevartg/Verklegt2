@@ -34,6 +34,7 @@ namespace Mooshak2.Models
 	    public DbSet<Submission> Submissions { get; set; }
 	    public DbSet<UserOutput> UserOutputs { get; set; }
 
+
         public ApplicationDbContext() : base("DefaultConnection", throwIfV1Schema: false)
         {
 

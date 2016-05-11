@@ -17,8 +17,9 @@
 						@Ajax.ActionLink(c.Name, "ContentRender", "Admin", new { id = c.Id }, new AjaxOptions() { UpdateTargetId = "content", InsertionMode = InsertionMode.Replace }, new { @class = "custom-navanchor" })
 					}
 				}
-				<a href="/Admin/Create" class="custom-adder"><i class="fa fa-plus-square" aria-hidden="true"></i> Add course</a>
-				<a href="/Account/CreateUser" class="custom-adder"><i class="fa fa-plus-square" aria-hidden="true"></i> Add user</a>
+				<a class="custom-navanchor" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#content" href="/admin/ListUsers?Length=5">List of users <i class="fa fa-users custom-icon" aria-hidden="true"></i></a>
+				<a href="/Admin/Create" class="custom-adder"><i class="fa fa-plus-square" aria-hidden="true"></i>  Add course</a>
+				<a href="/Account/CreateUser" class="custom-adder"><i class="fa fa-plus-square" aria-hidden="true"></i>  Add user</a>
 			</nav>
 		</div>
 		<div id="content" class="col-md-10">

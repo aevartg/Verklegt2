@@ -37,9 +37,11 @@ namespace Mooshak2.Models
 	{
 		public int Id { get; set; }
 		public string Name { get; set; }
-		public string[] TeachersInCourse { get; set; }
-		public string[] StudentsInCourse { get; set; }
+		public SelectList TeachersInCourse { get; set; }
+		public SelectList StudentsInCourse { get; set; }
 		public SelectList Teachers { get; set; }
 		public SelectList Students { get; set; }
+		public string[] SelectedTeachers { get; set; }
+		public string[] SelectedStudents { get; set; }
 	}
 }

@@ -530,13 +530,13 @@
     <Content Include="Views\Student\_Content.cshtml" />
     <Content Include="Views\Student\Student.cshtml" />
     <Content Include="Views\Student\UserSettings.cshtml" />
-    <Content Include="Views\Admin\ListUsers.cshtml" />
     <Content Include="Views\Admin\EditUser.cshtml" />
     <Content Include="Views\Teacher\CreateAssignment.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Teacher\Index.cshtml" />
     <Content Include="Views\Teacher\Content.cshtml" />
     <Content Include="Views\Admin\_Content.cshtml" />
+    <Content Include="Views\Admin\_ListUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

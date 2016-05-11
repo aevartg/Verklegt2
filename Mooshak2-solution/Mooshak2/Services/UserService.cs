@@ -78,15 +78,52 @@ namespace Mooshak2.Services
 
 		public List<UserViewModel> GetTeachersInCourse(int id)
 		{
-			//var teachers = (from user in _db.Users outer join)
-			List<UserViewModel> list = new List<UserViewModel>();
-			return list;
+			var list = (_db.Courses.Where(x => x.Id == id).SelectMany(x => x.Users)).ToList();
+			if (list.Count == 0)
+			{
+				List<UserViewModel> emptyList = new List<UserViewModel>();
+				return emptyList;
+			}
+			else
+			{
+				List<UserViewModel> teachers = new List<UserViewModel>();
+				foreach (var item in list)
+				{
+					if (new IdentityManager().UserIsInRole(item.Id, "Teacher"))
+					{
+						UserViewModel temp = new UserViewModel();
+						temp.Id = item.Id;
+						temp.username = item.UserName;
+						teachers.Add(temp);
+					}
+				}
+				return teachers;
+			}
+			
 		}
 		public List<UserViewModel> GetStudentsInCourse(int id)
 		{
-			List<UserViewModel> list = new List<UserViewModel>();
-			//var teachers = (from user in _db.Users outer join)
-			return list;
+			var list = (_db.Courses.Where(x => x.Id == id).SelectMany(x => x.Users)).ToList();
+			if (list.Count == 0)
+			{
+				List<UserViewModel> emptyList = new List<UserViewModel>();
+				return emptyList;
+			}
+			else
+			{
+				List<UserViewModel> students = new List<UserViewModel>();
+				foreach (var item in list)
+				{
+					if (!new IdentityManager().UserIsInRole(item.Id, "Teacher"))
+					{
+						UserViewModel temp = new UserViewModel();
+						temp.Id = item.Id;
+						temp.username = item.UserName;
+						students.Add(temp);
+					}
+				}
+				return students;
+			}
 		}
 	}
 }

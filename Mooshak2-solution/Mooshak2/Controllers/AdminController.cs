@@ -54,7 +54,7 @@ namespace Mooshak2.Controllers
 			return View(model);
 		}
 
-		public ActionResult ListUsers()
+		public PartialViewResult ListUsers()
 		{
 			UserService connection = new UserService();
 			ListUsersViewModel model = new ListUsersViewModel();
@@ -62,7 +62,7 @@ namespace Mooshak2.Controllers
 			model.AllUsers = connection.GetAllUsers();
 			model.AllStudents = connection.GetAllStudents();
 
-			return View(model);
+			return PartialView("_ListUsers", model);
 		}
 
 		[HttpPost]
