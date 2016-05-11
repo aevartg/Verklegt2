@@ -234,14 +234,9 @@ margin: 5px 0;
 }
 
 /*Submission Tafla*/
-.acceptedTd
+.submissionTable
 {
-    color: green; 
-}
-
-.failedTd
-{
-    color: red; 
+	margin-right: 4%;
 }
 
 /*Create course*/
@@ -347,6 +342,12 @@ margin: 5px 0;
 .col-md-103
 {
     margin-top: 2%;
+}
+
+.custom-height
+{
+	height: 250px;
+	overflow: auto;
 }
 
 .h4-custom
