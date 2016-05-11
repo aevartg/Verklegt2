@@ -1,6 +1,8 @@
-﻿	@using Microsoft.AspNet.Identity
-	@model Mooshak2.Models.AssignmentViewModel
+﻿@using Microsoft.AspNet.Identity
+@model Mooshak2.Models.AssignmentViewModel
 
+@Scripts.Render("~/Scripts/sortable.min.js")
+<link rel="stylesheet" href="~/Content/sortable-theme-minimal.css"/>
 
 <div id="maincontent">
 <h2>@Model.Name</h2>
@@ -18,11 +20,9 @@
 						<input type="submit" />
 					</div>}
 			</div>
-
-
 			<div class="submissionTable">
-				<div class="col-md-6 custom-height">
-					<table class="table table-hover table-responsive">
+				<div class="col-md-7 custom-height">
+					<table class="table table-hover table-responsive sortable-theme-minimal " data-sortable>
 						<thead>
 							<tr>
 								<th>#</th>

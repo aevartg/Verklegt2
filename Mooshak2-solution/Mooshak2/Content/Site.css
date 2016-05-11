@@ -233,11 +233,11 @@ margin: 5px 0;
 
 .custom-height
 {
-	height: 250px;
+	height: 350px;
 	overflow: auto;
 }
 
-custom-height,
+.custom-height,
 .custom-height2
 {
 	height: 400px;
