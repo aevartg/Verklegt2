@@ -48,13 +48,13 @@ namespace Mooshak2.Services
 			}
 		}
 
-		public bool CreateSubmission(HttpPostedFileBase file, int milestoneId)
+		public bool CreateSubmission(HttpPostedFileBase file, int milestoneId,string fileExtension)
 		{
 			if(file.ContentLength > 0)
 			{ 
 				var blob = Helper.StreamToBytes(file.InputStream);
 				var userId = HttpContext.Current.User.Identity.GetUserId();
-				if (Helper.BytesToFile(".js", blob))
+				if (Helper.BytesToFile(fileExtension, blob))
 				{
 					var temp = new InputOutputService().GetJavascriptResultTuples(milestoneId);
 					var submission = new Submission()
@@ -64,7 +64,8 @@ namespace Mooshak2.Services
 						Blob = blob,
 						SubmitDate = DateTime.Now,
 						TestPassed = temp.Item1,
-						TestFailed = temp.Item2
+						TestFailed = temp.Item2,
+						FileExtension = fileExtension
 					};
 					_db.Submissions.Add(submission);
 					return (_db.SaveChanges() > 0);

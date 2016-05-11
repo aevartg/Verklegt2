@@ -18,48 +18,53 @@
 		</div>
 		<div class="col-md-9">
 			<div class="submissionTable">
-				<table>
+				<table class="table table-condensed table-hover table-striped">
 					<thead>
-					<tr>
-						<th>#</th>
-						<th>Time</th>
-						<th>User</th>
-						<th>Result</th>
-						<th>Get Submission</th>
-					</tr>
+						<tr>
+							<th>#</th>
+							<th>Time</th>
+							<th>User</th>
+							<th>Result</th>
+							<th>Get Submission</th>
+						</tr>
 					</thead>
 					<tbody>
-					@if (Model.Submissions.Count == 0)
-					{
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					}
-					else
-					{
-						foreach (var item in Model.Submissions)
+						@if (Model.Submissions.Count == 0)
 						{
 							<tr>
-								<td>@item.Id</td>
-								<td>@item.SubmitDate.Day</td>
-								<td>@User.Identity.GetUserName()</td>
-								@if (item.TestFailed == 0)
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						}
+						else
+						{
+							foreach (var item in Model.Submissions)
+							{
+								if (item.TestPassed == 1)
 								{
-									<td class="acceptedTd">Accepted</td>
+									<tr class="success">
+										<td>@item.Id</td>
+										<td>@item.SubmitDate.Day</td>
+										<td>@User.Identity.GetUserName()</td>
+										<td>Accepted</td>
+										<td><a href="#">Download</a></td>@*Hér þarf action link sem downloadar submissioninu*@
+									</tr>
 								}
 								else
 								{
-									<td class="failedTd" style="color: red;">Failed</td>
+									<tr class="danger">
+										<td>@item.Id</td>
+										<td>@item.SubmitDate.Day</td>
+										<td>@User.Identity.GetUserName()</td>
+										<td>Failed</td>
+										<td><a href="#">Download</a></td>@*Hér þarf action link sem downloadar submissioninu*@
+									</tr>
 								}
-								<td><a href="#">Download</a></td>@*Hér þarf action link sem downloadar submissioninu*@
-							</tr>
+							}
 						}
-					}
-					
 					</tbody>
 				</table>
 			</div>
