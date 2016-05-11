@@ -4,16 +4,7 @@
 }
 
 <h2>Edit course</h2>
-@*<div class="tabbable tabs-left" id="result">
-        <ul class="nav nav-tabs">
-            @foreach (var x in Model.TestList)
-            {
-                <li>
-                    @Html.ActionLink(x.ToString(), "Index")
-                </li>
-            }
-        </ul>
-    </div>*@
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

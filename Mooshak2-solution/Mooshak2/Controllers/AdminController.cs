@@ -17,7 +17,8 @@ namespace Mooshak2.Controllers
 		// GET: Admin
 		public ActionResult Index()
 		{
-			return View();
+			var model = new CourseService().GetAdminNavCourseViewModels();
+			return View(model);
 		}
 
 		[HttpGet]
@@ -27,7 +28,6 @@ namespace Mooshak2.Controllers
 			var model = new CreateCourseViewModel();
 			model.Teachers = new SelectList(connection.GetAllTeachers(), "Id", "username");
 			model.Students = new SelectList(connection.GetAllStudents(), "Id", "username");
-
 			return View(model);
 		}
 
@@ -45,17 +45,6 @@ namespace Mooshak2.Controllers
 			}
 
 			return RedirectToAction("Index"); // eigum eftir að gera index view fyrir Admin
-		}
-
-		[HttpPost]
-		public ActionResult Add(string userName)
-			//tekur við userName, færir þann user yfir í TeachersInCourse og kallar aftur a create nema með því viewi   -   kann ekki að tengja þetta við takkann thob
-		{
-			CourseService c = new CourseService();
-			AdminCourseViewModel model = new AdminCourseViewModel();
-			c.UpdateAdminCourseViewModel(model, userName);
-			//Update'a aðeins TeachersInCourse listann í AdminCourseViewModelinu, ss lata user sem er valinn her að ofan inn i þann lista og kalla aftur á create nema með uppfært viewmodel?
-			return View("Create", userName);
 		}
 
 		public ActionResult Edit(int id)
@@ -107,8 +96,17 @@ namespace Mooshak2.Controllers
 		[HttpPost]
 		public ActionResult EditUser(RegisterViewModel model)
 		{
-
 			return View("Index");
+		}
+
+		public PartialViewResult ContentRender(int id)
+		{
+			var model = new EdtiCourseViewModel();
+			CourseService c = new CourseService();
+			Course course = new Course();
+			course = c.GetCourseById(id);
+			model = c.GetEdtiCourseViewModel(course);
+			return PartialView("_Content", model);
 		}
 	}
 }

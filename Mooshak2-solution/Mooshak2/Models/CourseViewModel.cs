@@ -19,5 +19,10 @@ namespace Mooshak2.Models
 		public List<AssignmentTabViewModel> AssignmentList { get; set; }	
 	}
 
+	public class AdminNavCourseViewModel
+	{
+		public int Id { get; set; }
+		public string Name { get; set; }
+	}
 
 }

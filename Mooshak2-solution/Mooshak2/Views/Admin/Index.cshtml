@@ -1,8 +1,25 @@
-﻿
+﻿@model IEnumerable<Mooshak2.Models.AdminNavCourseViewModel>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Admin Index";
 }
-
-<h2>Index</h2>
-
-<p>bjóst tl áfanga</p>
+<div class="container container-custom">
+	<div class="row">
+		<div class="col-md-2">
+			<nav class="w3-sidenav w3-white w3-card-2 custom-nav">
+				@if (Model.ToList().Count == 0)
+				{
+					<p>No courses</p>
+				}
+				else
+				{
+					foreach (var c in Model.ToList())
+					{
+						@Ajax.ActionLink(c.Name, "ContentRender", "Admin", new { id = c.Id }, new AjaxOptions() { UpdateTargetId = "content", InsertionMode = InsertionMode.Replace }, new { @class = "h4-custom" })
+					}
+				}
+			</nav>
+		</div>
+		<div id="content" class="col-md-10">
+		</div>
+	</div>
+</div>

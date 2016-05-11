@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using LinqToDB.SqlQuery;
 
 namespace Mooshak2.Services
 {
@@ -21,21 +22,19 @@ namespace Mooshak2.Services
 			var users = new List<UserViewModel>();
 			var allUsers = (from x in _db.Users select x).ToList();
 
-			for (int i = 0; i < allUsers.Count(); i++)
+			if (allUsers.Count == 0)
 			{
-				UserViewModel user = new UserViewModel();
-				user.Id = allUsers[i].Id;
-				user.username = allUsers[i].UserName;
-				users.Add(user);
-			};
-
-			if (users.Count == 0)
-			{
-				//TODO 
-				return null;
+				return users;
 			}
 			else
 			{
+				for (int i = 0; i < allUsers.Count(); i++)
+				{
+					UserViewModel user = new UserViewModel();
+					user.Id = allUsers[i].Id;
+					user.username = allUsers[i].UserName;
+					users.Add(user);
+				};
 				return users;
 			}
 		}
@@ -53,16 +52,7 @@ namespace Mooshak2.Services
 					teachers.Add(item);
 				}
 			}
-
-			if (teachers.Count == 0)
-			{
-				//TODO
-				return null;
-			}
-			else
-			{
 				return teachers;
-			}
 		}
 
 		public List<UserViewModel> GetAllStudents()
@@ -78,22 +68,25 @@ namespace Mooshak2.Services
 					students.Add(item);
 				}
 			}
-
-			if (students.Count == 0)
-			{
-				//TODO
-				return null;
-			}
-			else
-			{
 				return students;
-			}
-
 		}
 
 		public ApplicationUser GetUserByID(string id)
 		{
 			return (from x in _db.Users where x.Id == id select x).SingleOrDefault();
+		}
+
+		public List<UserViewModel> GetTeachersInCourse(int id)
+		{
+			//var teachers = (from user in _db.Users outer join)
+			List<UserViewModel> list = new List<UserViewModel>();
+			return list;
+		}
+		public List<UserViewModel> GetStudentsInCourse(int id)
+		{
+			List<UserViewModel> list = new List<UserViewModel>();
+			//var teachers = (from user in _db.Users outer join)
+			return list;
 		}
 	}
 }

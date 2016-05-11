@@ -27,11 +27,11 @@
 							foreach (var a in c.Assignments)
 							{
 								<div class="w3-accordion">
-									<a href="#" class="accordion-anchor custom-navanchor"> - @a.Name <i class="fa fa-angle-down custom-icon" aria-hidden="true"></i></a>
-									<div class="w3-accordion-content w3-white w3-card-4">
+									<a href="#" class="accordion-anchor custom-navanchor">@a.Name <i class="fa fa-angle-down custom-icon" aria-hidden="true"></i></a>
+									<div class="w3-accordion-content w3-white w3-card-4 custom-navanchor">
 										@foreach (var m in a.Milestones)
 										{
-											@Ajax.ActionLink(m.Name, "ContentRender", "Teacher", new { id = m.Id }, new AjaxOptions() { UpdateTargetId = "content", InsertionMode = InsertionMode.Replace })
+											@Ajax.ActionLink(m.Name, "ContentRender", "Teacher", new { id = m.Id}, new AjaxOptions() { UpdateTargetId = "content", InsertionMode = InsertionMode.Replace }, new { @class = "custom-milestoneanchor" } )
 										}
 									</div>
 								</div>

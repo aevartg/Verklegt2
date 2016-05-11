@@ -29,10 +29,10 @@
 							{
 								<div class="w3-accordion">
 									<a href="#" class="accordion-anchor custom-navanchor">@a.Name</a>
-									<div class="w3-accordion-content w3-white w3-card-4">
+									<div class="w3-accordion-content w3-white w3-card-4 custom-navanchor">
 										@foreach (var m in a.Milestones)
 										{
-											@Ajax.ActionLink(m.Name, "ContentRender", "Student", new { id = m.Id }, new AjaxOptions() { UpdateTargetId = "content", InsertionMode = InsertionMode.Replace })
+											@Ajax.ActionLink(m.Name, "ContentRender", "Student", new { id = m.Id }, new AjaxOptions() { UpdateTargetId = "content", InsertionMode = InsertionMode.Replace }, new { @class = "custom-milestoneanchor" })
 										}
 									</div>
 								</div>

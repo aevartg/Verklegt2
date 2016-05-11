@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Mooshak2.Models;
@@ -90,8 +91,8 @@ namespace Mooshak2.Services
 
 			if (allCourses.Count == 0)
 			{
-				//TODO
-				return null;
+				List<Course> emptyList = new List<Course>();
+				return emptyList;
 			}
 			else
 			{
@@ -131,5 +132,40 @@ namespace Mooshak2.Services
 			userVM.Id = user.Id;
 			model.TeachersInCourse.Add(userVM);
 		}
+
+		public List<AdminNavCourseViewModel> GetAdminNavCourseViewModels()
+		{
+			List<AdminNavCourseViewModel> list = new List<AdminNavCourseViewModel>();
+			var courses = GetAllCourses();
+			foreach (var item in courses)
+			{
+				AdminNavCourseViewModel temp = new AdminNavCourseViewModel();
+				temp.Id = item.Id;
+				temp.Name = item.Name;
+				list.Add(temp);
+			}
+			return list;
+		}
+
+		public EdtiCourseViewModel GetEdtiCourseViewModel(Course course)
+		{
+			EdtiCourseViewModel model = new EdtiCourseViewModel();
+			model.Id = course.Id;
+			model.Name = course.Name;
+			model.Teachers = new SelectList(new UserService().GetAllTeachers(), "Id", "username");
+			model.Students = new SelectList(new UserService().GetAllStudents(), "Id", "username");
+			var t = new UserService().GetTeachersInCourse(course.Id);
+			for (int i = 0; i < t.Count; i++)
+			{
+				model.TeachersInCourse[i] = t[i].username;
+			}
+			var s = new UserService().GetStudentsInCourse(course.Id);
+			for (int i = 0; i < t.Count; i++)
+			{
+				model.StudentsInCourse[i] = s[i].username;
+			}
+			return model;
+		}
+
 	}
 }
