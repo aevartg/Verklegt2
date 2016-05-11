@@ -41,34 +41,56 @@
 	</div>
 
 	<div class="submissionTable">
-		<table>
+		<table class="table table-condensed table-hover table-striped">
 			<thead>
-			<tr>
-				<th>#</th>
-				<th>Time</th>
-				<th>User</th>
-				<th>Result</th>
-			</tr>
+				<tr>
+					<th>#</th>
+					<th>Time</th>
+					<th>User</th>
+					<th>Result</th>
+					<th>Get Submission</th>
+				</tr>
 			</thead>
 			<tbody>
-			@foreach (var item in Model.Submissions)
-			{
-				<tr>
-					<td>@item.Id</td>
-					<td>@item.SubmitDate.ToString("yyyy-MM-dd hh:mm:ss.fff")</td>
-					<td>@User.Identity.GetUserName()</td>
-					@if (item.TestFailed == 0)
+				@if (Model.Submissions.Count == 0)
+				{
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				}
+				else
+				{
+					foreach (var item in Model.Submissions)
 					{
-						<td class="acceptedTd">Accepted</td>
+						if (item.TestPassed == 1)
+						{
+							<tr class="success">
+								<td>@item.Id</td>
+								<td>@item.SubmitDate.ToString("yyyy-MM-dd hh:mm:ss.fff")</td>
+								<td>@User.Identity.GetUserName()</td>
+								<td>Accepted</td>
+								<td><a href="#">Download</a></td>@*Hér þarf action link sem downloadar submissioninu*@
+							</tr>
+						}
+						else
+						{
+							<tr class="danger">
+								<td>@item.Id</td>
+								<td>@item.SubmitDate.ToString("yyyy-MM-dd hh:mm:ss.fff")</td>
+								<td>@User.Identity.GetUserName()</td>
+								<td>Failed</td>
+								<td><a href="#">Download</a></td>@*Hér þarf action link sem downloadar submissioninu*@
+							</tr>
+						}
 					}
-					else
-					{
-						<td class="failedTd" style="color: red;">Failed</td>
-					}
-				</tr>
-			}
+				}
 			</tbody>
 		</table>
+
 	</div>
 </div>
 
