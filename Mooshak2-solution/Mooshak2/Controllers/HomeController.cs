@@ -16,11 +16,11 @@ namespace Mooshak2.Controllers
 			{
 				return RedirectToAction("Index", "Teacher");
 			}
-			else//tjekka hvort hann sé student
+			else if(HttpContext.User.IsInRole("Admin")
 			{
-				return RedirectToAction("Index", "Student");
+				return RedirectToAction("Index", "Admin")
 			}
-				
+			return RedirectToAction("Index", "Student");
 		}
 
 		public ActionResult About()
