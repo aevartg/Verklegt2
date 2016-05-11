@@ -3,9 +3,9 @@
 @{
     ViewBag.Title = "Content";
 }
-<script type=@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")>
-</script>
+<script type=@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")></script>
 @Scripts.Render("~/Scripts/Custom.js")
+
 <h2>@Model.MilestoneName</h2>
 <div class="container">
 	<div class="row">
@@ -49,7 +49,7 @@
 								{
 									<tr class="success">
 										<td>@item.Id</td>
-										<td>@item.SubmitDate.Day</td>
+										<td>@item.SubmitDate.ToString("yyyy-MM-dd hh:mm:ss.fff")</td>
 										<td>@User.Identity.GetUserName()</td>
 										<td>Accepted</td>
 										<td><a href="#">Download</a></td>@*Hér þarf action link sem downloadar submissioninu*@
@@ -59,7 +59,7 @@
 								{
 									<tr class="danger">
 										<td>@item.Id</td>
-										<td>@item.SubmitDate.Day</td>
+										<td>@item.SubmitDate.ToString("yyyy-MM-dd hh:mm:ss.fff")</td>
 										<td>@User.Identity.GetUserName()</td>
 										<td>Failed</td>
 										<td><a href="#">Download</a></td>@*Hér þarf action link sem downloadar submissioninu*@
