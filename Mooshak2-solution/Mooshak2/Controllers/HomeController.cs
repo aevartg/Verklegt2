@@ -16,7 +16,7 @@ namespace Mooshak2.Controllers
 			{
 				return RedirectToAction("Index", "Teacher");
 			}
-			else if(HttpContext.User.IsInRole("Admin"))
+			else if(HttpContext.User.IsInRole("Administrator"))
 			{
 				return RedirectToAction("Index", "Admin");
 			}
