@@ -3,13 +3,15 @@
 @{
     ViewBag.Title = "Content";
 }
-
-<h2>Content</h2>
+<script type=@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")>
+</script>
+@Scripts.Render("~/Scripts/Custom.js")
+<h2>@Model.MilestoneName</h2>
 <div class="container">
 	<div class="row">
 		<div class="col-md-3">
 			<input type="text" class="form-control leitarbox" placeholder="Search user.."/><br/>
-			<select class="leitarlisti" name="students" size="15">
+			<select class="searchclass leitarlisti" name="students" size="15">
 				@foreach (var item in Model.AllStudents)
 				{
 					<option value="@item.username">@item.username</option>
