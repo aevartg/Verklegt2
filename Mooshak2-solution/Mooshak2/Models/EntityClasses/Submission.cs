@@ -19,6 +19,8 @@ namespace Mooshak2.Models.EntityClasses
 		public DateTime SubmitDate { get; set; }
 		[Required]
 		public byte[] Blob { get; set; }
+		[Required]
+		public string FileExtension { get; set; }
 		public virtual ApplicationUser ApplicationUser { get; set; }
 		public virtual Milestone Milestone { get; set; }
 	}

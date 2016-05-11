@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -31,7 +32,7 @@ namespace Mooshak2.Controllers
 		[HttpPost]
 		public PartialViewResult SubmitForm(int id,HttpPostedFileBase file)
 		{
-			var success = new SubmissionService().CreateSubmission(file, id);
+			var success = new SubmissionService().CreateSubmission(file, id,Path.GetExtension(file.FileName));
 			var model = new AssignmentService().GetAssignmentViewModel(HttpContext.User.Identity.GetUserId(), id);
 			return PartialView("_content",model);
 		}
