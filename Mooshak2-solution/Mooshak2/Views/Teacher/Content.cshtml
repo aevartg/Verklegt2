@@ -5,8 +5,11 @@
 }
 <script type=@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")></script>
 @Scripts.Render("~/Scripts/Custom.js")
+@Scripts.Render("~/Scripts/sortable.min.js")
+<link rel="stylesheet" href="~/Content/sortable-theme-minimal.css" />
 
 <h2>@Model.MilestoneName</h2>
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-3">
@@ -20,7 +23,7 @@
 		</div>
 		<div class="col-md-9 custom-height2">
 			<div class="submissionTable">
-				<table class="table table-condensed table-hover table-striped">
+				<table class="table table-condensed table-hover table-striped sortable-theme-minimal" data-sortable>
 					<thead>
 						<tr>
 							<th>#</th>
@@ -50,7 +53,7 @@
 									<tr class="success">
 										<td>@item.Id</td>
 										<td>@item.SubmitDate.ToString("yyyy-MM-dd hh:mm:ss.fff")</td>
-										<td>@User.Identity.GetUserName()</td>
+										<td>@item.ApplicationUser.UserName</td>
 										<td>Accepted</td>
 										<td><a href="#">Download</a></td>@*Hér þarf action link sem downloadar submissioninu*@
 									</tr>
@@ -60,7 +63,7 @@
 									<tr class="danger">
 										<td>@item.Id</td>
 										<td>@item.SubmitDate.ToString("yyyy-MM-dd hh:mm:ss.fff")</td>
-										<td>@User.Identity.GetUserName()</td>
+										<td>@item.ApplicationUser.UserName</td>
 										<td>Failed</td>
 										<td><a href="#">Download</a></td>@*Hér þarf action link sem downloadar submissioninu*@
 									</tr>
