@@ -30,7 +30,7 @@
 				</div>
 
 				<div class="userlist2 hider">
-					<select class="leitarlisti allteachers leitarlisti2 searchclass" name="users1" size="15">
+					<select class="leitarlisti allteachers leitarlisti2 searchclass" id="TeacherList" name="users1" size="15">
 						@foreach (var item in Model.AllTeachers)
 						{
 							<option value="@item.username">@item.username</option>}
@@ -38,7 +38,7 @@
 				</div>
 
 				<div class="userlist3 hider">
-					<select class="leitarlisti allstudents leitarlisti2 searchclass" name="users1" size="15">
+					<select class="leitarlisti allstudents leitarlisti2 searchclass" id="Studentlist" name="users1" size="15">
 						@foreach (var item in Model.AllStudents)
 						{
 							<option value="@item.username">@item.username</option>}
