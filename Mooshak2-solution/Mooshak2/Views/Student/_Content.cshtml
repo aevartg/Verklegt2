@@ -1,76 +1,107 @@
-﻿@using Microsoft.AspNet.Identity
-@model Mooshak2.Models.AssignmentViewModel
+﻿	@using Microsoft.AspNet.Identity
+	@model Mooshak2.Models.AssignmentViewModel
 
 
 <div id="maincontent">
-	<h2>@Model.Name</h2>
-	@using (Ajax.BeginForm("SubmitForm", "Student", new AjaxOptions() {UpdateTargetId = "maincontent",InsertionMode = InsertionMode.Replace, HttpMethod = "POST"}, new {enctype = "multipart/form-data"}))
-	{
-		@Html.AntiForgeryToken()
-		@Html.Hidden("Id", Model.Id)
-		<div class="formgroup">
-			<input type="file" id="file" name="file"/>
-		</div>
-		<div class="formgroup">
-			<input type="submit"/>
-		</div>
-	}
-
-	<div class="inputlists">
-		<div class="yourInputs">
-			<ul>
-				@foreach (var item in Model.InputOutputs)
+<h2>@Model.Name</h2>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				@using (Ajax.BeginForm("SubmitForm", "Student", new AjaxOptions() { UpdateTargetId = "maincontent", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" }, new { enctype = "multipart/form-data" }))
 				{
-					<li>Input: @item.Input</li>
-					<li>Output: @item.RealOutput</li>
-				}
-			</ul>
-		</div>
-		<div class="expectedInputs">
-			<ul>
-				@if(Model.InputOutputs.Count != 0)
-				{
-					foreach (var item in Model.InputOutputs)
-					{
-						<li>Input: @item.Input</li>
-						<li>Output: @item.ExpectedOutput</li>
-					}
-				}
-			</ul>
-		</div>
-	</div>
+					@Html.AntiForgeryToken()
+					@Html.Hidden("Id", Model.Id)
+					<div class="formgroup col-md-10">
+						<input type="file" id="file" name="file" />
+					</div>
+					<div class="formgroup col-md-10 h2-custom">
+						<input type="submit" />
+					</div>}
+			</div>
 
-	<div class="submissionTable">
-		<table>
-			<thead>
-			<tr>
-				<th>#</th>
-				<th>Time</th>
-				<th>User</th>
-				<th>Result</th>
-			</tr>
-			</thead>
-			<tbody>
-			@foreach (var item in Model.Submissions)
-			{
-				<tr>
-					<td>@item.Id</td>
-					<td>@item.SubmitDate.ToString("yyyy-MM-dd hh:mm:ss.fff")</td>
-					<td>@User.Identity.GetUserName()</td>
-					@if (item.TestFailed == 0)
-					{
-						<td class="acceptedTd">Accepted</td>
-					}
-					else
-					{
-						<td class="failedTd" style="color: red;">Failed</td>
-					}
-				</tr>
-			}
-			</tbody>
-		</table>
+
+			<div class="submissionTable">
+				<div class="col-md-6 custom-height">
+					<table class="table table-hover table-responsive">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Time</th>
+								<th>User</th>
+								<th>Result</th>
+								<th>Get Submission</th>
+							</tr>
+						</thead>
+						<tbody>
+							@if (Model.Submissions.Count == 0)
+							{
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							}
+							else
+							{
+								foreach (var item in Model.Submissions)
+								{
+									if (item.TestPassed == 1)
+									{
+										<tr class="success">
+											<td>@item.Id</td>
+											<td>@item.SubmitDate.ToString("yyyy-MM-dd hh:mm:ss.fff")</td>
+											<td>@User.Identity.GetUserName()</td>
+											<td>Accepted</td>
+											<td><a href="#">Download</a></td>@*Hér þarf action link sem downloadar submissioninu*@
+										</tr>
+									}
+									else
+									{
+										<tr class="danger">
+											<td>@item.Id</td>
+											<td>@item.SubmitDate.ToString("yyyy-MM-dd hh:mm:ss.fff")</td>
+											<td>@User.Identity.GetUserName()</td>
+											<td>Failed</td>
+											<td><a href="#">Download</a></td>@*Hér þarf action link sem downloadar submissioninu*@
+										</tr>
+									}
+								}
+							}
+						</tbody>
+					</table>
+					</div>
+
+				<div class="container">
+					<div class="inputlists">
+						<div class="yourInputs col-md-10 custom-height2">
+							<table class="table table-striped">
+								<thead>
+								<tr>
+									<th>Input</th>
+									<th>Your Output</th>
+									<th>Expected Output</th>
+								</tr>
+								</thead>
+								<tbody>
+									@if (Model.InputOutputs.Count != 0)
+									{
+										foreach (var item in Model.InputOutputs)
+										{
+											<tr>
+												<td>@item.Input</td>
+												<td>@item.RealOutput</td>
+												<td>@item.ExpectedOutput</td>
+											</tr>
+										}
+									}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
-
-
-

@@ -1,15 +1,18 @@
-﻿@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity
 @model Mooshak2.Models.TeacherAssignmentViewModel
 @{
-    ViewBag.Title = "Content";
+	ViewBag.Title = "Content";
 }
+<script type=@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")>
+</script>
+@Scripts.Render("~/Scripts/Custom.js")
 
-<h2>Content</h2>
+<h2>@Model.MilestoneName</h2>
 <div class="container">
 	<div class="row">
 		<div class="col-md-3">
-			<input type="text" class="form-control leitarbox" placeholder="Search user.."/><br/>
-			<select class="leitarlisti" name="students" size="15">
+			<input type="text" class="form-control leitarbox" placeholder="Search user.." /><br />
+			<select class="searchclass leitarlisti" name="students" size="15">
 				@foreach (var item in Model.AllStudents)
 				{
 					<option value="@item.username">@item.username</option>
@@ -47,7 +50,7 @@
 								{
 									<tr class="success">
 										<td>@item.Id</td>
-										<td>@item.SubmitDate.Day</td>
+										<td>@item.SubmitDate.ToString("yyyy-MM-dd hh:mm:ss.fff")</td>
 										<td>@User.Identity.GetUserName()</td>
 										<td>Accepted</td>
 										<td><a href="#">Download</a></td>@*Hér þarf action link sem downloadar submissioninu*@
@@ -57,7 +60,7 @@
 								{
 									<tr class="danger">
 										<td>@item.Id</td>
-										<td>@item.SubmitDate.Day</td>
+										<td>@item.SubmitDate.ToString("yyyy-MM-dd hh:mm:ss.fff")</td>
 										<td>@User.Identity.GetUserName()</td>
 										<td>Failed</td>
 										<td><a href="#">Download</a></td>@*Hér þarf action link sem downloadar submissioninu*@

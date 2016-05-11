@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Web.Configuration;
 using Microsoft.VisualBasic.FileIO;
@@ -112,6 +114,17 @@ namespace Mooshak2
 				}
 				return temp;
 			}
+		}
+
+		public static bool SendEmail(string message,string subject,string email)
+		{
+			var client = new SmtpClient("smtp.gmail.com", 587)
+						{
+							Credentials = new NetworkCredential("adminverklegt35@gmail.com", "verklegt"),
+							EnableSsl = true
+						};
+			client.Send("adminverklegt35@gmail.com",email,subject,message);
+			return true;
 		}
 	}
 }

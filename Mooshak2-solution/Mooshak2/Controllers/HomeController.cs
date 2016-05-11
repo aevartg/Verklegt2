@@ -25,8 +25,6 @@ namespace Mooshak2.Controllers
 
 		public ActionResult About()
 		{
-			var manager = new IdentityManager();
-			manager.CreateRole("Administrator");
 			return View();
 		}
 

@@ -50,21 +50,20 @@ namespace Mooshak2.Services
 		{
 			var model = new List<InputOutputViewModel>();
 			var allExpInputs = GetExpectedInputOutputsByMilestoneId(milestoneId);
-			foreach (var item in allExpInputs)
-			{
-				var x = new InputOutputViewModel();
-				x.Input = item.Input;
-				x.ExpectedOutput = item.Output;
-				x.RealOutput = item.Output; //þessi lína myndi ekki ná í expected output heldur raunverulegt output notandans
-				model.Add(x);
-			}
 			if (model.Count == 0)
 			{
-				//TODO
-				return null;
+				return model;
 			}
 			else
 			{
+				foreach (var item in allExpInputs)
+				{
+					var x = new InputOutputViewModel();
+					x.Input = item.Input;
+					x.ExpectedOutput = item.Output;
+					x.RealOutput = item.Output; //þessi lína myndi ekki ná í expected output heldur raunverulegt output notandans
+					model.Add(x);
+				}   //TODO
 				return model;
 			}
 		}
