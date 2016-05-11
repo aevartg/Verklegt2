@@ -334,6 +334,9 @@ margin: 5px 0;
     position: fixed!important;
     left: 0;
     padding-bottom: 6%;
+	bottom: 0;
+	height: -moz-calc(100% - 50px);
+	height: -webkit-calc(100% - 50px);
 }
 
 .container-custom
@@ -379,4 +382,19 @@ a.custom-navanchor
     text-align: left;
     border-bottom: 1px solid rgba(185, 74, 72, 0.22);
     margin-right: 30px;
+}
+
+.custom-icon
+{
+	float: right;
+    margin-right: 5px;
+    margin-top: 3px;
+    color: rgba(185, 74, 72, 0.9);
+}
+
+.custom-adder
+{
+	color: rgba(185, 74, 72, 0.95);
+    text-align: left;
+    margin-top: 3px;
 }
