@@ -348,13 +348,14 @@ margin: 5px 0;
 
 .h4-custom
 {
-	color: rgb(150,0,0);
-	line-height: 1.8;
-	background-color: #ddd;
-	margin-top: 0;
-	text-align: left;
-	margin-bottom: 0px;
-	padding-left: 10%; 
+    color: #555555;
+    line-height: 1.8;
+    background-color: #eeeeee;
+    padding-left: 6%;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 body {
@@ -367,4 +368,15 @@ div.container-custom div.row div#content
 {
 	position: fixed;
     left: 250px;
+}
+
+/*a inní navi*/
+
+a.custom-navanchor
+{
+	display: block;
+    color: #555555;
+    text-align: left;
+    border-bottom: 1px solid rgba(185, 74, 72, 0.22);
+    margin-right: 30px;
 }
