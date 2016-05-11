@@ -14,10 +14,14 @@
 				<label class="col-xs-3 control-label">Assignment Name</label>
 				<div>
 					@Html.HiddenFor(x => Model.CourseId)
-					@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+					@Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
 					<input type="text" name="name" class="form-control"/>
 				</div>
 			</div>
+		</div>
+		<div class="row">
+			@Html.EditorFor(x => x.DateOpen, Model.DateOpen)
+			@Html.EditorFor(x => x.DateClose, Model.DateClose)
 		</div>
 
 

@@ -37,7 +37,19 @@ namespace Mooshak2.Controllers
 			{
 				return View(model);
 			}
-			var assign = new AssignmentService().GetAssignmentById(model.CourseId);
+			var assignmentService = new AssignmentService();
+			if (assignmentService.CreateAssignment(model.Name, model.CourseId,model.DateOpen,model.DateClose))
+			{
+				var tempAssignment = assignmentService.GetAssignmentByName(model.CourseId, model.Name);
+				var milestoneService = new MilestoneService();
+				var inputOutputService = new InputOutputService();
+				foreach (var x in model.Milestones)
+				{
+					milestoneService.CreateMilestone(tempAssignment.Id, x.Name, x.Weight);
+					var tempMilestone = milestoneService.GetMilestoneByName(tempAssignment.Id, x.Name);
+					inputOutputService.CreateInputOutput(tempMilestone.Id, x.File);
+				}
+			}
 			return RedirectToAction("Index");
 		}
 

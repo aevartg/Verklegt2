@@ -32,6 +32,7 @@ namespace Mooshak2.Models
 	    public DbSet<Assignment> Assignments { get; set; }
 	    public DbSet<InputOutput> InputOutputs { get; set; }
 	    public DbSet<Submission> Submissions { get; set; }
+	    public DbSet<UserOutput> UserOutputs { get; set; }
 
         public ApplicationDbContext() : base("DefaultConnection", throwIfV1Schema: false)
         {

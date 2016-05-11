@@ -72,5 +72,13 @@ namespace Mooshak2.Services
 			}
 
 		}
+
+		public Milestone GetMilestoneByName(int assignmentId, string name)
+		{
+			return (from x 
+					in _db.Milestones
+					where ((x.AssignmentId == assignmentId) && (x.Name == name))
+					select x).SingleOrDefault();
+		}
 	}
 }

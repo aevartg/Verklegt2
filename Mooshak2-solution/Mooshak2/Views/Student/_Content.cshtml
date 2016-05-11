@@ -55,7 +55,7 @@
 			{
 				<tr>
 					<td>@item.Id</td>
-					<td>@item.SubmitDate.Day</td>
+					<td>@item.SubmitDate.ToString("u")</td>
 					<td>@User.Identity.GetUserName()</td>
 					@if (item.TestFailed == 0)
 					{

@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace Mooshak2.Services
 {
@@ -44,6 +46,31 @@ namespace Mooshak2.Services
 			{
 				return subs;
 			}
+		}
+
+		public bool CreateSubmission(HttpPostedFileBase file, int milestoneId)
+		{
+			if(file.ContentLength > 0)
+			{ 
+				var blob = Helper.StreamToBytes(file.InputStream);
+				var userId = HttpContext.Current.User.Identity.GetUserId();
+				if (Helper.BytesToFile(".js", blob))
+				{
+					var temp = new InputOutputService().GetJavascriptResultTuples(milestoneId);
+					var submission = new Submission()
+					{
+						UserId = userId,
+						MilestoneId = milestoneId,
+						Blob = blob,
+						SubmitDate = DateTime.Now,
+						TestPassed = temp.Item1,
+						TestFailed = temp.Item2
+					};
+					_db.Submissions.Add(submission);
+					return (_db.SaveChanges() > 0);
+				}
+			}
+			return false;
 		}
 	}
 }

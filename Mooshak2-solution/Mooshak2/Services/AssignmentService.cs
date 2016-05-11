@@ -46,14 +46,16 @@ namespace Mooshak2.Services
 			}
 		}
 
-		public bool CreateAssignment(string name, int courseId)
+		public bool CreateAssignment(string name, int courseId, DateTime dateOpen, DateTime dateClose)
 		{
 			var course = (from x in _db.Courses where x.Id == courseId select x).Single();
 			var temp = new Assignment()
 						{
 							Course = course,
 							CourseId = course.Id,
-							Name = name
+							Name = name,
+							DateOpen = dateOpen,
+							DateClose = dateClose
 						};
 			_db.Assignments.Add(temp);
 			return (_db.SaveChanges() > 0) ? true : false;
@@ -112,6 +114,14 @@ namespace Mooshak2.Services
 				return model;
 			}
 
+		}
+
+		public Assignment GetAssignmentByName(int courseId, string name)
+		{
+			return (from x 
+					in _db.Assignments
+					where ((courseId == x.CourseId) && (name == x.Name))
+					select x).SingleOrDefault();
 		}
 	}
 }

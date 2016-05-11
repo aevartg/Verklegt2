@@ -21,7 +21,7 @@ namespace Mooshak2.Models
 		[Required]
 		public string Name { get; set; }
 		[Required]
-		public string Weight { get; set; }
+		public int Weight { get; set; }
 		[Required]
 		public HttpPostedFileBase File { get; set; }
 	}

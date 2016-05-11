@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Web.Configuration;
 using Microsoft.VisualBasic.FileIO;
 
 namespace Mooshak2
@@ -36,13 +37,19 @@ namespace Mooshak2
 			}
 		}
 
-		public static bool BytesToFile(string filePath, byte[] blob)
+		public static bool BytesToFile(string fileType,byte[] blob)
 		{
-			using (var fs = new FileStream(@filePath, FileMode.Create, FileAccess.Write))
+			var path = AppDomain.CurrentDomain.BaseDirectory + "\\TempData";
+			if (!Directory.Exists(path))
+			{
+				Directory.CreateDirectory(path);
+			}
+			var filePath = path + "\\Temp" + fileType;
+			using (var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write))
 			{
 				fs.Write(blob,0,blob.Length);
 			}
-			return File.Exists(@filePath);
+			return File.Exists(filePath);
 		}
 
 		public static bool CompareByteArray(byte[] blob1, byte[] blob2)
@@ -50,14 +57,16 @@ namespace Mooshak2
 			return blob1.SequenceEqual(blob2);
 		}
 
-		public static string RunJavaScriptCode(string pathToNode, string pathToFile, string input, int timeOut)
+		public static string RunJavaScriptCode( string input, int timeOut)
 		{
+			var pathToNode = WebConfigurationManager.AppSettings["NodeEXELocation"];
+			var filepath = AppDomain.CurrentDomain.BaseDirectory + "TempData\\Temp.js";
 			var process = new Process
 			{
 				StartInfo =
 								{
 									FileName = @pathToNode,
-									Arguments = @pathToFile,
+									Arguments = filepath,
 									CreateNoWindow = true,
 									UseShellExecute = false,
 									RedirectStandardOutput = true,

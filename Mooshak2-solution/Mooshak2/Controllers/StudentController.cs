@@ -31,6 +31,7 @@ namespace Mooshak2.Controllers
 		[HttpPost]
 		public PartialViewResult SubmitForm(int id,HttpPostedFileBase file)
 		{
+			var success = new SubmissionService().CreateSubmission(file, id);
 			var model = new AssignmentService().GetAssignmentViewModel(HttpContext.User.Identity.GetUserId(), id);
 			return PartialView("_content",model);
 		}

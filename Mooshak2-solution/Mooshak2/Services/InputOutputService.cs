@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Microsoft.AspNet.Identity;
 using Mooshak2.Models;
 using Mooshak2.Models.EntityClasses;
 
@@ -15,17 +16,19 @@ namespace Mooshak2.Services
 			_db = new ApplicationDbContext();
 		}
 
-		public bool CreateInputOutput(string input, string output, int milestoneId)
+		public bool CreateInputOutput(int milestoneId , HttpPostedFileBase file)
 		{
-			var milestone = (from x in _db.Milestones where x.Id == milestoneId select x).Single();
-			var temp = new InputOutput()
-						{
-							Input = input,
-							Output = output,
-							Milestone = milestone,
-							MilestoneId = milestone.Id
-						};
-			_db.InputOutputs.Add(temp);
+			var inputOutputs = Helper.PareInputOutput(file.InputStream);
+			foreach (var x in inputOutputs)
+			{
+				var temp = new InputOutput()
+							{
+								Input = x[0],
+								Output = x[1],
+								MilestoneId = milestoneId
+							};
+				_db.InputOutputs.Add(temp);
+			}
 			return (_db.SaveChanges() > 0);
 		}
 
@@ -64,6 +67,34 @@ namespace Mooshak2.Services
 			{
 				return model;
 			}
+		}
+
+		public Tuple<int, int> GetJavascriptResultTuples(int milestoneId)
+		{
+			var fails = 0;
+			var pass = 0;
+			var inputoutputs = GetExpectedInputOutputsByMilestoneId(milestoneId);
+			foreach (var item in inputoutputs)
+			{
+				var tempUserOutput = Helper.RunJavaScriptCode( item.Input?.Replace("\\n","\n") , 600);
+				if (tempUserOutput.Equals(item.Output.Replace("\\n","\n"), StringComparison.OrdinalIgnoreCase))
+				{
+					pass++;
+				}
+				else
+				{
+					fails++;
+				}
+				var temp = new UserOutput()
+							{
+								UserId = HttpContext.Current.User.Identity.GetUserId(),
+								InputId = item.Id,
+								Output = tempUserOutput
+							};
+				_db.UserOutputs.Add(temp);
+			}
+			_db.SaveChanges();
+			return Tuple.Create(pass, fails);
 		}
 	}
 }

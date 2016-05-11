@@ -90,5 +90,10 @@ namespace Mooshak2.Services
 			}
 
 		}
+
+		public ApplicationUser GetUserByID(string id)
+		{
+			return (from x in _db.Users where x.Id == id select x).SingleOrDefault();
+		}
 	}
 }

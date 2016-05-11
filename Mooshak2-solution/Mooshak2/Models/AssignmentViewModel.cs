@@ -34,6 +34,10 @@ namespace Mooshak2.Models
 		public int CourseId { get; set; }
 		[Required(ErrorMessage = "Name Required")]
 		public string Name { get; set; }
+		[Required]
+		public DateTime DateOpen { get; set; }
+		[Required]
+		public DateTime DateClose { get; set; }
 
 		[Required(ErrorMessage = "Milestones Required")]
 		public IEnumerable<CreateMilestoneViewModel> Milestones { get; set; }
