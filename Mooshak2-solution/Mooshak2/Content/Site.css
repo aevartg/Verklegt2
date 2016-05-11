@@ -289,7 +289,7 @@ a.custom-navanchor
 {
 	color: rgba(185, 74, 72, 0.95);
     text-align: left;
-    margin-top: 3px;
+    margin-top: 5px;
 }
 
 .custom-milestoneanchor
@@ -298,4 +298,11 @@ a.custom-navanchor
     font-size: 12px;
     margin-left: 3px;
     text-align: left;
+}
+
+/*Admin nav*/
+
+.custom-adminnav
+{
+	padding-top: 22px;
 }
