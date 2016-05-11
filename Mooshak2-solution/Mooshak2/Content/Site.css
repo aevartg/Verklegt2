@@ -350,6 +350,12 @@ margin: 5px 0;
 	overflow: auto;
 }
 
+custom-height,
+.custom-height2
+{
+	height: 400px;
+}
+
 .h4-custom
 {
     color: #555555;
