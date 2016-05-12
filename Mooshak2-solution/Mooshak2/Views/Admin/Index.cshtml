@@ -14,16 +14,15 @@
 				{
 					foreach (var c in Model.ToList())
 					{
-						@Ajax.ActionLink(c.Name, "ContentRender", "Admin", new { id = c.Id }, new AjaxOptions() { UpdateTargetId = "content", InsertionMode = InsertionMode.Replace }, new { @class = "custom-navanchor" })
+						@Ajax.ActionLink(c.Name, "ContentRender", "Admin", new {id = c.Id}, new AjaxOptions() {UpdateTargetId = "content", InsertionMode = InsertionMode.Replace}, new {@class = "custom-navanchor"})
 					}
 				}
 				<a class="custom-navanchor" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#content" href="/admin/ListUsers?Length=5">List of users <i class="fa fa-users custom-icon" aria-hidden="true"></i></a>
 				<a class="custom-adder" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#content" href="/admin/Create"><i class="fa fa-plus-square" aria-hidden="true"></i> Add course</a>
-				<a class="custom-adder" href ="/Account/CreateUser"><i class="fa fa-plus-square" aria-hidden="true"></i>  Add user</a>
+				<a class="custom-adder" href="/Account/CreateUser"><i class="fa fa-plus-square" aria-hidden="true"></i> Add user</a>
 			</nav>
 		</div>
-		<div id="content" class="col-md-10">
-			
-		</div>
+		<div id="content" class="col-md-10"></div>
+		<div class="se-pre-con"></div>
 	</div>
 </div>
