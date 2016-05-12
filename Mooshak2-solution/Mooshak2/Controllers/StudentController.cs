@@ -31,7 +31,8 @@ namespace Mooshak2.Controllers
 
 		public PartialViewResult InputOutputRender(int submissionId, int milestoneId)
 		{
-			var model = new AssignmentService().GetAssignmentViewModel(submissionId,HttpContext.User.Identity.GetUserId(), milestoneId);
+			var model = new InputOutputService().GetInputsOutputsViewModel(submissionId, milestoneId,
+				HttpContext.User.Identity.GetUserId());
 			return PartialView("_InputOutput", model);
 		}
 

@@ -92,29 +92,6 @@ namespace Mooshak2.Services
 				return assign;
 			}
 		}
-		public AssignmentViewModel GetAssignmentViewModel(int submissionId,string userID, int milestoneID)
-		{
-			var model = new AssignmentViewModel();
-			MilestoneService m = new MilestoneService();
-			SubmissionService s = new SubmissionService();
-			InputOutputService i = new InputOutputService();
-			var milestone = m.GetMilestoneByID(milestoneID);
-			model.Id = milestoneID;
-			model.Name = milestone.Name;
-			model.Submissions = s.GetSubmissionsByUserAndMilestoneID(userID, milestoneID);
-			model.InputOutputs = i.GetInputsOutputsViewModel(submissionId,milestoneID,userID);
-
-			if (model == null)
-			{
-				//TODO
-				return null;
-			}
-			else
-			{
-				return model;
-			}
-
-		}
 
 		public AssignmentViewModel GetAssignmentViewModel(string userID, int milestoneID)
 		{
@@ -125,7 +102,6 @@ namespace Mooshak2.Services
 			model.Id = milestoneID;
 			model.Name = milestone.Name;
 			model.Submissions = s.GetSubmissionsByUserAndMilestoneID(userID, milestoneID);
-			model.InputOutputs = new List<InputOutputViewModel>();
 
 			if (model == null)
 			{

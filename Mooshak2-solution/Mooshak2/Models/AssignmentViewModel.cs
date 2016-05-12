@@ -12,7 +12,6 @@ namespace Mooshak2.Models
 		public int Id { get; set; }
 		public string Name { get; set; }
 		public List<Submission> Submissions { get; set; }
-		public List<InputOutputViewModel> InputOutputs { get; set; }
 	}
 
 	public class AssignmentTabViewModel
