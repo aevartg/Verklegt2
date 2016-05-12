@@ -183,6 +183,12 @@ $(window).load(function () {
 
 });
 
+$(document).ajaxComplete(function () {
+	// Animate loader off screen
+	$(".se-pre-con").fadeOut("slow");;
+
+});
+
 $(document).ajaxStart(function()
 {
 	$(".se-pre-con").fadeIn("slow");
