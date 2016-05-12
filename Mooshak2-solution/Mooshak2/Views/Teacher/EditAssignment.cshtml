@@ -4,8 +4,6 @@
     ViewBag.Title = "EditAssignment";
 }
 
-<h2>EditAssignment</h2>
-
 <div class="container container-custom">
 	<div class="row">
 		<div class="col-md-2">
@@ -44,38 +42,50 @@
 			</nav>
 		</div>
 		<div id="content" class="col-md-10">
+			<h4>Edit Assignment</h4>
+			<hr/>
 			@{
 				using (Html.BeginForm("EditAssignment", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data", id = "assignmentform" }))
 				{
-					<div class="row">
-						<div class="form-group">
-							<label class="col-xs-3 control-label">Assignment Name</label>
-							<div>
-								@Html.HiddenFor(x => Model.CourseId)
-								@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-								@Html.TextBoxFor(x => x.Name, Model.Name, new {@class = "form-control"})
+					<div class="container">
+						<div class="row">
+							<div class="form-group">
+								<label class="control-label">Assignment Name</label>
+								<div>
+									@Html.HiddenFor(x => Model.CourseId)
+									@Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
+									@Html.TextBoxFor(x => x.Name, Model.Name, new {@class = "form-control col-md-5"})
+								</div>
+								<div>
+									<button type="button" class="btn btn-default deleteassignment">Delete assignment</button>
+								</div>
+							</div>
+						</div>
+						<div class="row milestonepadding">
+							<div class="form-group">
+								<div class="col-md-10">
+									<label class="control-label">Date Open:</label>
+									@Html.EditorFor(x => x.DateOpen, Model.DateOpen)
+								</div>
+								<div class="col-md-10">
+									<label class="control-label">Date Close:</label>
+									@Html.EditorFor(x => x.DateClose, Model.DateClose)
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						@Html.EditorFor(x => x.DateOpen, Model.DateOpen)
-						@Html.EditorFor(x => x.DateClose, Model.DateClose)
-					</div>
-
-
-					<div class="form-group">
-						<div class="row custom-milestoner">
-							<label class="col-xs-3 control-label">Milestones</label>
-						</div>
-						<div class="row">
+					<div class="container">
+						<div class="form-group">
+							<div class="row">
+								<label class="control-label milestonepadding">Milestones:</label>
+							</div>
+							<label class="control-label ">Title:</label>
+							<label class="control-label weightlabel">Weight:</label>
 							@foreach (var item in Model.Milestones)
 							{
-
-								<div class ="custom-milestoner">
-									@Html.TextBoxFor(x => item.Name, item.Name, new { placeholder = "title", @class = "form-control" })
-
-									@Html.TextBoxFor(x => item.Weight, item.Weight.ToString(), new { placeholder = "Weight", @class = "form-control" })
-
+								<div class="milestonepadding">
+									@Html.TextBoxFor(x => item.Name, item.Name, new {placeholder = "title", @class = "form-control milestonefloat"})
+									@Html.TextBoxFor(x => item.Weight, item.Weight.ToString(), new {placeholder = "Weight", @class = "form-control milestonefloat"})
 									<span class="btn btn-default btn-file">
 										Browse <input type="file" name="milestones[0].file" />
 									</span>
@@ -83,20 +93,14 @@
 							}
 						</div>
 					</div>
-
 					<div class="form-group">
 						<div class="col-xs-5 col-xs-offset-1">
 							<button type="submit" class="btn btn-default">Submit</button>
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="col-xs-5 col-xs-offset-1">
-							<button type="button" class="btn btn-danger">Delete assignment</button>
-						</div>
-					</div>
 				}
 			}
-			</div>
+		</div>
 		</div>
 	</div>
 
