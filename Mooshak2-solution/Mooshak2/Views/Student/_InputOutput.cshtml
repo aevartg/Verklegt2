@@ -1,0 +1,24 @@
+﻿@model Mooshak2.Models.AssignmentViewModel
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Input</th>
+			<th>Your Output</th>
+			<th>Expected Output</th>
+		</tr>
+	</thead>
+	<tbody>
+		@if (Model.InputOutputs.Count != 0)
+		{
+			foreach (var item in Model.InputOutputs)
+			{
+				<tr>
+					<td>@item.Input</td>
+					<td>@item.RealOutput</td>
+					<td>@item.ExpectedOutput</td>
+				</tr>
+			}
+		}
+	</tbody>
+</table>

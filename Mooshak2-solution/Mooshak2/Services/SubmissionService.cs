@@ -54,6 +54,7 @@ namespace Mooshak2.Services
 			{ 
 				var blob = Helper.StreamToBytes(file.InputStream);
 				var userId = HttpContext.Current.User.Identity.GetUserId();
+				var date = DateTime.Now;
 				if (Helper.BytesToFile(fileExtension, blob))
 				{
 					var temp = new InputOutputService().GetJavascriptResultTuples(milestoneId);
@@ -62,13 +63,26 @@ namespace Mooshak2.Services
 						UserId = userId,
 						MilestoneId = milestoneId,
 						Blob = blob,
-						SubmitDate = DateTime.Now,
+						SubmitDate = date,
 						TestPassed = temp.Item1,
 						TestFailed = temp.Item2,
 						FileExtension = fileExtension
 					};
 					_db.Submissions.Add(submission);
-					return (_db.SaveChanges() > 0);
+					_db.SaveChanges();
+
+					submission = (from x in _db.Submissions where (x.SubmitDate == date) select x).First();
+					foreach (var x in temp.Item3)
+					{
+						var userOutput = new UserOutput()
+										{
+											UserId = userId,
+											SubmissionId = submission.Id,
+											Output = x
+										};
+						_db.UserOutputs.Add(userOutput);
+					}
+					_db.SaveChanges();
 				}
 			}
 			return false;

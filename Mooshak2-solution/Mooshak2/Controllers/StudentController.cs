@@ -29,6 +29,12 @@ namespace Mooshak2.Controllers
 			return PartialView("_content", model);
 		}
 
+		public PartialViewResult InputOutputRender(int submissionId, int milestoneId)
+		{
+			var model = new AssignmentService().GetAssignmentViewModel(submissionId,HttpContext.User.Identity.GetUserId(), milestoneId);
+			return PartialView("_InputOutput", model);
+		}
+
 		[HttpPost]
 		public PartialViewResult SubmitForm(int id,HttpPostedFileBase file)
 		{

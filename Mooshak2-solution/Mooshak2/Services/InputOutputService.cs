@@ -35,43 +35,44 @@ namespace Mooshak2.Services
 		public List<InputOutput> GetExpectedInputOutputsByMilestoneId(int id)
 		{
 			var exp = (from x in _db.InputOutputs where x.MilestoneId == id select x).ToList();
-			if (exp.Count == 0)
-			{
-				//TODO
-				return null;
-			}
-			else
-			{
-				return exp;
-			}
+			return exp;
 		}
 		//input output service
-		public List<InputOutputViewModel> GetInputsOutputsViewModel(int milestoneId)
+		public List<InputOutputViewModel> GetInputsOutputsViewModel(int submissionId,int milestoneId, string userId)
 		{
 			var model = new List<InputOutputViewModel>();
 			var allExpInputs = GetExpectedInputOutputsByMilestoneId(milestoneId);
-			if (model.Count == 0)
+			var allRealOutputs = GetUserOutputsById(submissionId, userId);
+			if (allExpInputs.Count == 0 || allRealOutputs.Count == 0)
 			{
 				return model;
 			}
 			else
 			{
-				foreach (var item in allExpInputs)
+				var temp = allExpInputs.Zip(allRealOutputs,
+					(x, y) => new {expectedInput = x.Input, expextedOutput = x.Output, realOutput = y});
+				foreach (var item in temp)
 				{
 					var x = new InputOutputViewModel();
-					x.Input = item.Input;
-					x.ExpectedOutput = item.Output;
-					x.RealOutput = item.Output; //þessi lína myndi ekki ná í expected output heldur raunverulegt output notandans
+					x.Input = item.expectedInput;
+					x.ExpectedOutput = item.expextedOutput;
+					x.RealOutput = item.realOutput;
 					model.Add(x);
-				}   //TODO
+				}
 				return model;
 			}
 		}
 
-		public Tuple<int, int> GetJavascriptResultTuples(int milestoneId)
+		private List<String> GetUserOutputsById(int submissionId, string userId)
+		{
+			return (from x in _db.UserOutputs where (x.UserId == userId && x.SubmissionId == submissionId) select x.Output).ToList();
+		}
+
+		public Tuple<int, int,List<String>> GetJavascriptResultTuples(int milestoneId)
 		{
 			var fails = 0;
 			var pass = 0;
+			var stringList = new List<String>();
 			var inputoutputs = GetExpectedInputOutputsByMilestoneId(milestoneId);
 			foreach (var item in inputoutputs)
 			{
@@ -84,16 +85,10 @@ namespace Mooshak2.Services
 				{
 					fails++;
 				}
-				var temp = new UserOutput()
-							{
-								UserId = HttpContext.Current.User.Identity.GetUserId(),
-								InputId = item.Id,
-								Output = tempUserOutput
-							};
-				_db.UserOutputs.Add(temp);
+				stringList.Add(tempUserOutput);
 			}
 			_db.SaveChanges();
-			return Tuple.Create(pass, fails);
+			return Tuple.Create(pass, fails,stringList);
 		}
 	}
 }

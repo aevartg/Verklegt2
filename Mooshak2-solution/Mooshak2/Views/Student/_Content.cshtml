@@ -47,10 +47,10 @@
 							{
 								foreach (var item in Model.Submissions)
 								{
-									if (item.TestPassed == 1)
+									if (item.TestFailed == 0)
 									{
 										<tr class="success">
-											<td>@item.Id</td>
+											<td>@Ajax.ActionLink(item.Id.ToString(), "InputOutputRender", "Student", new { submissionId = item.Id, milestoneId = item.MilestoneId } , new AjaxOptions() { UpdateTargetId = "table", InsertionMode = InsertionMode.Replace })</td>
 											<td>@item.SubmitDate.ToString("yyyy-MM-dd hh:mm:ss.fff")</td>
 											<td>@User.Identity.GetUserName()</td>
 											<td>Accepted</td>
@@ -60,7 +60,7 @@
 									else
 									{
 										<tr class="danger">
-											<td>@item.Id</td>
+											<td>@Ajax.ActionLink(item.Id.ToString(), "InputOutputRender", "Student", new { submissionId = item.Id, milestoneId = item.MilestoneId }, new AjaxOptions() { UpdateTargetId = "table", InsertionMode = InsertionMode.Replace })</td>
 											<td>@item.SubmitDate.ToString("yyyy-MM-dd hh:mm:ss.fff")</td>
 											<td>@User.Identity.GetUserName()</td>
 											<td>Failed</td>
@@ -75,7 +75,7 @@
 
 				<div class="container">
 					<div class="inputlists">
-						<div class="yourInputs col-md-10 custom-height2">
+						<div class="yourInputs col-md-10 custom-height2" id="table">
 							<table class="table table-striped">
 								<thead>
 								<tr>
@@ -85,17 +85,6 @@
 								</tr>
 								</thead>
 								<tbody>
-									@if (Model.InputOutputs.Count != 0)
-									{
-										foreach (var item in Model.InputOutputs)
-										{
-											<tr>
-												<td>@item.Input</td>
-												<td>@item.RealOutput</td>
-												<td>@item.ExpectedOutput</td>
-											</tr>
-										}
-									}
 								</tbody>
 							</table>
 						</div>
