@@ -57,6 +57,19 @@ $("#addstudent")
 	    $("#notselectedstudent option:selected").appendTo("#selectedstudent").removeAttr("selected");
 	});
 
+$("#RemoveTeacher")
+	.click(function () {
+		if ($("#selected option").length > 1)
+		{
+			$("#selected option:selected").appendTo("#notselected").removeAttr("selected");
+		}
+	});
+
+$("#RemoveStudent").click(function()
+{
+	$("#selectedstudent option:selected").appendTo("#notselectedstudent").removeAttr("selected");
+})
+
 $("#createform").submit(function () {
     $("#notselectedstudent option:selected").removeAttr("selected");
     var select = $("#selectedstudent");
@@ -164,21 +177,21 @@ $(document).ready(function () {
 	});
 });
 
-//$(window).load(function () {
-//	// Animate loader off screen
-//	$(".se-pre-con").fadeOut("slow");;
+$(window).load(function () {
+	// Animate loader off screen
+	$(".se-pre-con").fadeOut("slow");;
 
-//});
+});
 
 $(document).ajaxStart(function()
 {
 	$(".se-pre-con").fadeIn("slow");
 });
 
-$.ajax({
-	success: function () {
-		$(".se-pre-con").fadeOut("slow");
-	}
-});
+//$.ajax({
+//	success: function () {
+//		$(".se-pre-con").fadeOut("slow");
+//	}
+//});
 
 $(".icon-hack").html('<i class="fa fa-plus-square" aria-hidden="true"></i> Add assignment');

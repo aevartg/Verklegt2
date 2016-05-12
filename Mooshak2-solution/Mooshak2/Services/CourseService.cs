@@ -139,10 +139,13 @@ namespace Mooshak2.Services
 				var tempUser = (from u in _db.Users where u.Id == x.Id select u).First();
 				tempBefore.Add(tempUser);
 			}
-			foreach (var s in model.SelectedStudents)
-			{
-				var tempStudent = (from u in _db.Users where s == u.Id select u).First();
-				tempList.Add(tempStudent);
+			if(model.SelectedStudents != null)
+			{ 
+				foreach (var s in model.SelectedStudents)
+				{
+					var tempStudent = (from u in _db.Users where s == u.Id select u).First();
+					tempList.Add(tempStudent);
+				}
 			}
 
 			foreach (var t in model.SelectedTeachers)
