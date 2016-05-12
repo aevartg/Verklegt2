@@ -95,6 +95,7 @@ namespace Mooshak2.Services
 				var totalTest = temp.TestFailed + temp.TestPassed;
 				var tempGrade = (double)temp.TestPassed / totalTest;
 				temp.Grade = tempGrade * 10;
+				temp.MilestoneId = item.MilestoneId;
 				list.Add(temp);
 			}
 			return list;

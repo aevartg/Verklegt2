@@ -80,5 +80,6 @@ namespace Mooshak2.Models
 		public DateTime SubmitDate { get; set; }
 		public string UserName { get; set; }
 		public double Grade { get; set; }
+		public int MilestoneId { get; set; }
 	}
 }

@@ -20,7 +20,7 @@ namespace Mooshak2.Controllers
 		public PartialViewResult ContentRender(int id)
 		{
 			var model = new AssignmentService().GetAssignmentViewModel(HttpContext.User.Identity.GetUserId(), id);
-			return PartialView("_content", model);
+			return PartialView("_Content", model);
 		}
 
 		public PartialViewResult InputOutputRender(int submissionId, int milestoneId)
