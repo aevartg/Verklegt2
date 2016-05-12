@@ -70,7 +70,6 @@ namespace Mooshak2.Models
 		public string MilestoneName { get; set; }
 		public List<UserViewModel> AllStudents { get; set; }
 		public List<SubmissionViewModel> Submissions { get; set; }
-		public List<double> Grades { get; set; }
 	}
 
 	public class SubmissionViewModel
