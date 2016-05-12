@@ -69,5 +69,30 @@ namespace Mooshak2.Services
 					where (x.AssignmentId == assignmentId) && (x.Name == name)
 					select x).SingleOrDefault();
 		}
+
+		public List<CreateMilestoneViewModel> GetCreateMilestoneViewModels(int Id)
+		{
+			var list = (from items in _db.Milestones
+					   where items.AssignmentId == Id
+					   select items).ToList();
+			if (list.Count == 0)
+			{
+				List<CreateMilestoneViewModel> emptyList = new List<CreateMilestoneViewModel>();
+				return emptyList;
+			}
+			else
+			{
+				List<CreateMilestoneViewModel> TheList = new List<CreateMilestoneViewModel>();
+				foreach (var item in list)
+				{
+					CreateMilestoneViewModel temp = new CreateMilestoneViewModel();
+					temp.Name = item.Name;
+					temp.Weight = item.Weight;
+					TheList.Add(temp);
+				}
+				return TheList;
+
+			}
+		}
 	}
 }

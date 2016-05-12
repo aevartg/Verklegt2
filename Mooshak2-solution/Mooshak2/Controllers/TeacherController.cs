@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Net.Mime;
+using System.Web.Mvc;
 using Mooshak2.Models;
 using Mooshak2.Services;
 
@@ -51,12 +52,20 @@ namespace Mooshak2.Controllers
 		{
 			var model = new TeacherAssignmentViewModel();
 			var milestone = new MilestoneService().GetMilestoneByID(id);
+			model.AssignId = milestone.AssignmentId;
 			model.MilestoneName = milestone.Name;
 			model.AssignmentName = new AssignmentService().GetAssignmentById(milestone.AssignmentId).Name;
 			model.Submissions = new SubmissionService().GetSubmissionsByMilestoneId(id);
 			model.AllStudents = new UserService().GetAllStudents();
 
 			return PartialView("Content", model);
+		}
+
+		public ActionResult EditAssignment(int Id)
+		{
+			var model = new AssignmentService().GetEditAssignmentViewModel(Id);
+			return View(model);
+
 		}
 	}
 }

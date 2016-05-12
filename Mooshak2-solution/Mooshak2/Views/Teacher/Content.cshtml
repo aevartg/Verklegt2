@@ -12,7 +12,10 @@
 
 <div class="container">
 			<div class="col-md-10">
-			<input type="text" class="form-control leitarbox" placeholder="Search user.."/><br/>
+				<input type="text" class="form-control leitarbox" placeholder="Search user.."/><br/>
+				<div class="custom-button">
+					@Html.ActionLink("Edit assignment", "EditAssignment", "Teacher", new { Id = Model.AssignId }, new { @class = "btn btn-default" })
+				</div>
 				<div class="submissionTable custom-height">
 					<table class="table table-condensed table-hover table-striped sortable-theme-minimal" data-sortable>
 						<thead>

@@ -1,0 +1,101 @@
+﻿@model Mooshak2.Models.EditAssignmentViewModel
+
+@{
+    ViewBag.Title = "EditAssignment";
+}
+
+<h2>EditAssignment</h2>
+
+<div class="container container-custom">
+	<div class="row">
+		<div class="col-md-2">
+			<nav class="w3-sidenav w3-white w3-card-2 custom-nav">
+				@if (Model.NavModel.Count == 0)
+				{
+					<p>No courses</p>
+				}
+				else
+				{
+					foreach (var c in Model.NavModel)
+					{
+						<h4 class="h4-custom">@c.Name</h4>
+						if (c.Assignments.Count == 0)
+						{
+							<p>No Assignments</p>
+						}
+						else
+						{
+							foreach (var a in c.Assignments)
+							{
+								<div class="w3-accordion">
+									<a href="#" class="accordion-anchor custom-navanchor">@a.Name <i class="fa fa-angle-down custom-icon" aria-hidden="true"></i></a>
+									<div class="w3-accordion-content w3-white w3-card-4 custom-navanchor">
+										@foreach (var m in a.Milestones)
+										{
+											@Ajax.ActionLink(m.Name, "ContentRender", "Teacher", new { id = m.Id }, new AjaxOptions() { UpdateTargetId = "content", InsertionMode = InsertionMode.Replace }, new { @class = "custom-milestoneanchor" })
+										}
+									</div>
+								</div>
+							}
+						}
+						@Ajax.ActionLink("Add assignment", "CreateAssignment", "Teacher", new { id = c.Id }, new AjaxOptions() { UpdateTargetId = "content", InsertionMode = InsertionMode.Replace }, new { @class = "custom-adder" })
+					}
+				}
+			</nav>
+		</div>
+		<div id="content" class="col-md-10">
+			@{
+				using (Html.BeginForm("EditAssignment", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data", id = "assignmentform" }))
+				{
+					<div class="row">
+						<div class="form-group">
+							<label class="col-xs-3 control-label">Assignment Name</label>
+							<div>
+								@Html.HiddenFor(x => Model.CourseId)
+								@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+								@Html.TextBoxFor(x => x.Name, Model.Name, new {@class = "form-control"})
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						@Html.EditorFor(x => x.DateOpen, Model.DateOpen)
+						@Html.EditorFor(x => x.DateClose, Model.DateClose)
+					</div>
+
+
+					<div class="form-group">
+						<div class="row">
+							<label class="col-xs-3 control-label">Milestones</label>
+						</div>
+						<div class="row">
+							@foreach (var item in Model.Milestones)
+							{
+
+								<div class ="custom milestoner">
+									@Html.TextBoxFor(x => item.Name, item.Name, new { placeholder = "title", @class = "form-control" })
+
+									@Html.TextBoxFor(x => item.Weight, item.Weight.ToString(), new { placeholder = "Weight", @class = "form-control" })
+
+									<span class="btn btn-default btn-file">
+										Browse <input type="file" name="milestones[0].file" />
+									</span>
+								</div>
+							}
+							</div>
+						</div>
+
+
+						
+
+
+						<div class="form-group">
+							<div class="col-xs-5 col-xs-offset-1">
+								<button type="submit" class="btn btn-default">Submit</button>
+							</div>
+						</div>
+					}
+				}
+			</div>
+		</div>
+	</div>
+

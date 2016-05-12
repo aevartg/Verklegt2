@@ -43,8 +43,29 @@ namespace Mooshak2.Models
 		public IEnumerable<CreateMilestoneViewModel> Milestones { get; set; }
 	}
 
+	public class EditAssignmentViewModel
+	{
+		public int AssignId { get; set; }
+		[Required]
+		public int CourseId { get; set; }
+
+		[Required(ErrorMessage = "Name Required")]
+		public string Name { get; set; }
+
+		[Required]
+		public DateTime DateOpen { get; set; }
+
+		[Required]
+		public DateTime DateClose { get; set; }
+
+		[Required(ErrorMessage = "Milestones Required")]
+		public IEnumerable<CreateMilestoneViewModel> Milestones { get; set; }
+		public List<CourseViewModel> NavModel { get; set; }
+	}
+
 	public class TeacherAssignmentViewModel
 	{
+		public int AssignId { get; set; }
 		public string AssignmentName { get; set; }
 		public string MilestoneName { get; set; }
 		public List<UserViewModel> AllStudents { get; set; }

@@ -133,5 +133,11 @@ namespace Mooshak2.Controllers
 			new UserService().DeleteUser(Id);
 			return RedirectToAction("Index");
 		}
+
+		public ActionResult DeleteCourse(int Id)
+		{
+			new CourseService().DeleteCourse(Id);
+			return RedirectToAction("Index");
+		}
 	}
 }

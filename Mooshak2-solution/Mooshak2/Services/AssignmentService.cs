@@ -84,5 +84,32 @@ namespace Mooshak2.Services
 					where (courseId == x.CourseId) && (name == x.Name)
 					select x).SingleOrDefault();
 		}
+
+		public EditAssignmentViewModel GetEditAssignmentViewModel(int Id)
+		{
+			EditAssignmentViewModel model = new EditAssignmentViewModel();
+			var assign = GetAssignmentById(Id);
+			if (assign == null)
+			{
+				//throw exeption
+				return null;
+			}
+			else
+			{
+				model.Name = assign.Name;
+				model.AssignId = Id;
+				model.CourseId = assign.CourseId;
+				model.DateClose = assign.DateClose;
+				model.DateOpen = assign.DateOpen;
+				model.Milestones = new MilestoneService().GetCreateMilestoneViewModels(Id);
+				model.NavModel = new CourseService().GetCourseViewModels();
+				return model;
+			}
+		}
+
+		public void EditAssignment(int Id)
+		{
+			
+		}
 	}
 }

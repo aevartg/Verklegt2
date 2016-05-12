@@ -235,5 +235,12 @@ namespace Mooshak2.Services
 			model.StudentsInCourse = new SelectList(tempStudentsInCourseList, "Id", "username");
 			return model;
 		}
+
+		public void DeleteCourse(int Id)
+		{
+			Course course = GetCourseById(Id);
+			_db.Courses.Remove(course);
+			_db.SaveChanges();
+		}
 	}
 }
