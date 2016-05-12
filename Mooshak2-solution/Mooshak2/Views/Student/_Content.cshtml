@@ -13,12 +13,14 @@
 				{
 					@Html.AntiForgeryToken()
 					@Html.Hidden("Id", Model.Id)
+
 					<div class="formgroup col-md-10">
-						<input type="file" id="file" name="file" />
+						<input type="file" id="file" name="file" class="btn btn-file btn-default"/>
 					</div>
 					<div class="formgroup col-md-10 h2-custom">
-						<input type="submit" />
-					</div>}
+						<input type="submit" class="btn btn-default"/>
+					</div>
+				}
 			</div>
 			<div class="submissionTable">
 				<div class="col-md-7 custom-height">

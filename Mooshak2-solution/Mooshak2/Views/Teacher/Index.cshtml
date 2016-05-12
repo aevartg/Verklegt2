@@ -3,7 +3,6 @@
     ViewBag.Title = "Teacher Index";
 }
 
-
 <div class="container container-custom">
 	<div class="row">
 		<div class="col-md-2">
@@ -30,19 +29,19 @@
 									<div class="w3-accordion-content w3-white w3-card-4 custom-navanchor">
 										@foreach (var m in a.Milestones)
 										{
-											@Ajax.ActionLink(m.Name, "ContentRender", "Teacher", new { id = m.Id}, new AjaxOptions() { UpdateTargetId = "content", InsertionMode = InsertionMode.Replace }, new { @class = "custom-milestoneanchor" } )
+											@Ajax.ActionLink(m.Name, "ContentRender", "Teacher", new {id = m.Id}, new AjaxOptions() {UpdateTargetId = "content", InsertionMode = InsertionMode.Replace}, new {@class = "custom-milestoneanchor"})
 										}
 									</div>
 								</div>
 							}
 						}
-						@Ajax.ActionLink( "Add assignment", "CreateAssignment", "Teacher", new { id = c.Id }, new AjaxOptions() { UpdateTargetId = "content", InsertionMode = InsertionMode.Replace }, new { @class = "custom-adder" })
+						@Ajax.ActionLink("Add assignment", "CreateAssignment", "Teacher", new {id = c.Id}, new AjaxOptions() {UpdateTargetId = "content", InsertionMode = InsertionMode.Replace}, new {@class = "custom-adder"})
 					}
 				}
 			</nav>
 		</div>
-		<div id="content" class="col-md-10">
+		<div id="content" class="col-md-10"></div>
+			<div class="se-pre-con"></div>
 		</div>
-	</div>
 </div>
 
