@@ -343,3 +343,19 @@ a.custom-navanchor
 {
 	z-index: 10000;
 }
+
+/*hjá admin, fyrir remove teacher og remove student*/
+.removeteacher
+{
+	margin-left: 129px;
+}
+
+.removeuser
+{
+	margin-left: 100px;
+}
+
+.floater
+{
+	float: left;
+}

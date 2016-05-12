@@ -180,4 +180,3 @@ $.ajax({
 		$(".se-pre-con").fadeOut("slow");
 	}
 });
-
