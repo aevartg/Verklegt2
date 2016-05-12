@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Web;
 
 namespace Mooshak2.Models
@@ -20,8 +17,10 @@ namespace Mooshak2.Models
 	{
 		[Required]
 		public string Name { get; set; }
+
 		[Required]
 		public int Weight { get; set; }
+
 		[Required]
 		public HttpPostedFileBase File { get; set; }
 	}

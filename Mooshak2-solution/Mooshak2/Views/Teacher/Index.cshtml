@@ -36,7 +36,7 @@
 								</div>
 							}
 						}
-						<a href="/Teacher/CreateAssignment" class="custom-adder"><i class="fa fa-plus-square" aria-hidden="true"></i> Add assignment</a>	
+						<a href=@Url.Action("CreateAssignment","Teacher",new {courseId = c.Id}) class="custom-adder" ><i class="fa fa-plus-square" aria-hidden="true"></i> Add assignment</a>	
 					}
 				}
 			</nav>

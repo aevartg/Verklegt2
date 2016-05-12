@@ -22,17 +22,5 @@ namespace Mooshak2.Controllers
 			}
 			return RedirectToAction("Index", "Student");
 		}
-
-		public ActionResult About()
-		{
-			return View();
-		}
-
-		public ActionResult Contact()
-		{
-			ViewBag.Message = "Your contact page.";
-
-			return View();
-		}
 	}
 }

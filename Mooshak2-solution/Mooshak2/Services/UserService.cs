@@ -1,15 +1,12 @@
-﻿using Mooshak2.Models;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using LinqToDB.SqlQuery;
+using Mooshak2.Models;
 
 namespace Mooshak2.Services
 {
 	public class UserService
 	{
-		private ApplicationDbContext _db;
+		private readonly ApplicationDbContext _db;
 
 		public UserService()
 		{
@@ -26,40 +23,37 @@ namespace Mooshak2.Services
 			{
 				return users;
 			}
-			else
+			for (var i = 0; i < allUsers.Count(); i++)
 			{
-				for (int i = 0; i < allUsers.Count(); i++)
-				{
-					UserViewModel user = new UserViewModel();
-					user.Id = allUsers[i].Id;
-					user.username = allUsers[i].UserName;
-					users.Add(user);
-				};
-				return users;
+				var user = new UserViewModel();
+				user.Id = allUsers[i].Id;
+				user.username = allUsers[i].UserName;
+				users.Add(user);
 			}
+			return users;
 		}
 
 		public List<UserViewModel> GetAllTeachers()
 		{
 			var teachers = new List<UserViewModel>();
 			var allUsers = GetAllUsers();
-			IdentityManager connection = new IdentityManager();
+			var connection = new IdentityManager();
 
 			foreach (var item in allUsers)
 			{
-				if (connection.UserIsInRole(item.Id, "Teacher") == true)
+				if (connection.UserIsInRole(item.Id, "Teacher"))
 				{
 					teachers.Add(item);
 				}
 			}
-				return teachers;
+			return teachers;
 		}
 
 		public List<UserViewModel> GetAllStudents()
 		{
 			var students = new List<UserViewModel>();
 			var allUsers = GetAllUsers();
-			IdentityManager connection = new IdentityManager();
+			var connection = new IdentityManager();
 
 			foreach (var item in allUsers)
 			{
@@ -68,62 +62,58 @@ namespace Mooshak2.Services
 					students.Add(item);
 				}
 			}
-				return students;
+			return students;
 		}
 
-		public ApplicationUser GetUserByID(string id)
+		public ApplicationUser GetUserById(string id)
 		{
 			return (from x in _db.Users where x.Id == id select x).SingleOrDefault();
 		}
 
 		public List<UserViewModel> GetTeachersInCourse(int id)
 		{
-			var list = (_db.Courses.Where(x => x.Id == id).SelectMany(x => x.Users)).ToList();
+			var list = _db.Courses.Where(x => x.Id == id).SelectMany(x => x.Users).ToList();
 			if (list.Count == 0)
 			{
-				List<UserViewModel> emptyList = new List<UserViewModel>();
+				var emptyList = new List<UserViewModel>();
 				return emptyList;
 			}
-			else
+			var teachers = new List<UserViewModel>();
+			foreach (var item in list)
 			{
-				List<UserViewModel> teachers = new List<UserViewModel>();
-				foreach (var item in list)
+				if (new IdentityManager().UserIsInRole(item.Id, "Teacher"))
 				{
-					if (new IdentityManager().UserIsInRole(item.Id, "Teacher"))
-					{
-						UserViewModel temp = new UserViewModel();
-						temp.Id = item.Id;
-						temp.username = item.UserName;
-						teachers.Add(temp);
-					}
+					var temp = new UserViewModel();
+					temp.Id = item.Id;
+					temp.username = item.UserName;
+					teachers.Add(temp);
 				}
-				return teachers;
 			}
-			
+			return teachers;
 		}
+
 		public List<UserViewModel> GetStudentsInCourse(int id)
 		{
-			var list = (_db.Courses.Where(x => x.Id == id).SelectMany(x => x.Users)).ToList();
+			var list = _db.Courses.Where(x => x.Id == id).SelectMany(x => x.Users).ToList();
 			if (list.Count == 0)
 			{
-				List<UserViewModel> emptyList = new List<UserViewModel>();
+				var emptyList = new List<UserViewModel>();
 				return emptyList;
 			}
-			else
+			var students = new List<UserViewModel>();
+			foreach (var item in list)
 			{
-				List<UserViewModel> students = new List<UserViewModel>();
-				foreach (var item in list)
+				if (!new IdentityManager().UserIsInRole(item.Id, "Teacher"))
 				{
-					if (!new IdentityManager().UserIsInRole(item.Id, "Teacher"))
-					{
-						UserViewModel temp = new UserViewModel();
-						temp.Id = item.Id;
-						temp.username = item.UserName;
-						students.Add(temp);
-					}
+					var temp = new UserViewModel
+								{
+									Id = item.Id,
+									username = item.UserName
+								};
+					students.Add(temp);
 				}
-				return students;
 			}
+			return students;
 		}
 	}
 }

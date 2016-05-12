@@ -8,14 +8,19 @@ namespace Mooshak2.Models.EntityClasses
 	{
 		[Key]
 		public int Id { get; set; }
+
 		[ForeignKey("Course")]
 		public int CourseId { get; set; }
+
 		[Required]
 		public string Name { get; set; }
+
 		[Required]
 		public DateTime DateOpen { get; set; }
+
 		[Required]
 		public DateTime DateClose { get; set; }
+
 		public virtual Course Course { get; set; }
 	}
 }

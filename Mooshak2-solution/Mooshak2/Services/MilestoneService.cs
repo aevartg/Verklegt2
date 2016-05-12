@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Mooshak2.Models;
 using Mooshak2.Models.EntityClasses;
 
@@ -9,7 +7,7 @@ namespace Mooshak2.Services
 {
 	public class MilestoneService
 	{
-		private ApplicationDbContext _db;
+		private readonly ApplicationDbContext _db;
 
 		public MilestoneService()
 		{
@@ -19,33 +17,29 @@ namespace Mooshak2.Services
 		public List<MilestoneNavViewModel> GetMilestoneNavById(int id)
 		{
 			var milestones = (from items in _db.Milestones
-						where items.AssignmentId == id
-						select items).ToList();
+							where items.AssignmentId == id
+							select items).ToList();
 			if (milestones.Count == 0)
 			{
-				List<MilestoneNavViewModel> emptyList = new List<MilestoneNavViewModel>();
-				return emptyList;
+				return new List<MilestoneNavViewModel>();
 			}
-			else
+			var mileStoneNavViewModels = new List<MilestoneNavViewModel>();
+			foreach (var item in milestones)
 			{
-				var mileStoneNavViewModels = new List<MilestoneNavViewModel>();
-				foreach (var item in milestones)
-				{
-					var temp = new MilestoneNavViewModel()
-					{
-						Id = item.Id,
-						Name = item.Name
-					};
-					mileStoneNavViewModels.Add(temp);
-				}
-				return mileStoneNavViewModels;
+				var temp = new MilestoneNavViewModel
+							{
+								Id = item.Id,
+								Name = item.Name
+							};
+				mileStoneNavViewModels.Add(temp);
 			}
+			return mileStoneNavViewModels;
 		}
 
 		public bool CreateMilestone(int assignmentId, string name, int weight)
 		{
 			var assignment = (from x in _db.Assignments where x.Id == assignmentId select x).Single();
-			var temp = new Milestone()
+			var temp = new Milestone
 						{
 							Assignment = assignment,
 							AssignmentId = assignment.Id,
@@ -53,7 +47,7 @@ namespace Mooshak2.Services
 							Name = name
 						};
 			_db.Milestones.Add(temp);
-			return (_db.SaveChanges() > 0);
+			return _db.SaveChanges() > 0;
 		}
 
 		public Milestone GetMilestoneByID(int id)
@@ -62,22 +56,17 @@ namespace Mooshak2.Services
 
 			if (model == null)
 			{
-				Milestone m = new Milestone();
-				//TODO
+				var m = new Milestone();
 				return m;
 			}
-			else
-			{
-				return model;
-			}
-
+			return model;
 		}
 
 		public Milestone GetMilestoneByName(int assignmentId, string name)
 		{
-			return (from x 
-					in _db.Milestones
-					where ((x.AssignmentId == assignmentId) && (x.Name == name))
+			return (from x
+				in _db.Milestones
+					where (x.AssignmentId == assignmentId) && (x.Name == name)
 					select x).SingleOrDefault();
 		}
 	}

@@ -152,7 +152,7 @@ namespace Mooshak2.Services
 
 			foreach (var u in tempBefore)
 			{
-				course.Users.Remove(u);
+				course.Users.Remove(u);// - hér er villa, náum ekki að removea tengslin..
 			}
 
 			foreach (var u1 in tempList)
