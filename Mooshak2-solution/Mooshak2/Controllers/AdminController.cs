@@ -41,17 +41,24 @@ namespace Mooshak2.Controllers
 			}
 			else
 			{
-				new CourseService().CreateCourse(model); //new AdminService().CreateCourse(model);
+				new CourseService().CreateCourse(model); 
 			}
 
-			return RedirectToAction("Index"); // eigum eftir að gera index view fyrir Admin
+			return RedirectToAction("Index"); 
 		}
 
-		public ActionResult Edit(int id)
+		[HttpPost]
+		public ActionResult Edit(EditCourseViewModel model)
 		{
-			CourseService connection = new CourseService();
-			var model = connection.GetAdminCourseViewModel(id);
-			return View(model);
+			if (!ModelState.IsValid)
+			{
+				//eitthvað að
+			}
+			else
+			{
+				new CourseService().EditCourse(model);
+			}
+			return RedirectToAction("Index");
 		}
 
 		public PartialViewResult ListUsers()
@@ -96,16 +103,17 @@ namespace Mooshak2.Controllers
 		[HttpPost]
 		public ActionResult EditUser(RegisterViewModel model)
 		{
+
 			return View("Index");
 		}
 
 		public PartialViewResult ContentRender(int id)
 		{
-			var model = new EdtiCourseViewModel();
+			var model = new EditCourseViewModel();
 			CourseService c = new CourseService();
 			Course course = new Course();
 			course = c.GetCourseById(id);
-			model = c.GetEdtiCourseViewModel(course);
+			model = c.GetEditCourseViewModel(course);
 			return PartialView("_Content", model);
 		}
 	}

@@ -63,7 +63,7 @@ namespace Mooshak2.Services
 
 			foreach (var item in allUsers)
 			{
-				if (connection.UserIsInRole(item.Id, "Teacher") == false)
+				if (!connection.UserIsInRole(item.Id, "Teacher") && !connection.UserIsInRole(item.Id, "Administrator"))
 				{
 					students.Add(item);
 				}

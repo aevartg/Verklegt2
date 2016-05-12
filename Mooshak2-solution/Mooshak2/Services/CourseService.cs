@@ -123,6 +123,45 @@ namespace Mooshak2.Services
 			_db.SaveChanges();
 		}
 
+		public void EditCourse(EditCourseViewModel model)
+		{
+			Course course = GetCourseById(model.Id);
+			course.Name = model.Name;
+			ICollection<ApplicationUser> tempList = new List<ApplicationUser>();
+			UserService c = new UserService();
+			List<UserViewModel> teachersBefore = c.GetTeachersInCourse(course.Id);
+			List<UserViewModel> studentsBefore = c.GetStudentsInCourse(course.Id);
+			var usersBefore = teachersBefore.Concat(studentsBefore);
+			List<ApplicationUser> tempBefore = new List<ApplicationUser>();
+			foreach (var x in usersBefore)
+			{
+				var tempUser = (from u in _db.Users where u.Id == x.Id select u).First();
+				tempBefore.Add(tempUser);
+			}
+			foreach (var s in model.SelectedStudents)
+			{
+				var tempStudent = (from u in _db.Users where s == u.Id select u).First();
+				tempList.Add(tempStudent);
+			}
+
+			foreach (var t in model.SelectedTeachers)
+			{
+				var tempTeacher = (from u in _db.Users where t == u.Id select u).First();
+				tempList.Add(tempTeacher);
+			}
+
+			foreach (var u in tempBefore)
+			{
+				course.Users.Remove(u);
+			}
+
+			foreach (var u1 in tempList)
+			{
+				course.Users.Add(u1);
+			}
+			_db.SaveChanges();
+		}
+
 		public void UpdateAdminCourseViewModel(AdminCourseViewModel model, string userName)
 		{
 			IdentityManager connection = new IdentityManager();
@@ -147,9 +186,9 @@ namespace Mooshak2.Services
 			return list;
 		}
 
-		public EdtiCourseViewModel GetEdtiCourseViewModel(Course course)
+		public EditCourseViewModel GetEditCourseViewModel(Course course)
 		{
-			EdtiCourseViewModel model = new EdtiCourseViewModel();
+			EditCourseViewModel model = new EditCourseViewModel();
 			model.Id = course.Id;
 			model.Name = course.Name;
 

@@ -1,4 +1,4 @@
-﻿@model Mooshak2.Models.EdtiCourseViewModel
+﻿@model Mooshak2.Models.EditCourseViewModel
 @{
 	ViewBag.Title = Model.Name;
 }
@@ -7,9 +7,10 @@
 
 <h2>@Model.Name</h2>
 
-@{using (Html.BeginForm(/*"Edit", "Admin", FormMethod.Post, new { id = "createform" }*/))
+@{using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new { id = "createform" }))
 	{
 		@Html.AntiForgeryToken()
+		@Html.HiddenFor(x => Model.Id)
 
 		<div class="form-horizontal">
 			<hr />

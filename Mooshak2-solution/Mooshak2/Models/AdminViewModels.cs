@@ -33,7 +33,7 @@ namespace Mooshak2.Models
 		public string Email { get; set; }		
 	}
 
-	public class EdtiCourseViewModel
+	public class EditCourseViewModel
 	{
 		public int Id { get; set; }
 		public string Name { get; set; }
