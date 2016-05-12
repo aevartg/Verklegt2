@@ -11,20 +11,11 @@
 <h2>@Model.MilestoneName</h2>
 
 <div class="container">
-	<div class="row">
-		<div class="col-md-3">
-			<input type="text" class="form-control leitarbox" placeholder="Search user.." /><br />
-			<select class="leitarlisti" name="students" size="15">
-				@foreach (var item in Model.AllStudents)
-				{
-					<option value="@item.username">@item.username</option>
-				}
-			</select>
-		</div>
-		<div class="col-md-9 custom-height2">
-			<div class="submissionTable">
-				<table class="table table-condensed table-hover table-striped sortable-theme-minimal" data-sortable>
-					<thead>
+			<div class="col-md-10">
+			<input type="text" class="form-control leitarbox" placeholder="Search user.."/><br/>
+				<div class="submissionTable custom-height">
+					<table class="table table-condensed table-hover table-striped sortable-theme-minimal" data-sortable>
+						<thead>
 						<tr>
 							<th>#</th>
 							<th>Time</th>
@@ -32,8 +23,8 @@
 							<th>Result</th>
 							<th>Get Submission</th>
 						</tr>
-					</thead>
-					<tbody>
+						</thead>
+						<tbody>
 						@if (Model.Submissions.Count == 0)
 						{
 							<tr>
@@ -70,9 +61,8 @@
 								}
 							}
 						}
-					</tbody>
-				</table>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
-	</div>
-</div>
