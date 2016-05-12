@@ -108,9 +108,28 @@ namespace Mooshak2.Services
 			}
 		}
 
-		public void EditAssignment(int Id)
+		public void EditAssignment(EditAssignmentViewModel model)
 		{
-			
+			Assignment assignment = GetAssignmentById(model.AssignId);
+			assignment.Name = model.Name;
+			assignment.DateClose = model.DateClose;
+			assignment.DateOpen = model.DateOpen;
+
+			var tempAssignment = GetAssignmentByName(model.CourseId, model.Name);
+			var milestoneService = new MilestoneService();
+			var inputOutputService = new InputOutputService();
+			foreach (var item in model.Milestones)
+			{
+				Milestone tempM = milestoneService.GetMilestoneByName(tempAssignment.Id, item.Name);
+				_db.Milestones.Remove(tempM);
+			}
+			_db.SaveChanges();
+			foreach (var x in model.Milestones)
+			{
+				milestoneService.CreateMilestone(tempAssignment.Id, x.Name, x.Weight);
+				var tempMilestone = milestoneService.GetMilestoneByName(tempAssignment.Id, x.Name);
+				inputOutputService.CreateInputOutput(tempMilestone.Id, x.File);
+			}
 		}
 	}
 }
