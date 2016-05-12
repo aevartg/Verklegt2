@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using Mooshak2.Models;
 using Mooshak2.Services;
 
