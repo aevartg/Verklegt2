@@ -366,3 +366,24 @@ a.custom-navanchor
 {
 	margin: 20px;
 }
+
+.milestonepadding
+{
+	padding-bottom: 20px;
+}
+
+.milestonefloat 
+{
+	float: left;
+	margin-right: 10px;
+}
+
+.deleteassignment
+{
+	margin-left: 245px;
+}
+
+.weightlabel
+{
+	margin-left: 255px;
+}
