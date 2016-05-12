@@ -540,8 +540,11 @@
     <Content Include="Views\Admin\_Content.cshtml" />
     <Content Include="Views\Admin\_ListUsers.cshtml" />
     <Content Include="Views\Admin\CreateUser.cshtml" />
+    <Content Include="Views\Admin\_HomeView.cshtml" />
+    <Content Include="Views\Student\_HomeView.cshtml" />
     <None Include="Views\Student\_InputOutput.cshtml" />
     <Content Include="Views\Teacher\EditAssignment.cshtml" />
+    <Content Include="Views\Teacher\_HomeView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

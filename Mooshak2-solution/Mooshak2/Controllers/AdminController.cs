@@ -139,5 +139,10 @@ namespace Mooshak2.Controllers
 			new CourseService().DeleteCourse(Id);
 			return RedirectToAction("Index");
 		}
+
+		public PartialViewResult HomeView()
+		{
+			return PartialView("_HomeView");
+		} 
 	}
 }

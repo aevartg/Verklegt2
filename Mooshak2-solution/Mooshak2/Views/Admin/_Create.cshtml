@@ -38,7 +38,9 @@
                 <input type="radio" id="Teachers" name="users" value="1" checked="checked"/>
                 <label for="Teachers">Teachers</label>
                 <input type="radio" id="Students" name="users" value="2" />
-                <label for="Students">Students</label>
+	            <label for="Students">Students</label>
+				<label class="custom-label1">Teachers in Course:</label>
+				<label class="custom-label2">Students in Course:</label>
             </div>
 
             <div class="container custom-container">
@@ -72,11 +74,15 @@
             </div>
 
             <div class = "userlist1 hider custom-container">
-                <input type="button" id="add" value="Add Teacher" class="btn btn-default"/>
+                <input type="button" id="add" value="Add Teacher" class="btn btn-default floater"/>
             </div>
-            <div class ="userlist2 hider custom-container">
-                <input type="button" id="addstudent" value="Add Student" class="btn btn-default" />
-            </div>
+	        <div class="userlist2 hider custom-container">
+		        <input type="button" id="addstudent" value="Add Student" class="btn btn-default floater"/>
+	        </div>
+			<div>
+				<input type="button" id="RemoveTeacher" value="Remove Teacher" class="btn btn-default removeteacher" />
+				<input type="button" id="RemoveStudent" value="Remove Student" class="btn btn-default removeuser" />
+			</div>
         </div>
 
         }

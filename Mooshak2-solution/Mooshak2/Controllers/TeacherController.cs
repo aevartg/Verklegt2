@@ -67,5 +67,6 @@ namespace Mooshak2.Controllers
 			return View(model);
 
 		}
+
 	}
 }
