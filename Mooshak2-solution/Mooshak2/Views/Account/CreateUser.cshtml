@@ -1,4 +1,5 @@
-﻿@model Mooshak2.Models.RegisterViewModel
+﻿@using System.Web.UI.WebControls
+@model Mooshak2.Models.RegisterViewModel
 @{
 	ViewBag.Title = "Create User";
 }
@@ -55,9 +56,18 @@
 				</div>
 				<div class="form-group">
 					<div class="col-md-offset-2 col-md-10">
-						<div class="checkbox">
-							@Html.CheckBoxFor(m => m.UserType)
-							@Html.LabelFor(m => m.UserType)
+						<div class="radio">
+							<label>Student?</label>
+							@Html.RadioButtonFor(m => m.UserType, "0", new { Checked = "false"})
+						</div>
+						<div class="radio">
+							<label>Teacher?</label>
+							@Html.RadioButtonFor(m => m.UserType, "1")
+
+						</div>
+						<div class="radio">
+							<label>Admin?</label>
+							@Html.RadioButtonFor(m => m.UserType, "2")
 						</div>
 					</div>
 				</div>

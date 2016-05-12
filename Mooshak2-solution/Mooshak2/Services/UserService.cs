@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using LinqToDB;
 using Mooshak2.Models;
 
 namespace Mooshak2.Services
@@ -114,6 +115,31 @@ namespace Mooshak2.Services
 				}
 			}
 			return students;
+		}
+
+		public void EditUser(EditUserSettingsViewModel model)
+		{
+			ApplicationUser user = new IdentityManager().GetUser(model.Username);
+			user.UserName = model.Username;
+			user.Email = model.Email;
+			IdentityManager c = new IdentityManager();
+			c.ClearUserRoles(user.Id);
+			if (model.UserType == 1)
+			{
+				c.AddUserToRole(user.Id, "Teacher");
+			}
+			else if(model.UserType == 2)
+			{
+				c.AddUserToRole(user.Id, "Administrator");
+			}
+			_db.SaveChanges();
+		}
+
+		public void DeleteUser(string Id)
+		{
+			var user = GetUserById(Id);
+			_db.Users.Remove(user);
+			_db.SaveChanges();
 		}
 	}
 }
