@@ -72,5 +72,33 @@ namespace Mooshak2.Services
 			}
 			return false;
 		}
+
+		public List<SubmissionViewModel> GetSubmissionViewModelsByMilestone(int Id)
+		{
+			List<SubmissionViewModel> list = new List<SubmissionViewModel>();
+			List<Submission> subs = GetSubmissionsByMilestoneId(Id);
+			list = MakeSubViewList(subs);
+			return list;
+		}
+
+		public List<SubmissionViewModel> MakeSubViewList(List<Submission> subs)
+		{
+			List<SubmissionViewModel> list = new List<SubmissionViewModel>();
+			foreach (var item in subs)
+			{
+				SubmissionViewModel temp = new SubmissionViewModel();
+				temp.Id = item.Id;
+				temp.SubmitDate = item.SubmitDate;
+				temp.TestFailed = item.TestFailed;
+				temp.TestPassed = item.TestPassed;
+				temp.UserName = item.ApplicationUser.UserName;
+				var totalTest = temp.TestFailed + temp.TestPassed;
+				var tempGrade = (double)temp.TestPassed / totalTest;
+				temp.Grade = tempGrade * 10;
+				list.Add(temp);
+			}
+			return list;
+		}
+
 	}
 }
