@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Net.Mime;
-using System.Web;
 using System.Web.Mvc;
-using Microsoft.Owin.Security.Provider;
 using Mooshak2.Models;
-using Mooshak2.Models.EntityClasses;
 using Mooshak2.Services;
 
 namespace Mooshak2.Controllers
@@ -101,11 +94,9 @@ namespace Mooshak2.Controllers
 
 		public PartialViewResult ContentRender(int id)
 		{
-			var model = new EdtiCourseViewModel();
 			CourseService c = new CourseService();
-			Course course = new Course();
-			course = c.GetCourseById(id);
-			model = c.GetEdtiCourseViewModel(course);
+			var course = c.GetCourseById(id);
+			var model = c.GetEdtiCourseViewModel(course);
 			return PartialView("_Content", model);
 		}
 	}

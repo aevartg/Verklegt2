@@ -41,7 +41,7 @@ namespace Mooshak2.Controllers
 		public ActionResult Download(int submissionId)
 		{
 			var x = new SubmissionService().GetSubmissionById(submissionId);
-			return File(x.Blob, "application/javascript", "temp.js");
+			return File(x.Blob, "application/javascript", x.SubmitDate.ToShortDateString() + "_submissionId" + submissionId + x.FileExtension);
 		}
 	}
 }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using Mooshak2.Models.EntityClasses;
 
 namespace Mooshak2.Models
@@ -31,10 +29,13 @@ namespace Mooshak2.Models
 	{
 		[Required]
 		public int CourseId { get; set; }
+
 		[Required(ErrorMessage = "Name Required")]
 		public string Name { get; set; }
+
 		[Required]
 		public DateTime DateOpen { get; set; }
+
 		[Required]
 		public DateTime DateClose { get; set; }
 

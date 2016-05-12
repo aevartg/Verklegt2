@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace Mooshak2.Models
 {
@@ -16,7 +13,7 @@ namespace Mooshak2.Models
 	{
 		public int Id { get; set; }
 		public string Name { get; set; }
-		public List<AssignmentTabViewModel> AssignmentList { get; set; }	
+		public List<AssignmentTabViewModel> AssignmentList { get; set; }
 	}
 
 	public class AdminNavCourseViewModel
@@ -24,5 +21,4 @@ namespace Mooshak2.Models
 		public int Id { get; set; }
 		public string Name { get; set; }
 	}
-
 }

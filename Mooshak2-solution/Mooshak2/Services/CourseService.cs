@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Mooshak2.Models;
 using Mooshak2.Models.EntityClasses;
@@ -12,7 +10,7 @@ namespace Mooshak2.Services
 {
 	public class CourseService
 	{
-		private ApplicationDbContext _db;
+		private readonly ApplicationDbContext _db;
 
 		public CourseService()
 		{
@@ -28,48 +26,35 @@ namespace Mooshak2.Services
 				.ToList();
 			if (courses.Count == 0)
 			{
-				List<CourseViewModel> emptyList = new List<CourseViewModel>();
+				var emptyList = new List<CourseViewModel>();
 				return emptyList;
 			}
-			else
+			var courseViewModel = new List<CourseViewModel>();
+			foreach (var course in courses)
 			{
-				var courseViewModel = new List<CourseViewModel>();
-				foreach (var course in courses)
-				{
-					var assignmentList = new List<AssignmentNavViewModel>();
-					assignmentList = new AssignmentService().GetAssignmentNavViewModels(course.Id);
+				var assignmentList = new AssignmentService().GetAssignmentNavViewModels(course.Id);
 
-					var courseViewModeltemp = new CourseViewModel()
-					{
-						Id = course.Id,
-						Name = course.Name,
-						Assignments = assignmentList
-					};
-					courseViewModel.Add(courseViewModeltemp);
-				}
-				return courseViewModel;
+				var courseViewModeltemp = new CourseViewModel
+										{
+											Id = course.Id,
+											Name = course.Name,
+											Assignments = assignmentList
+										};
+				courseViewModel.Add(courseViewModeltemp);
 			}
+			return courseViewModel;
 		}
 
 		public Course GetCourseById(int id)
 		{
 			var course = _db.Courses.SingleOrDefault(x => x.Id == id);
-			if (course == null)
-			{
-				//TODO
-				return null;
-			}
-			else
-			{
-				return course;
-			}
-
+			return course;
 		}
 
 		public AdminCourseViewModel GetAdminCourseViewModel(int id) // er þetta notað?
 		{
 			var model = new AdminCourseViewModel();
-			UserService c = new UserService();
+			var c = new UserService();
 			model.Name = GetCourseById(id).Name;
 			model.AllTeachers = c.GetAllTeachers();
 			model.Id = id;
@@ -79,35 +64,22 @@ namespace Mooshak2.Services
 				//TODO
 				return null;
 			}
-			else
-			{
-				return model;
-			}
+			return model;
 		}
 
 		public List<Course> GetAllCourses()
 		{
-			var allCourses = (from x in _db.Courses select x).ToList();
-
-			if (allCourses.Count == 0)
-			{
-				List<Course> emptyList = new List<Course>();
-				return emptyList;
-			}
-			else
-			{
-				return allCourses;
-			}
+			return (from x in _db.Courses select x).ToList();
 		}
 
 		public void CreateCourse(CreateCourseViewModel model)
 		{
 			ICollection<ApplicationUser> tempList = new List<ApplicationUser>();
-			var course = new Course()
-			{
-				Name = model.Name
-			};
-			course.Users = tempList;
+			var course = new Course
+						{
+							Name = model.Name,
+							Users = tempList
+						};
 			foreach (var x in model.SelectedTeachers)
 			{
 				var tempTeacher = (from u in _db.Users where x == u.Id select u).FirstOrDefault();
@@ -125,23 +97,27 @@ namespace Mooshak2.Services
 
 		public void UpdateAdminCourseViewModel(AdminCourseViewModel model, string userName)
 		{
-			IdentityManager connection = new IdentityManager();
-			ApplicationUser user = connection.GetUser(userName);
-			UserViewModel userVM = new UserViewModel();
-			userVM.username = user.UserName;
-			userVM.Id = user.Id;
-			model.TeachersInCourse.Add(userVM);
+			var connection = new IdentityManager();
+			var user = connection.GetUser(userName);
+			var userVm = new UserViewModel
+						{
+							username = user.UserName,
+							Id = user.Id
+						};
+			model.TeachersInCourse.Add(userVm);
 		}
 
 		public List<AdminNavCourseViewModel> GetAdminNavCourseViewModels()
 		{
-			List<AdminNavCourseViewModel> list = new List<AdminNavCourseViewModel>();
+			var list = new List<AdminNavCourseViewModel>();
 			var courses = GetAllCourses();
 			foreach (var item in courses)
 			{
-				AdminNavCourseViewModel temp = new AdminNavCourseViewModel();
-				temp.Id = item.Id;
-				temp.Name = item.Name;
+				var temp = new AdminNavCourseViewModel
+							{
+								Id = item.Id,
+								Name = item.Name
+							};
 				list.Add(temp);
 			}
 			return list;
@@ -149,13 +125,15 @@ namespace Mooshak2.Services
 
 		public EdtiCourseViewModel GetEdtiCourseViewModel(Course course)
 		{
-			EdtiCourseViewModel model = new EdtiCourseViewModel();
-			model.Id = course.Id;
-			model.Name = course.Name;
+			var model = new EdtiCourseViewModel
+						{
+							Id = course.Id,
+							Name = course.Name
+						};
 
-			List<UserViewModel> tempTeachersList = new UserService().GetAllTeachers();
-			List<UserViewModel> tempTeachersInCourseList = new UserService().GetTeachersInCourse(course.Id);
-			List<UserViewModel> tempRemoveTeacherList = new List<UserViewModel>();
+			var tempTeachersList = new UserService().GetAllTeachers();
+			var tempTeachersInCourseList = new UserService().GetTeachersInCourse(course.Id);
+			var tempRemoveTeacherList = new List<UserViewModel>();
 			foreach (var t in tempTeachersList)
 			{
 				foreach (var t2 in tempTeachersInCourseList)
@@ -174,9 +152,9 @@ namespace Mooshak2.Services
 			model.Teachers = new SelectList(tempTeachersList, "Id", "username");
 			model.TeachersInCourse = new SelectList(tempTeachersInCourseList, "Id", "username");
 
-			List<UserViewModel> tempStudentList = new UserService().GetAllStudents();
-			List<UserViewModel> tempStudentsInCourseList = new UserService().GetStudentsInCourse(course.Id);
-			List<UserViewModel> tempRemovestudentList = new List<UserViewModel>();
+			var tempStudentList = new UserService().GetAllStudents();
+			var tempStudentsInCourseList = new UserService().GetStudentsInCourse(course.Id);
+			var tempRemovestudentList = new List<UserViewModel>();
 			foreach (var s in tempStudentList)
 			{
 				foreach (var s2 in tempStudentsInCourseList)

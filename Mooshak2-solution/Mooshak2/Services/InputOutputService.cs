@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Microsoft.AspNet.Identity;
 using Mooshak2.Models;
 using Mooshak2.Models.EntityClasses;
 
@@ -10,18 +9,19 @@ namespace Mooshak2.Services
 {
 	public class InputOutputService
 	{
-		private ApplicationDbContext _db;
+		private readonly ApplicationDbContext _db;
+
 		public InputOutputService()
 		{
 			_db = new ApplicationDbContext();
 		}
 
-		public bool CreateInputOutput(int milestoneId , HttpPostedFileBase file)
+		public bool CreateInputOutput(int milestoneId, HttpPostedFileBase file)
 		{
 			var inputOutputs = Helper.PareInputOutput(file.InputStream);
 			foreach (var x in inputOutputs)
 			{
-				var temp = new InputOutput()
+				var temp = new InputOutput
 							{
 								Input = x[0],
 								Output = x[1],
@@ -29,7 +29,7 @@ namespace Mooshak2.Services
 							};
 				_db.InputOutputs.Add(temp);
 			}
-			return (_db.SaveChanges() > 0);
+			return _db.SaveChanges() > 0;
 		}
 
 		public List<InputOutput> GetExpectedInputOutputsByMilestoneId(int id)
@@ -37,8 +37,9 @@ namespace Mooshak2.Services
 			var exp = (from x in _db.InputOutputs where x.MilestoneId == id select x).ToList();
 			return exp;
 		}
+
 		//input output service
-		public List<InputOutputViewModel> GetInputsOutputsViewModel(int submissionId,int milestoneId, string userId)
+		public List<InputOutputViewModel> GetInputsOutputsViewModel(int submissionId, int milestoneId, string userId)
 		{
 			var model = new List<InputOutputViewModel>();
 			var allExpInputs = GetExpectedInputOutputsByMilestoneId(milestoneId);
@@ -47,37 +48,37 @@ namespace Mooshak2.Services
 			{
 				return model;
 			}
-			else
+			var temp = allExpInputs.Zip(allRealOutputs,
+				(x, y) => new {expectedInput = x.Input, expextedOutput = x.Output, realOutput = y});
+			foreach (var item in temp)
 			{
-				var temp = allExpInputs.Zip(allRealOutputs,
-					(x, y) => new {expectedInput = x.Input, expextedOutput = x.Output, realOutput = y});
-				foreach (var item in temp)
-				{
-					var x = new InputOutputViewModel();
-					x.Input = item.expectedInput;
-					x.ExpectedOutput = item.expextedOutput;
-					x.RealOutput = item.realOutput;
-					model.Add(x);
-				}
-				return model;
+				var x = new InputOutputViewModel
+						{
+							Input = item.expectedInput,
+							ExpectedOutput = item.expextedOutput,
+							RealOutput = item.realOutput
+						};
+				model.Add(x);
 			}
+			return model;
 		}
 
-		private List<String> GetUserOutputsById(int submissionId, string userId)
+		private List<string> GetUserOutputsById(int submissionId, string userId)
 		{
-			return (from x in _db.UserOutputs where (x.UserId == userId && x.SubmissionId == submissionId) select x.Output).ToList();
+			return
+				(from x in _db.UserOutputs where x.UserId == userId && x.SubmissionId == submissionId select x.Output).ToList();
 		}
 
-		public Tuple<int, int,List<String>> GetJavascriptResultTuples(int milestoneId)
+		public Tuple<int, int, List<string>> GetJavascriptResultTuples(int milestoneId)
 		{
 			var fails = 0;
 			var pass = 0;
-			var stringList = new List<String>();
+			var stringList = new List<string>();
 			var inputoutputs = GetExpectedInputOutputsByMilestoneId(milestoneId);
 			foreach (var item in inputoutputs)
 			{
-				var tempUserOutput = Helper.RunJavaScriptCode( item.Input?.Replace("\\n","\n") , 600);
-				if (tempUserOutput.Equals(item.Output.Replace("\\n","\n"), StringComparison.OrdinalIgnoreCase))
+				var tempUserOutput = Helper.RunJavaScriptCode(item.Input?.Replace("\\n", "\n"), 600);
+				if (tempUserOutput.Equals(item.Output.Replace("\\n", "\n"), StringComparison.OrdinalIgnoreCase))
 				{
 					pass++;
 				}
@@ -88,7 +89,7 @@ namespace Mooshak2.Services
 				stringList.Add(tempUserOutput);
 			}
 			_db.SaveChanges();
-			return Tuple.Create(pass, fails,stringList);
+			return Tuple.Create(pass, fails, stringList);
 		}
 	}
 }

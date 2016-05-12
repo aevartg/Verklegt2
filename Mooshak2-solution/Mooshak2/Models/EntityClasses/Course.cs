@@ -7,8 +7,10 @@ namespace Mooshak2.Models.EntityClasses
 	{
 		[Key]
 		public int Id { get; set; }
+
 		[Required]
 		public string Name { get; set; }
+
 		public ICollection<ApplicationUser> Users { get; set; }
 	}
 }
