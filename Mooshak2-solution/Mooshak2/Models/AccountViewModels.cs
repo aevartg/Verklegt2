@@ -86,6 +86,7 @@ namespace Mooshak2.Models
 		[Required(ErrorMessage = "User type Required")]
 		[Display(Name = "Teacher? ")]
 		public bool UserType { get; set; }
+		public List<AdminNavCourseViewModel> NavModel { get; set; }
 	}
 
 	public class EditUserSettingsViewModel

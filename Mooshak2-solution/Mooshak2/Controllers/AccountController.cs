@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Mooshak2.Models;
+using Mooshak2.Services;
 
 namespace Mooshak2.Controllers
 {
@@ -135,9 +136,11 @@ namespace Mooshak2.Controllers
         //
         // GET: /Account/Register
 		[Authorize(Roles = "Administrator")]
-        public PartialViewResult CreateUser()
+        public ActionResult CreateUser()
         {
-            return PartialView("_CreateUser");
+			RegisterViewModel model = new RegisterViewModel();
+			model.NavModel = new CourseService().GetAdminNavCourseViewModels();
+			return View("CreateUser", model);
         }
 
         //

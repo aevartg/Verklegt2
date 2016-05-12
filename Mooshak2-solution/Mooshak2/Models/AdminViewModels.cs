@@ -41,4 +41,10 @@ namespace Mooshak2.Models
 		public string[] SelectedTeachers { get; set; }
 		public string[] SelectedStudents { get; set; }
 	}
+
+	public class MainCreateUserViewModel
+	{
+		public RegisterViewModel Model { get; set; }
+		public AdminNavCourseViewModel NavModel { get; set; }
+	}
 }
