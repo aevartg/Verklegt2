@@ -135,9 +135,9 @@ namespace Mooshak2.Controllers
         //
         // GET: /Account/Register
 		[Authorize(Roles = "Administrator")]
-        public ActionResult CreateUser()
+        public PartialViewResult CreateUser()
         {
-            return View();
+            return PartialView("_CreateUser");
         }
 
         //

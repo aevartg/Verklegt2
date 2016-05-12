@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -125,7 +126,7 @@ namespace Mooshak2.Services
 
 		public void EditCourse(EditCourseViewModel model)
 		{
-			Course course = GetCourseById(model.Id);
+			var course = _db.Courses.Where(y => y.Id == model.Id).Include(x => x.Users).SingleOrDefault();
 			course.Name = model.Name;
 			ICollection<ApplicationUser> tempList = new List<ApplicationUser>();
 			UserService c = new UserService();

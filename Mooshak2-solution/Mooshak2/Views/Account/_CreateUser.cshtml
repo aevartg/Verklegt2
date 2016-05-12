@@ -3,6 +3,9 @@
     ViewBag.Title = "Create User";
 }
 
+<script type=@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")></script>
+@Scripts.Render("~/Scripts/Custom.js")
+
 <h2>@ViewBag.Title.</h2>
 
 @using (Html.BeginForm("CreateUser", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))

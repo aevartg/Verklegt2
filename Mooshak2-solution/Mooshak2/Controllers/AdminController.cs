@@ -15,13 +15,13 @@ namespace Mooshak2.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult Create()
+		public PartialViewResult Create()
 		{
 			UserService connection = new UserService();
 			var model = new CreateCourseViewModel();
 			model.Teachers = new SelectList(connection.GetAllTeachers(), "Id", "username");
 			model.Students = new SelectList(connection.GetAllStudents(), "Id", "username");
-			return View(model);
+			return PartialView("_Create", model);
 		}
 
 
