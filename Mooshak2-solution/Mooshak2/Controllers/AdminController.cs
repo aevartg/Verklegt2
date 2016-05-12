@@ -89,18 +89,34 @@ namespace Mooshak2.Controllers
 				IdentityManager connection = new IdentityManager();
 				ApplicationUser user = connection.GetUser(username);
 				var model = new EditUserSettingsViewModel();
+				model.Id = user.Id;
 			    model.Username = user.UserName;
 				model.Email = user.Email;
-				model.UserType = connection.UserIsInRole(user.Id, "Teacher");
+				if (connection.UserIsInRole(user.Id, "Teacher"))
+				{
+					model.UserType = 1;
+				}else if (connection.UserIsInRole(user.Id, "Administrator"))
+				{
+					model.UserType = 2;
+				}
+				model.NavModel = new CourseService().GetAdminNavCourseViewModels();
 				return View(model);
 			}
 		}
 
 		[HttpPost]
-		public ActionResult EditUser(RegisterViewModel model)
+		public ActionResult EditUser(EditUserSettingsViewModel model)
 		{
+			if (!ModelState.IsValid)
+			{
+				return View(model);
+			}
+			else
+			{
+				new UserService().EditUser(model);
 
-			return View("Index");
+			}
+			return RedirectToAction("Index");
 		}
 
 		public PartialViewResult ContentRender(int id)
@@ -110,6 +126,12 @@ namespace Mooshak2.Controllers
 			var course = c.GetCourseById(id);
 			var model = c.GetEditCourseViewModel(course);
 			return PartialView("_Content", model);
+		}
+
+		public ActionResult DeleteUser(string Id)
+		{
+			new UserService().DeleteUser(Id);
+			return RedirectToAction("Index");
 		}
 	}
 }

@@ -84,24 +84,23 @@ namespace Mooshak2.Models
 		public string ConfirmPassword { get; set; }
 
 		[Required(ErrorMessage = "User type Required")]
-		[Display(Name = "Teacher? ")]
-		public bool UserType { get; set; }
+		public int UserType { get; set; }
 		public List<AdminNavCourseViewModel> NavModel { get; set; }
 	}
 
 	public class EditUserSettingsViewModel
 	{
-		[Required]
+		public string Id { get; set; }
+		[Required(ErrorMessage = "Email Required")]
 		[EmailAddress]
 		[Display(Name = "Email")]
 		public string Email { get; set; }
-
+		[Required(ErrorMessage = "Username Required")]
 		[Display(Name = "Username")]
 		public string Username { get; set; }
-
 		[Required(ErrorMessage = "User type Required")]
-		[Display(Name = "Teacher? ")]
-		public bool UserType { get; set; }
+		public int UserType { get; set; }
+		public List<AdminNavCourseViewModel> NavModel { get; set; }
 	}
 
 	public class ResetPasswordViewModel
