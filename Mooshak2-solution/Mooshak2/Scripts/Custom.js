@@ -180,3 +180,5 @@ $.ajax({
 		$(".se-pre-con").fadeOut("slow");
 	}
 });
+
+$(".icon-hack").html('<i class="fa fa-plus-square" aria-hidden="true"></i> Add assignment');

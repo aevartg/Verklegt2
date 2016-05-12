@@ -35,7 +35,7 @@
 								</div>
 							}
 						}
-						@Ajax.ActionLink("Add assignment", "CreateAssignment", "Teacher", new {id = c.Id}, new AjaxOptions() {UpdateTargetId = "content", InsertionMode = InsertionMode.Replace}, new {@class = "custom-adder"})
+						@Ajax.ActionLink("Add assignment", "CreateAssignment", "Teacher", new { courseId = c.Id}, new AjaxOptions() {UpdateTargetId = "content", InsertionMode = InsertionMode.Replace}, new {@class = "custom-adder icon-hack"})
 					}
 				}
 			</nav>
