@@ -57,6 +57,19 @@ $("#addstudent")
 	    $("#notselectedstudent option:selected").appendTo("#selectedstudent").removeAttr("selected");
 	});
 
+$("#RemoveTeacher")
+	.click(function () {
+		if ($("#selected option").length > 1)
+		{
+			$("#selected option:selected").appendTo("#notselected").removeAttr("selected");
+		}
+	});
+
+$("#RemoveStudent").click(function()
+{
+	$("#selectedstudent option:selected").appendTo("#notselectedstudent").removeAttr("selected");
+})
+
 $("#createform").submit(function () {
     $("#notselectedstudent option:selected").removeAttr("selected");
     var select = $("#selectedstudent");
