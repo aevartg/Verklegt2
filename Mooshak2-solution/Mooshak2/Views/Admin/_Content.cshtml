@@ -1,8 +1,5 @@
-<<<<<<< Updated upstream
+
 ﻿@model Mooshak2.Models.EditCourseViewModel
-=======
-﻿@model Mooshak2.Models.EdtiCourseViewModel
->>>>>>> Stashed changes
 @{
 	ViewBag.Title = Model.Name;
 }
@@ -11,16 +8,10 @@
 
 <h2>@Model.Name</h2>
 
-<<<<<<< Updated upstream
 @{using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new { id = "createform" }))
 	{
 		@Html.AntiForgeryToken()
 		@Html.HiddenFor(x => Model.Id)
-=======
-@{using (Html.BeginForm(/*"Edit", "Admin", FormMethod.Post, new { id = "createform" }*/))
-	{
-		@Html.AntiForgeryToken()
->>>>>>> Stashed changes
 
 		<div class="form-horizontal">
 			<hr />
