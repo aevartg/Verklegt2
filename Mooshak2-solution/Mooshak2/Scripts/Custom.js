@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 
     $(".searchclass option").each(function () {
-        $(this).attr("data-search-term", $(this).text().toLowerCase());
+        $(this).attr("searchitem", $(this).text().toLowerCase());
     });
 
     $(".leitarbox").on("keyup", function () {
@@ -10,7 +10,7 @@
 
         $(".searchclass option").each(function () {
 
-            if ($(this).filter("[data-search-term *= " + searchTerm + "]").length > 0 || searchTerm.length < 1) {
+            if ($(this).filter("[searchitem *= " + searchTerm + "]").length > 0 || searchTerm.length < 1) {
                 $(this).show();
             } else {
                 $(this).hide();
@@ -144,3 +144,22 @@ $(document).ready(function () {
 		$(".userlist" + radio).show();
 	})
 })
+
+$(document).ready(function () {
+
+	$(".table tbody tr").each(function () {
+		$(this).attr("searchitem", $(this).find(".username").text().toLowerCase());
+	});
+
+	$(".leitarbox").on("keyup", function () {
+		var searchTerm = $(this).val().toLowerCase();
+
+		$(".table tbody tr").each(function () {
+			if ($(this).filter("[searchitem *= " + searchTerm + "]").length > 0 || searchTerm.length < 1) {
+				$(this).show();
+			} else {
+				$(this).hide();
+			}
+		});
+	});
+});
