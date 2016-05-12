@@ -54,7 +54,7 @@
 											<td>@item.SubmitDate.ToString("yyyy-MM-dd hh:mm:ss.fff")</td>
 											<td>@User.Identity.GetUserName()</td>
 											<td>Accepted</td>
-											<td><a href="#">Download</a></td>@*Hér þarf action link sem downloadar submissioninu*@
+											<td>@Html.ActionLink("Download", "Download", new { submissionId = item.Id })</td>@*Hér þarf action link sem downloadar submissioninu*@
 										</tr>
 									}
 									else
@@ -64,7 +64,7 @@
 											<td>@item.SubmitDate.ToString("yyyy-MM-dd hh:mm:ss.fff")</td>
 											<td>@User.Identity.GetUserName()</td>
 											<td>Failed</td>
-											<td><a href="#">Download</a></td>@*Hér þarf action link sem downloadar submissioninu*@
+											<td>@Html.ActionLink("Download","Download",new {submissionId = item.Id})</td>@*Hér þarf action link sem downloadar submissioninu*@
 										</tr>
 									}
 								}

@@ -18,6 +18,11 @@ namespace Mooshak2.Services
 			_db = new ApplicationDbContext();
 		}
 
+		public Submission GetSubmissionById(int id)
+		{
+			return (from x in _db.Submissions where x.Id == id select x).Single();
+		}
+
 		public List<Submission> GetSubmissionsByMilestoneID(int id)
 		{
 			var subs = (from x in _db.Submissions where x.MilestoneId == id select x).ToList();

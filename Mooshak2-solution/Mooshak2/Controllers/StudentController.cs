@@ -43,5 +43,11 @@ namespace Mooshak2.Controllers
 			var model = new AssignmentService().GetAssignmentViewModel(HttpContext.User.Identity.GetUserId(), id);
 			return PartialView("_content",model);
 		}
+
+		public ActionResult Download(int submissionId)
+		{
+			var x = new SubmissionService().GetSubmissionById(submissionId);
+			return File(x.Blob, "application/javascript", "temp.js");
+		}
 	}
 }
