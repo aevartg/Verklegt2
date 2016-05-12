@@ -23,6 +23,7 @@
 							<th>#</th>
 							<th>Time</th>
 							<th>User</th>
+							<th>Grade</th>
 							<th>Result</th>
 							<th>Get Submission</th>
 						</tr>
@@ -47,7 +48,8 @@
 									<tr class="success">
 										<td>@item.Id</td>
 										<td>@item.SubmitDate.ToString("yyyy-MM-dd hh:mm:ss.fff")</td>
-										<td class="username">@item.ApplicationUser.UserName</td>
+										<td class="username">@item.UserName</td>
+										<td>@item.Grade</td>
 										<td>Accepted</td>
 										<td><a href="#">Download</a></td>@*Hér þarf action link sem downloadar submissioninu*@
 									</tr>
@@ -57,7 +59,8 @@
 									<tr class="danger">
 										<td>@item.Id</td>
 										<td>@item.SubmitDate.ToString("yyyy-MM-dd hh:mm:ss.fff")</td>
-										<td class="username">@item.ApplicationUser.UserName</td>
+										<td class="username">@item.UserName</td>
+										<td>@item.Grade</td>
 										<td>Failed</td>
 										<td><a href="#">Download</a></td>@*Hér þarf action link sem downloadar submissioninu*@
 									</tr>

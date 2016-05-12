@@ -9,7 +9,7 @@ namespace Mooshak2.Models
 	{
 		public int Id { get; set; }
 		public string Name { get; set; }
-		public List<Submission> Submissions { get; set; }
+		public List<SubmissionViewModel> Submissions { get; set; }
 	}
 
 	public class AssignmentTabViewModel
@@ -69,6 +69,17 @@ namespace Mooshak2.Models
 		public string AssignmentName { get; set; }
 		public string MilestoneName { get; set; }
 		public List<UserViewModel> AllStudents { get; set; }
-		public List<Submission> Submissions { get; set; }
+		public List<SubmissionViewModel> Submissions { get; set; }
+		public List<double> Grades { get; set; }
+	}
+
+	public class SubmissionViewModel
+	{
+		public int Id { get; set; }
+		public int TestPassed { get; set; }
+		public int TestFailed { get; set; }
+		public DateTime SubmitDate { get; set; }
+		public string UserName { get; set; }
+		public double Grade { get; set; }
 	}
 }

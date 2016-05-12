@@ -21,11 +21,11 @@
 			</button>
 			@if (!User.Identity.IsAuthenticated)
 			{
-				@Html.ActionLink("Mooshak 2.0", "Login", "Account", new {area = ""}, new {@class = "navbar-brand navbar-custom"})
+				@Html.ActionLink("Cipher", "Login", "Account", new {area = ""}, new {@class = "navbar-brand navbar-custom"})
 			}
 			else
 			{
-				@Html.ActionLink("Mooshak 2.0", "Index", "Home", new {area = ""}, new {@class = "navbar-brand navbar-custom"})
+				@Html.ActionLink("Cipher", "Index", "Home", new {area = ""}, new {@class = "navbar-brand navbar-custom"})
 			}
 		</div>
 		<div class="navbar-collapse collapse">

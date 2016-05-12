@@ -73,7 +73,9 @@ namespace Mooshak2.Services
 			var milestone = m.GetMilestoneByID(milestoneId);
 			model.Id = milestoneId;
 			model.Name = milestone.Name;
-			model.Submissions = s.GetSubmissionsByUserAndMilestoneId(userId, milestoneId);
+			var subs = s.GetSubmissionsByUserAndMilestoneId(userId, milestoneId);			
+			var list = new SubmissionService().MakeSubViewList(subs);
+			model.Submissions = list;
 			return model;
 		}
 

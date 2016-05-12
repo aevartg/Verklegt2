@@ -55,7 +55,7 @@ namespace Mooshak2.Controllers
 			model.AssignId = milestone.AssignmentId;
 			model.MilestoneName = milestone.Name;
 			model.AssignmentName = new AssignmentService().GetAssignmentById(milestone.AssignmentId).Name;
-			model.Submissions = new SubmissionService().GetSubmissionsByMilestoneId(id);
+			model.Submissions = new SubmissionService().GetSubmissionViewModelsByMilestone(id);
 			model.AllStudents = new UserService().GetAllStudents();
 
 			return PartialView("Content", model);
