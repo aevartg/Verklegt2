@@ -15,13 +15,13 @@ namespace Mooshak2.Controllers
 		}
 
 	    [HttpGet]
-	    public ActionResult CreateAssignment(int courseId)
+	    public PartialViewResult CreateAssignment(int courseId)
 	    {
 		    var model = new CreateAssignmentViewModel()
 						{
 							CourseId = courseId
 						};
-		    return View(model);
+		    return PartialView("_CreateAssignment", model);
 	    }
 
 		[HttpPost]
@@ -29,7 +29,7 @@ namespace Mooshak2.Controllers
 		{
 			if (!ModelState.IsValid)
 			{
-				return View(model);
+				return PartialView("_CreateAssignment", model);
 			}
 			var assignmentService = new AssignmentService();
 			if (assignmentService.CreateAssignment(model.Name, model.CourseId,model.DateOpen,model.DateClose))

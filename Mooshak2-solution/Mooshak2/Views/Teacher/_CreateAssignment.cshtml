@@ -1,0 +1,86 @@
+﻿@model Mooshak2.Models.CreateAssignmentViewModel
+
+@{
+    ViewBag.Title = "CreateAssignment";
+}
+
+<script type=@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")>
+</script>
+@Scripts.Render("~/Scripts/Custom.js")
+<link rel="stylesheet" href="~/Content/sortable-theme-minimal.css" />
+
+<h2>CreateCourse</h2>
+
+@{
+	using (Html.BeginForm("CreateAssignment", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data", id = "assignmentform" }))
+	{
+		<div class="row">
+			<div class="form-group">
+				<label class="col-xs-3 control-label">Assignment Name</label>
+				<div>
+					@Html.HiddenFor(x => Model.CourseId)
+					@Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
+					<input type="text" name="name" class="form-control"/>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			@Html.EditorFor(x => x.DateOpen, Model.DateOpen)
+			@Html.EditorFor(x => x.DateClose, Model.DateClose)
+		</div>
+
+
+		<div class="form-group">
+			<div class="row">
+				<label class="col-xs-3 control-label">Milestones</label>
+			</div>
+			<div class ="row">
+				<div class="col-xs-3">
+					<input type="text" class="form-control" name="milestones[0].name" placeholder="Title"/>
+				</div>
+				<div class="col-xs-2">
+					<input type="text" class="form-control" name="milestones[0].weight" placeholder="Weight"/>
+				</div>
+				<div class="col-xs-1">
+					<span class="btn btn-default btn-file">
+						Browse <input type="file" name="milestones[0].file" />
+					</span>
+				</div>
+				<div class="col-xs-1">
+					<button type="button" class="btn btn-default addbutton">
+						Add a row
+					</button>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="form-group hide" id="assignmenttempplate">
+			<div class="row">
+				<div class="col-xs-3">
+					<input type="text" class="form-control" name="name" placeholder="Title"/>
+				</div>
+				<div class="col-xs-2">
+					<input type="text" class="form-control" name="weight" placeholder="Weight"/>
+				</div>
+				<div class="col-xs-1">
+					<span class="btn btn-default btn-file">
+						Browse <input type="file" name="file" />
+					</span>
+				</div>
+				<div class="col-xs-1">
+					<button type="button" class="btn btn-default removebtn">
+						Remove Row
+					</button>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="form-group">
+			<div class="col-xs-5 col-xs-offset-1">
+				<button type="submit" class="btn btn-default">Submit</button>
+			</div>
+		</div>
+	}
+}

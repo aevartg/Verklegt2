@@ -532,7 +532,7 @@
     <Content Include="Views\Student\Student.cshtml" />
     <Content Include="Views\Student\UserSettings.cshtml" />
     <Content Include="Views\Admin\EditUser.cshtml" />
-    <Content Include="Views\Teacher\CreateAssignment.cshtml" />
+    <Content Include="Views\Teacher\_CreateAssignment.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Teacher\Index.cshtml" />
     <Content Include="Views\Teacher\Content.cshtml" />
