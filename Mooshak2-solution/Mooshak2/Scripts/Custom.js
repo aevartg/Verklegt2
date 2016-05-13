@@ -1,18 +1,19 @@
 ﻿$(document)
 	.ready(function()
 	{
+		/**
+		 * notað til að finna notendur á key up sem minnkar listann
+		 */
 		$(".searchclass option")
 			.each(function()
 			{
 				$(this).attr("searchitem", $(this).text().toLowerCase());
 			});
-
 		$(".leitarbox")
 			.on("keyup",
 				function()
 				{
 					var searchTerm = $(this).val().toLowerCase();
-
 					$(".searchclass option")
 						.each(function()
 						{
@@ -27,8 +28,7 @@
 						});
 				});
 
-	
-
+		/*sýnir mismunandi töflur fyrir users, teachers og students og afhakar þann sem er valið ef annar listi er valinn*/
 		$(".userlist1").show();
 		$("input[name$='users']")
 			.click(function () {
@@ -38,7 +38,9 @@
 				var radio = $(this).val();
 				$(".userlist" + radio).show();
 			});
-
+		/**
+		 * færa á milli í töflunum hjá Admin
+		 */
 		$("#add")
 	.click(function () {
 		$("#notselected option:selected").appendTo("#selected").removeAttr("selected");
@@ -74,6 +76,9 @@
 			});
 	});
 
+/**
+ * /accordion í nav menu
+ */
 $(document)
 	.on("click",
 		".accordion-anchor",
@@ -129,39 +134,13 @@ window.addEventListener("submit",
 	},
 	true);
 
-/*sýnir mismunandi töflur fyrir users, teachers og students og afhakar þann sem er valið ef annar listi er valinn*/
-//$(document)
-//	.ready(function()
-//	{
-//		$(".userlist1").show();
-//		$("input[name$='users']")
-//			.click(function()
-//			{
-//				var selected = $("option:selected");
-//				selected.removeAttr("selected");
-//				$(".hider").hide();
-//				var radio = $(this).val();
-//				$(".userlist" + radio).show();
-//			});
-//	});
-
-//$(window).load(function () {
-//	 /*Animate loader off screen*/
-//	$(".se-pre-con").fadeOut("slow");;
-
-//});
+/*Loader*/
 
 $(document)
 	.ajaxComplete(function()
 	{
-		// Animate loader off screen
 		$(".se-pre-con").fadeOut("slow");;
 	});
-
-//$(document).ajaxStart(function()
-//{
-//	$(".se-pre-con").fadeIn("slow");
-//});
 
 $(".loader")
 	.click(function()
@@ -170,12 +149,8 @@ $(".loader")
 		$(".se-pre-con").fadeIn("slow");
 	});
 
-//$.ajax({
-//	success: function () {
-//		$(".se-pre-con").fadeOut("slow");
-//	}
-//});
 
+/*Fyrir alla takka sem er danger hefur fólk valmöguleika á að canclea*/
 $(".btn-danger")
 	.click(function()
 	{
@@ -187,4 +162,5 @@ $(".btn-danger")
 		}
 	});
 
+/*Setur Icon við hliðiná Add assignment hjá teacher*/
 $(".icon-hack").html('<i class="fa fa-plus-square" aria-hidden="true"></i> Add assignment');
