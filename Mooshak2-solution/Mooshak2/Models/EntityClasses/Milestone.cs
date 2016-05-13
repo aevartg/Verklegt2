@@ -8,6 +8,7 @@ namespace Mooshak2.Models.EntityClasses
 		[Key]
 		public int Id { get; set; }
 
+		[Required]
 		[ForeignKey("Assignment")]
 		public int AssignmentId { get; set; }
 
