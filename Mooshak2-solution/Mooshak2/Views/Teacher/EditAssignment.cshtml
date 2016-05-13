@@ -1,4 +1,5 @@
-﻿@model Mooshak2.Models.EditAssignmentViewModel
+﻿@using Mooshak2.Services
+@model Mooshak2.Models.EditAssignmentViewModel
 
 @{
     ViewBag.Title = "EditAssignment";
@@ -53,6 +54,7 @@
 								<label class="control-label">Assignment Name</label>
 								<div>
 									@Html.HiddenFor(x => Model.CourseId)
+									@Html.HiddenFor(x => Model.AssignId)
 									@Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
 									@Html.TextBoxFor(x => x.Name, Model.Name, new {@class = "form-control col-md-5"})
 								</div>
@@ -83,9 +85,10 @@
 							<label class="control-label weightlabel">Weight:</label>
 							@foreach (var item in Model.Milestones)
 							{
+								@Html.HiddenFor(x => item.Id)
 								<div class="milestonepadding">
-									@Html.TextBoxFor(x => item.Name, item.Name, new {placeholder = "title", @class = "form-control milestonefloat"})
-									@Html.TextBoxFor(x => item.Weight, item.Weight.ToString(), new {placeholder = "Weight", @class = "form-control milestonefloat"})
+									@Html.EditorFor(x => item.Name, item.Name, new {placeholder = "title", @class = "form-control milestonefloat"})
+									@Html.EditorFor(x => item.Weight, item.Weight.ToString(), new {placeholder = "Weight", @class = "form-control milestonefloat"})
 									<span class="btn btn-default btn-file">
 										Browse <input type="file" name="milestones[0].file" />
 									</span>

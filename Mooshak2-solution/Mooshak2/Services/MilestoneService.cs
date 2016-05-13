@@ -88,6 +88,7 @@ namespace Mooshak2.Services
 					CreateMilestoneViewModel temp = new CreateMilestoneViewModel();
 					temp.Name = item.Name;
 					temp.Weight = item.Weight;
+					temp.Id = item.Id;
 					TheList.Add(temp);
 				}
 				return TheList;

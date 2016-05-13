@@ -115,12 +115,12 @@ namespace Mooshak2.Services
 			assignment.DateClose = model.DateClose;
 			assignment.DateOpen = model.DateOpen;
 
-			var tempAssignment = GetAssignmentByName(model.CourseId, model.Name);
+			var tempAssignment = GetAssignmentById(model.AssignId);
 			var milestoneService = new MilestoneService();
 			var inputOutputService = new InputOutputService();
 			foreach (var item in model.Milestones)
 			{
-				Milestone tempM = milestoneService.GetMilestoneByName(tempAssignment.Id, item.Name);
+				Milestone tempM = milestoneService.GetMilestoneByID(item.Id);
 				_db.Milestones.Remove(tempM);
 			}
 			_db.SaveChanges();

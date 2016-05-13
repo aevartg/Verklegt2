@@ -71,15 +71,10 @@ namespace Mooshak2.Controllers
 		[HttpPost]
 		public ActionResult EditAssignment(EditAssignmentViewModel model)
 		{
-			if (!ModelState.IsValid)
-			{
-				return View(model);
-			}
-			else
-			{
+
 				new AssignmentService().EditAssignment(model);
 				return RedirectToAction("Index");
-			}
+			
 
 		}
 	}

@@ -23,6 +23,8 @@ namespace Mooshak2.Models
 
 		[Required]
 		public HttpPostedFileBase File { get; set; }
+
+		public int Id { get; set; }
 	}
 
 }
