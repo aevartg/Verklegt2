@@ -42,7 +42,7 @@ namespace Mooshak2.Tests.Services
 			var result = _userServiceTest.GetAllUsers();
 
 			//Assert
-			for (int i = 0; i < result.Count; i++)
+			for (int i = 0; i < nameList.Count; i++)
 			{
 				Assert.AreEqual(nameList[i], result[i].username);
 			}
