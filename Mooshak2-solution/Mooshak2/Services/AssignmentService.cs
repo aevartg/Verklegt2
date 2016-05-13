@@ -33,7 +33,9 @@ namespace Mooshak2.Services
 							{
 								Id = item.Id,
 								Milestones = service.GetMilestoneNavById(item.Id),
-								Name = item.Name
+								Name = item.Name,
+								CloseDate = item.DateClose,
+								OpenDate = item.DateOpen
 							};
 				assignmentNavViewModels.Add(temp);
 			}

@@ -33,6 +33,8 @@
 										{
 											@Ajax.ActionLink(m.Name, "ContentRender", "Student", new { id = m.Id }, new AjaxOptions() { UpdateTargetId = "content", InsertionMode = InsertionMode.Replace }, new { @class = "custom-milestoneanchor" })
 										}
+										<div class="hidden open-date">@a.OpenDate</div>
+										<div class="hidden close-date">@a.CloseDate</div>
 									</div>
 								</div>
 							}
