@@ -90,9 +90,9 @@
 								<div class="milestonepadding">
 									@Html.EditorFor(x => Model.Milestones[i].Name, Model.Milestones[i].Name, new {placeholder = "title", @class = "form-control milestonefloat", required = "required" })
 									@Html.EditorFor(x => Model.Milestones[i].Weight, Model.Milestones[i].Weight.ToString(), new {placeholder = "Weight", @class = "form-control milestonefloat", required = "required" })
-                                    <div class="custom-buttonfile">
-                                        <input type="file" id="file" name="file" class="btn btn-file btn-default" />
-                                    </div>
+									<div class="custom-buttonfile">
+									@Html.TextBoxFor(x => x.Milestones[i].File, new {type = "file"})
+									</div>
 								</div>
 							}
 						</div>
