@@ -59,20 +59,21 @@
 									@Html.TextBoxFor(x => x.Name, Model.Name, new {@class = "form-control col-md-5"})
 								</div>
 								<div>
-									<button type="button" class="btn btn-danger deleteassignment">Delete assignment</button>
+									@Html.ActionLink("Delete assignment", "DeleteAssignment", new { Id = Model.AssignId }, new { @class = "btn btn-danger deleteassignment" })
 								</div>
 							</div>
 						</div>
-						<div class="row milestonepadding">
+						<div class="row milestonepadding floater">
 							<div class="form-group">
-								<div class="col-md-10">
+								<div class="col-md-3">
 									<label class="control-label">Date Open:</label>
-									@Html.EditorFor(x => x.DateOpen, Model.DateOpen)
+									@Html.TextBoxFor(x => x.DateOpen, Model.DateOpen)
 								</div>
-								<div class="col-md-10">
+								<div class="col-md-3">
 									<label class="control-label">Date Close:</label>
-									@Html.EditorFor(x => x.DateClose, Model.DateClose)
+									@Html.TextBoxFor(x => x.DateClose, Model.DateClose)
 								</div>
+								@Html.ActionLink("Cancel", "Index", "", new { @class = "btn btn-default cancelassignment" })
 							</div>
 						</div>
 					</div>
@@ -87,8 +88,13 @@
 							{
 								@Html.HiddenFor(x => Model.Milestones[i].Id )
 								<div class="milestonepadding">
+<<<<<<< HEAD
 									@Html.EditorFor(x => Model.Milestones[i].Name, Model.Milestones[i].Name, new {placeholder = "title", @class = "form-control milestonefloat"})
 									@Html.EditorFor(x => Model.Milestones[i].Weight, Model.Milestones[i].Weight.ToString(), new {placeholder = "Weight", @class = "form-control milestonefloat"})
+=======
+									@Html.TextBoxFor(x => item.Name, item.Name, new {placeholder = "title", @class = "form-control milestonefloat"})
+									@Html.TextBoxFor(x => item.Weight, item.Weight.ToString(), new {placeholder = "Weight", @class = "form-control milestonefloat"})
+>>>>>>> 86ba6008adb83481cf872164f1ce878806b7d065
 									<span class="btn btn-default btn-file">
 										Browse @Html.TextBoxFor(x => Model.Milestones[i].File, new {type = "file"})
 									</span>

@@ -131,5 +131,12 @@ namespace Mooshak2.Services
 				inputOutputService.CreateInputOutput(tempMilestone.Id, x.File);
 			}
 		}
+
+		public void DeleteAssignment(int Id)
+		{
+			Assignment assignment = GetAssignmentById(Id);
+			_db.Assignments.Remove(assignment);
+			_db.SaveChanges();
+		}
 	}
 }
