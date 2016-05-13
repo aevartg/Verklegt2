@@ -235,7 +235,7 @@ margin: 5px 0;
 
 .custom-height
 {
-	height: 350px;
+	height: 300px;
 	overflow: auto;
 }
 
@@ -391,5 +391,15 @@ a.custom-navanchor
 
 .weightlabel
 {
-	margin-left: 255px;
+	margin-left: 143px;
+}
+
+table.table.table-hover td
+{
+    vertical-align: middle;
+}
+
+.custom-buttonfile
+{
+    padding-top: 10px;
 }
