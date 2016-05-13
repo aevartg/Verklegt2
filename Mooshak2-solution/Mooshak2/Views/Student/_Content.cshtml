@@ -26,14 +26,15 @@
 				<div class="col-md-8 custom-height">
 					<table class="table table-hover table-responsive sortable-theme-minimal " data-sortable>
 						<thead>
-							<tr>
-								<th>#</th>
-								<th>Time</th>
-								<th>User</th>
-								<th>Grade</th>
-								<th>Result</th>			
-								<th>Get Submission</th>
-							</tr>
+						<tr>
+							<th>Get outputs</th>
+							<th>#</th>
+							<th>Time</th>
+							<th>User</th>
+							<th>Grade</th>
+							<th>Result</th>
+							<th>Get Submission</th>
+						</tr>
 						</thead>
 						<tbody>
 							@if (Model.Submissions.Count == 0)
@@ -53,18 +54,20 @@
 									if (item.TestFailed == 0)
 									{
 										<tr class="success">
-											<td>@Ajax.ActionLink(item.Id.ToString(), "InputOutputRender", "Student", new { submissionId = item.Id, milestoneId = item.MilestoneId } , new AjaxOptions() { UpdateTargetId = "table", InsertionMode = InsertionMode.Replace })</td>
+											<td>@Ajax.ActionLink("Show", "InputOutputRender", "Student", new { submissionId = item.Id, milestoneId = item.MilestoneId }, new AjaxOptions() { UpdateTargetId = "table", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-default" })</td>
+											<td>@item.Id</td>
 											<td>@item.SubmitDate.ToString("yyyy-MM-dd hh:mm:ss.fff")</td>
 											<td>@item.UserName</td>
 											<td>@item.Grade</td>
 											<td>Accepted</td>
-											<td>@Html.ActionLink("Download", "Download", new { submissionId = item.Id })</td>@*Hér þarf action link sem downloadar submissioninu*@
+											<td>@Html.ActionLink("Download", "Download", new {submissionId = item.Id})</td>@*Hér þarf action link sem downloadar submissioninu*@
 										</tr>
 									}
 									else
 									{
 										<tr class="danger">
-											<td>@Ajax.ActionLink(item.Id.ToString(), "InputOutputRender", "Student", new { submissionId = item.Id, milestoneId = item.MilestoneId }, new AjaxOptions() { UpdateTargetId = "table", InsertionMode = InsertionMode.Replace })</td>
+											<td>@Ajax.ActionLink("Show", "InputOutputRender", "Student", new { submissionId = item.Id, milestoneId = item.MilestoneId }, new AjaxOptions() { UpdateTargetId = "table", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-default" })</td>
+											<td>@item.Id</td>
 											<td>@item.SubmitDate.ToString("yyyy-MM-dd hh:mm:ss.fff")</td>
 											<td>@item.UserName</td>
 											<td>@item.Grade</td>

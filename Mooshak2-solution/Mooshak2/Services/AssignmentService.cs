@@ -123,7 +123,7 @@ namespace Mooshak2.Services
 			foreach (var item in model.Milestones)
 			{
 				Milestone tempM = milestoneService.GetMilestoneByID(item.Id);
-				_db.Milestones.Remove(tempM);
+				_db.Milestones.Remove(tempM);//næ ekki að eyða þessum milestone?
 			}
 			_db.SaveChanges();
 			foreach (var x in model.Milestones)
