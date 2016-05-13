@@ -29,13 +29,13 @@
 									<div class="w3-accordion-content w3-white w3-card-4 custom-navanchor">
 										@foreach (var m in a.Milestones)
 										{
-											@Ajax.ActionLink(m.Name, "ContentRender", "Teacher", new {id = m.Id}, new AjaxOptions() {UpdateTargetId = "content", InsertionMode = InsertionMode.Replace}, new {@class = "custom-milestoneanchor"})
+											@Ajax.ActionLink(m.Name, "ContentRender", "Teacher", new {id = m.Id}, new AjaxOptions() {UpdateTargetId = "content", InsertionMode = InsertionMode.Replace}, new {@class = "custom-milestoneanchor loader"})
 										}
 									</div>
 								</div>
 							}
 						}
-						@Ajax.ActionLink("Add assignment", "CreateAssignment", "Teacher", new { courseId = c.Id}, new AjaxOptions() {UpdateTargetId = "content", InsertionMode = InsertionMode.Replace}, new {@class = "custom-adder icon-hack"})
+						@Ajax.ActionLink("Add assignment", "CreateAssignment", "Teacher", new { courseId = c.Id}, new AjaxOptions() {UpdateTargetId = "content", InsertionMode = InsertionMode.Replace}, new {@class = "custom-adder icon-hack loader"})
 					}
 				}
 			</nav>
@@ -43,7 +43,7 @@
 		<div id="content" class="col-md-10">
 			@Html.Partial("_HomeView")
 		</div>
-			<div class="se-pre-con"></div>
-		</div>
+	    <div class="injector"></div>
+    		</div>
 </div>
 
