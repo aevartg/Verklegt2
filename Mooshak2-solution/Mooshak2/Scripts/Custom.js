@@ -198,3 +198,31 @@ $(".btn-danger").click(function()
 });
 
 $(".icon-hack").html('<i class="fa fa-plus-square" aria-hidden="true"></i> Add assignment');
+
+
+
+$(document).ready(function()
+{
+	var stringOpenDate = $("div.hidden.open-date").text();
+	var stringCloseDate = $("div.hidden.close-date").text();
+	var resOpen = stringOpenDate.substring(8);
+	var resClose = stringCloseDate.substring(8);
+
+	var openDate = date(resOpen);
+	var closeDate = date(resClose);
+	var q = new Date();
+	var m = q.getMonth() + 1;
+	var d = q.getDay();
+	var y = q.getYear();
+	var now = date(m, d, y);
+
+	if (openDate < now && closeDate > now)
+	{
+		$("div.hidden.open-date").replaceWith("<div class='openD'>(Open)</div>")
+	}
+	else
+	{
+		$("div.hidden.open-date").replaceWith("<div class='openD'>(Not open)</div>")
+	}
+	//náði ekki að compare'a datein :(
+})

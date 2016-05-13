@@ -408,3 +408,13 @@ table.table.table-hover td
 {
     margin-top: -10px;
 }
+
+.openD
+{
+	color: green;
+}
+
+.closeD
+{
+	color: red;
+}
