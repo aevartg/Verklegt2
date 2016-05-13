@@ -9,6 +9,7 @@ namespace Mooshak2.Models.EntityClasses
 		[Key]
 		public int Id { get; set; }
 
+		[Required]
 		[ForeignKey("Course")]
 		public int CourseId { get; set; }
 

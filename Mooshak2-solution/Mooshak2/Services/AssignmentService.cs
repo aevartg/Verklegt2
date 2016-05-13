@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using LinqToDB;
 using Mooshak2.Models;
 using Mooshak2.Models.EntityClasses;
 
@@ -123,7 +124,8 @@ namespace Mooshak2.Services
 			foreach (var item in model.Milestones)
 			{
 				Milestone tempM = milestoneService.GetMilestoneByID(item.Id);
-				_db.Milestones.Remove(tempM);//næ ekki að eyða þessum milestone?
+				_db.Milestones.Attach(tempM);
+				_db.Milestones.Remove(tempM);
 			}
 			_db.SaveChanges();
 			foreach (var x in model.Milestones)
