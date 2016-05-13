@@ -82,5 +82,11 @@ namespace Mooshak2.Controllers
 			return File(x.Blob, "application/javascript", x.SubmitDate.ToShortDateString() + "_submissionId" + submissionId + x.FileExtension);
 		}
 
+		public ActionResult DeleteAssignment(int Id)
+		{
+			new AssignmentService().DeleteAssignment(Id);
+			return RedirectToAction("Index");
+		}
+
 	}
 }

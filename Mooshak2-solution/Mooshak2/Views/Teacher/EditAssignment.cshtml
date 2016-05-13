@@ -59,20 +59,21 @@
 									@Html.TextBoxFor(x => x.Name, Model.Name, new {@class = "form-control col-md-5"})
 								</div>
 								<div>
-									<button type="button" class="btn btn-danger deleteassignment">Delete assignment</button>
+									@Html.ActionLink("Delete assignment", "DeleteAssignment", new { Id = Model.AssignId }, new { @class = "btn btn-danger deleteassignment" })
 								</div>
 							</div>
 						</div>
 						<div class="row milestonepadding">
 							<div class="form-group">
-								<div class="col-md-10">
+								<div class="col-md-10 floater">
 									<label class="control-label">Date Open:</label>
-									@Html.EditorFor(x => x.DateOpen, Model.DateOpen)
+									@Html.TextBoxFor(x => x.DateOpen, Model.DateOpen)
 								</div>
-								<div class="col-md-10">
+								<div class="col-md-10 floater">
 									<label class="control-label">Date Close:</label>
-									@Html.EditorFor(x => x.DateClose, Model.DateClose)
+									@Html.TextBoxFor(x => x.DateClose, Model.DateClose)
 								</div>
+								@Html.ActionLink("Cancel", "Index", new { Id = Model.AssignId }, new { @class = "btn btn-default deleteassignment" })
 							</div>
 						</div>
 					</div>
