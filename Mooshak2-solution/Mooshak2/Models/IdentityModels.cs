@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Mooshak2.Models.EntityClasses;
@@ -27,18 +29,32 @@ namespace Mooshak2.Models
 		}
 	}
 
-	public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+	public interface IAppDataContext
 	{
+		IDbSet<ApplicationUser> Users { get; set; }
+		IDbSet<Course> Courses { get; set; }
+		IDbSet<Milestone> Milestones { get; set; }
+		IDbSet<Assignment> Assignments { get; set; }
+		IDbSet<InputOutput> InputOutputs { get; set; }
+		IDbSet<Submission> Submissions { get; set; }
+		IDbSet<UserOutput> UserOutputs { get; set; }
+		int SaveChanges();
+	}
+
+	public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IAppDataContext
+	{
+
+
 		public ApplicationDbContext() : base("DefaultConnection", false)
 		{
 		}
-
-		public DbSet<Course> Courses { get; set; }
-		public DbSet<Milestone> Milestones { get; set; }
-		public DbSet<Assignment> Assignments { get; set; }
-		public DbSet<InputOutput> InputOutputs { get; set; }
-		public DbSet<Submission> Submissions { get; set; }
-		public DbSet<UserOutput> UserOutputs { get; set; }
+		override public IDbSet<ApplicationUser> Users { get; set; }
+		public IDbSet<Course> Courses { get; set; }
+		public IDbSet<Milestone> Milestones { get; set; }
+		public IDbSet<Assignment> Assignments { get; set; }
+		public IDbSet<InputOutput> InputOutputs { get; set; }
+		public IDbSet<Submission> Submissions { get; set; }
+		public IDbSet<UserOutput> UserOutputs { get; set; }
 
 		public static ApplicationDbContext Create()
 		{

@@ -13,11 +13,11 @@ namespace Mooshak2.Services
 {
 	public class CourseService
 	{
-		private ApplicationDbContext _db;
+		private readonly IAppDataContext _db;
 
-		public CourseService()
+		public CourseService(IAppDataContext context)
 		{
-			_db = new ApplicationDbContext();
+			_db = context ?? new ApplicationDbContext();
 		}
 
 		public List<CourseViewModel> GetCourseViewModels()
@@ -38,7 +38,7 @@ namespace Mooshak2.Services
 				foreach (var course in courses)
 				{
 					var assignmentList = new List<AssignmentNavViewModel>();
-					assignmentList = new AssignmentService().GetAssignmentNavViewModels(course.Id);
+					assignmentList = new AssignmentService(null).GetAssignmentNavViewModels(course.Id);
 
 					var courseViewModeltemp = new CourseViewModel()
 					{
@@ -70,7 +70,7 @@ namespace Mooshak2.Services
 		public AdminCourseViewModel GetAdminCourseViewModel(int id) // er þetta notað?
 		{
 			var model = new AdminCourseViewModel();
-			UserService c = new UserService();
+			UserService c = new UserService(null);
 			model.Name = GetCourseById(id).Name;
 			model.AllTeachers = c.GetAllTeachers();
 			model.Id = id;
@@ -129,7 +129,7 @@ namespace Mooshak2.Services
 			var course = _db.Courses.Where(y => y.Id == model.Id).Include(x => x.Users).SingleOrDefault();
 			course.Name = model.Name;
 			ICollection<ApplicationUser> tempList = new List<ApplicationUser>();
-			UserService c = new UserService();
+			UserService c = new UserService(null);
 			List<UserViewModel> teachersBefore = c.GetTeachersInCourse(course.Id);
 			List<UserViewModel> studentsBefore = c.GetStudentsInCourse(course.Id);
 			var usersBefore = teachersBefore.Concat(studentsBefore);
@@ -196,8 +196,8 @@ namespace Mooshak2.Services
 			model.Id = course.Id;
 			model.Name = course.Name;
 
-			List<UserViewModel> tempTeachersList = new UserService().GetAllTeachers();
-			List<UserViewModel> tempTeachersInCourseList = new UserService().GetTeachersInCourse(course.Id);
+			List<UserViewModel> tempTeachersList = new UserService(null).GetAllTeachers();
+			List<UserViewModel> tempTeachersInCourseList = new UserService(null).GetTeachersInCourse(course.Id);
 			List<UserViewModel> tempRemoveTeacherList = new List<UserViewModel>();
 			foreach (var t in tempTeachersList)
 			{
@@ -217,8 +217,8 @@ namespace Mooshak2.Services
 			model.Teachers = new SelectList(tempTeachersList, "Id", "username");
 			model.TeachersInCourse = new SelectList(tempTeachersInCourseList, "Id", "username");
 
-			List<UserViewModel> tempStudentList = new UserService().GetAllStudents();
-			List<UserViewModel> tempStudentsInCourseList = new UserService().GetStudentsInCourse(course.Id);
+			List<UserViewModel> tempStudentList = new UserService(null).GetAllStudents();
+			List<UserViewModel> tempStudentsInCourseList = new UserService(null).GetStudentsInCourse(course.Id);
 			List<UserViewModel> tempRemovestudentList = new List<UserViewModel>();
 			foreach (var s in tempStudentList)
 			{

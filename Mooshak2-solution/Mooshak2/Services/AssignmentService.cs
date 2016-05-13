@@ -9,11 +9,11 @@ namespace Mooshak2.Services
 {
 	public class AssignmentService
 	{
-		private readonly ApplicationDbContext _db;
+		private readonly IAppDataContext _db;
 
-		public AssignmentService()
+		public AssignmentService(IAppDataContext context)
 		{
-			_db = new ApplicationDbContext();
+			_db = context ?? new ApplicationDbContext();
 		}
 
 		public List<AssignmentNavViewModel> GetAssignmentNavViewModels(int id)
@@ -27,7 +27,7 @@ namespace Mooshak2.Services
 				return emptyList;
 			}
 			var assignmentNavViewModels = new List<AssignmentNavViewModel>();
-			var service = new MilestoneService();
+			var service = new MilestoneService(null);
 			foreach (var item in assignments)
 			{
 				var temp = new AssignmentNavViewModel
@@ -71,8 +71,8 @@ namespace Mooshak2.Services
 		public AssignmentViewModel GetAssignmentViewModel(string userId, int milestoneId)
 		{
 			var model = new AssignmentViewModel();
-			var m = new MilestoneService();
-			var s = new SubmissionService();
+			var m = new MilestoneService(null);
+			var s = new SubmissionService(null);
 			var milestone = m.GetMilestoneByID(milestoneId);
 			model.Id = milestoneId;
 			model.Name = milestone.Name;
@@ -105,8 +105,8 @@ namespace Mooshak2.Services
 				model.CourseId = assign.CourseId;
 				model.DateClose = assign.DateClose;
 				model.DateOpen = assign.DateOpen;
-				model.Milestones = new MilestoneService().GetCreateMilestoneViewModels(Id);
-				model.NavModel = new CourseService().GetCourseViewModels();
+				model.Milestones = new MilestoneService(null).GetCreateMilestoneViewModels(Id);
+				model.NavModel = new CourseService(null).GetCourseViewModels();
 				return model;
 			}
 		}
@@ -119,8 +119,8 @@ namespace Mooshak2.Services
 			assignment.DateOpen = model.DateOpen;
 
 			var tempAssignment = GetAssignmentById(model.AssignId);
-			var milestoneService = new MilestoneService();
-			var inputOutputService = new InputOutputService();
+			var milestoneService = new MilestoneService(null);
+			var inputOutputService = new InputOutputService(null);
 			foreach (var item in model.Milestones)
 			{
 				Milestone tempM = milestoneService.GetMilestoneByID(item.Id);

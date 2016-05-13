@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using Mooshak2.Models.EntityClasses;
 
 namespace Mooshak2.Models
 {

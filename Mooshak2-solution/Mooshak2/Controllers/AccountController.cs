@@ -139,7 +139,7 @@ namespace Mooshak2.Controllers
         public ActionResult CreateUser()
         {
 			RegisterViewModel model = new RegisterViewModel();
-			model.NavModel = new CourseService().GetAdminNavCourseViewModels();
+			model.NavModel = new CourseService(null).GetAdminNavCourseViewModels();
 			return View("CreateUser", model);
         }
 

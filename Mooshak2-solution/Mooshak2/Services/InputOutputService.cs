@@ -9,11 +9,11 @@ namespace Mooshak2.Services
 {
 	public class InputOutputService
 	{
-		private readonly ApplicationDbContext _db;
+		private readonly IAppDataContext _db;
 
-		public InputOutputService()
+		public InputOutputService(IAppDataContext context)
 		{
-			_db = new ApplicationDbContext();
+			_db = context ?? new ApplicationDbContext();
 		}
 
 		public bool CreateInputOutput(int milestoneId, HttpPostedFileBase file)
