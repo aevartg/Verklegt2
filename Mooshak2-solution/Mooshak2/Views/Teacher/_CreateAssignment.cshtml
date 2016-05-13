@@ -9,41 +9,48 @@
 @Scripts.Render("~/Scripts/Custom.js")
 <link rel="stylesheet" href="~/Content/sortable-theme-minimal.css" />
 
-<h2>CreateCourse</h2>
+<h2>Create Assignment</h2>
+<hr/>
 
 @{
-	using (Html.BeginForm("CreateAssignment", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data", id = "assignmentform" }))
+	using (Html.BeginForm("CreateAssignment", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data", id = "assignmentform", required = "required" }))
 	{
 		<div class="row">
 			<div class="form-group">
-				<label class="col-xs-3 control-label">Assignment Name</label>
+				<label class="control-label">Assignment Name</label>
 				<div>
 					@Html.HiddenFor(x => Model.CourseId)
 					@Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
-					<input type="text" name="name" class="form-control"/>
+					<input type="text" name="name" class="form-control" required="required"/>
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			@Html.EditorFor(x => x.DateOpen, Model.DateOpen)
-			@Html.EditorFor(x => x.DateClose, Model.DateClose)
-		</div>
-
-
+        <div class="row milestonepadding custom-buttonfile">
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label class="control-label">Date Open:</label>
+                    @Html.EditorFor(x => x.DateOpen, Model.DateOpen)
+                </div>
+                <div class="col-md-3">
+                    <label class="control-label">Date Close:</label>
+                    @Html.EditorFor(x => x.DateClose, Model.DateClose)
+                </div>
+            </div>
+        </div>
 		<div class="form-group">
 			<div class="row">
 				<label class="col-xs-3 control-label">Milestones</label>
 			</div>
 			<div class ="row">
 				<div class="col-xs-3">
-					<input type="text" class="form-control" name="milestones[0].name" placeholder="Title"/>
+					<input type="text" class="form-control" name="milestones[0].name" placeholder="Title" required="required"/>
 				</div>
 				<div class="col-xs-2">
-					<input type="text" class="form-control" name="milestones[0].weight" placeholder="Weight"/>
+					<input type="text" class="form-control" name="milestones[0].weight" placeholder="Weight" required="required"/>
 				</div>
 				<div class="col-xs-1">
 					<span class="btn btn-default btn-file">
-						Browse <input type="file" name="milestones[0].file" />
+						Browse <input type="file" name="milestones[0].file"/>
 					</span>
 				</div>
 				<div class="col-xs-1">
@@ -53,8 +60,6 @@
 				</div>
 			</div>
 		</div>
-
-
 		<div class="form-group hide" id="assignmenttempplate">
 			<div class="row">
 				<div class="col-xs-3">
@@ -65,7 +70,7 @@
 				</div>
 				<div class="col-xs-1">
 					<span class="btn btn-default btn-file">
-						Browse <input type="file" name="file" />
+						Browse <input type="file" name="file" required="required"/>
 					</span>
 				</div>
 				<div class="col-xs-1">
@@ -75,15 +80,15 @@
 				</div>
 			</div>
 		</div>
-
-
-		<div class="form-group">
-			<div class="col-xs-5 col-xs-offset-1">
-				<button type="submit" class="btn btn-default">Submit</button>
-			</div>
-			<div class="col-xs-5 col-xs-offset-1">
-				<button type="submit" class="btn btn-default">Cancel</button>
-			</div>
+		<div class="form-group col-md-2">
+            <div>
+                <div>
+                    <button type="submit" class="btn btn-default custom-button">Submit</button>
+                </div>
+                <div>
+                @Html.ActionLink("Cancel", "Index", "", new { @class = "btn btn-default" })
+            </div>
+		    </div>
 		</div>
 	}
 }
