@@ -119,21 +119,15 @@ namespace Mooshak2.Services
 			assignment.DateOpen = model.DateOpen;
 
 			var tempAssignment = GetAssignmentById(model.AssignId);
+
 			var milestoneService = new MilestoneService(null);
 			var inputOutputService = new InputOutputService(null);
+
 			foreach (var item in model.Milestones)
 			{
-				Milestone tempM = milestoneService.GetMilestoneByID(item.Id);
-				_db.Milestones.Attach(tempM);
-				_db.Milestones.Remove(tempM);
+				new MilestoneService(null).UpdateMilestone(item);
 			}
 			_db.SaveChanges();
-			foreach (var x in model.Milestones)
-			{
-				milestoneService.CreateMilestone(tempAssignment.Id, x.Name, x.Weight);
-				var tempMilestone = milestoneService.GetMilestoneByName(tempAssignment.Id, x.Name);
-				inputOutputService.CreateInputOutput(tempMilestone.Id, x.File);
-			}
 		}
 
 		public void DeleteAssignment(int Id)

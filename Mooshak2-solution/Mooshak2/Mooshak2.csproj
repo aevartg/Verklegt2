@@ -531,8 +531,6 @@
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Student\_Content.cshtml" />
-    <Content Include="Views\Student\Student.cshtml" />
-    <Content Include="Views\Student\UserSettings.cshtml" />
     <Content Include="Views\Admin\EditUser.cshtml" />
     <Content Include="Views\Teacher\_CreateAssignment.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
@@ -543,6 +541,7 @@
     <Content Include="Views\Admin\_HomeView.cshtml" />
     <Content Include="Views\Student\_HomeView.cshtml" />
     <Content Include="Views\Error\FailFish.cshtml" />
+    <Content Include="Views\Student\ChangePassword.cshtml" />
     <None Include="Views\Student\_InputOutput.cshtml" />
     <Content Include="Views\Teacher\EditAssignment.cshtml" />
     <Content Include="Views\Teacher\_HomeView.cshtml" />

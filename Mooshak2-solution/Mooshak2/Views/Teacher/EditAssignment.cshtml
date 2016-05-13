@@ -37,13 +37,13 @@
 								</div>
 							}
 						}
-						@Ajax.ActionLink("Add assignment", "CreateAssignment", "Teacher", new { id = c.Id }, new AjaxOptions() { UpdateTargetId = "content", InsertionMode = InsertionMode.Replace }, new { @class = "custom-adder" })
+						@Ajax.ActionLink("Add assignment", "CreateAssignment", "Teacher", new { courseId = c.Id }, new AjaxOptions() { UpdateTargetId = "content", InsertionMode = InsertionMode.Replace }, new { @class = "custom-adder icon-hack loader" })
 					}
 				}
 			</nav>
 		</div>
 		<div id="content" class="col-md-10">
-			<h4>Edit Assignment</h4>
+			<h2>Edit Assignment</h2>
 			<hr/>
 			@{
 				using (Html.BeginForm("EditAssignment", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data", id = "assignmentform" }))
@@ -56,7 +56,7 @@
 									@Html.HiddenFor(x => Model.CourseId)
 									@Html.HiddenFor(x => Model.AssignId)
 									@Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
-									@Html.TextBoxFor(x => x.Name, Model.Name, new {@class = "form-control col-md-5"})
+									@Html.TextBoxFor(x => x.Name, Model.Name, new {@class = "form-control col-md-5", required = "required" })
 								</div>
 								<div>
 									@Html.ActionLink("Delete assignment", "DeleteAssignment", new { Id = Model.AssignId }, new { @class = "btn btn-danger deleteassignment" })
@@ -88,11 +88,11 @@
 							{
 								@Html.HiddenFor(x => Model.Milestones[i].Id )
 								<div class="milestonepadding">
-									@Html.EditorFor(x => Model.Milestones[i].Name, Model.Milestones[i].Name, new {placeholder = "title", @class = "form-control milestonefloat"})
-									@Html.EditorFor(x => Model.Milestones[i].Weight, Model.Milestones[i].Weight.ToString(), new {placeholder = "Weight", @class = "form-control milestonefloat"})
-									<span class="btn btn-default btn-file">
-										Browse @Html.TextBoxFor(x => Model.Milestones[i].File, new {type = "file"})
-									</span>
+									@Html.EditorFor(x => Model.Milestones[i].Name, Model.Milestones[i].Name, new {placeholder = "title", @class = "form-control milestonefloat", required = "required" })
+									@Html.EditorFor(x => Model.Milestones[i].Weight, Model.Milestones[i].Weight.ToString(), new {placeholder = "Weight", @class = "form-control milestonefloat", required = "required" })
+                                    <div class="custom-buttonfile">
+                                        <input type="file" id="file" name="file" class="btn btn-file btn-default" />
+                                    </div>
 								</div>
 							}
 						</div>
