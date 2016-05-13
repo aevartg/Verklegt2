@@ -47,4 +47,31 @@ namespace Mooshak2.Models
 		public RegisterViewModel Model { get; set; }
 		public AdminNavCourseViewModel NavModel { get; set; }
 	}
+
+	public class AdminNavCourseViewModel
+	{
+		public int Id { get; set; }
+		public string Name { get; set; }
+
+	}
+
+	public class CourseViewModel
+	{
+		public int Id { get; set; }
+		public string Name { get; set; }
+		public List<AssignmentNavViewModel> Assignments { get; set; }
+	}
+
+	public class ListUsersViewModel
+	{
+		public List<UserViewModel> AllTeachers { get; set; }
+		public List<UserViewModel> AllUsers { get; set; }
+		public List<UserViewModel> AllStudents { get; set; }
+	}
+
+	public class UserViewModel
+	{
+		public string Id { get; set; }
+		public string username { get; set; }
+	}
 }
