@@ -59,7 +59,7 @@ $("#addstudent")
 
 $("#RemoveTeacher")
 	.click(function () {
-		if ($("#selected option").length > 1)
+		if ($("#selected option"))
 		{
 			$("#selected option:selected").appendTo("#notselected").removeAttr("selected");
 		}
