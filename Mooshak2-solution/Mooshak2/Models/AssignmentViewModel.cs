@@ -59,7 +59,7 @@ namespace Mooshak2.Models
 		public DateTime DateClose { get; set; }
 
 		[Required(ErrorMessage = "Milestones Required")]
-		public IEnumerable<CreateMilestoneViewModel> Milestones { get; set; }
+		public List<CreateMilestoneViewModel> Milestones { get; set; }
 		public List<CourseViewModel> NavModel { get; set; }
 	}
 

@@ -83,14 +83,14 @@
 							</div>
 							<label class="control-label ">Title:</label>
 							<label class="control-label weightlabel">Weight:</label>
-							@foreach (var item in Model.Milestones)
+							@for(var i = 0; i < Model.Milestones.Count(); i++ )
 							{
-								@Html.HiddenFor(x => item.Id)
+								@Html.HiddenFor(x => Model.Milestones[i].Id )
 								<div class="milestonepadding">
-									@Html.EditorFor(x => item.Name, item.Name, new {placeholder = "title", @class = "form-control milestonefloat"})
-									@Html.EditorFor(x => item.Weight, item.Weight.ToString(), new {placeholder = "Weight", @class = "form-control milestonefloat"})
+									@Html.EditorFor(x => Model.Milestones[i].Name, Model.Milestones[i].Name, new {placeholder = "title", @class = "form-control milestonefloat"})
+									@Html.EditorFor(x => Model.Milestones[i].Weight, Model.Milestones[i].Weight.ToString(), new {placeholder = "Weight", @class = "form-control milestonefloat"})
 									<span class="btn btn-default btn-file">
-										Browse <input type="file" name="milestones[0].file" />
+										Browse @Html.TextBoxFor(x => Model.Milestones[i].File, new {type = "file"})
 									</span>
 								</div>
 							}
