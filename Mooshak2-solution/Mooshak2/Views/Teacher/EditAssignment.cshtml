@@ -88,13 +88,10 @@
 							{
 								@Html.HiddenFor(x => Model.Milestones[i].Id )
 								<div class="milestonepadding">
-<<<<<<< HEAD
 									@Html.EditorFor(x => Model.Milestones[i].Name, Model.Milestones[i].Name, new {placeholder = "title", @class = "form-control milestonefloat"})
 									@Html.EditorFor(x => Model.Milestones[i].Weight, Model.Milestones[i].Weight.ToString(), new {placeholder = "Weight", @class = "form-control milestonefloat"})
-=======
 									@Html.TextBoxFor(x => item.Name, item.Name, new {placeholder = "title", @class = "form-control milestonefloat"})
 									@Html.TextBoxFor(x => item.Weight, item.Weight.ToString(), new {placeholder = "Weight", @class = "form-control milestonefloat"})
->>>>>>> 86ba6008adb83481cf872164f1ce878806b7d065
 									<span class="btn btn-default btn-file">
 										Browse @Html.TextBoxFor(x => Model.Milestones[i].File, new {type = "file"})
 									</span>
