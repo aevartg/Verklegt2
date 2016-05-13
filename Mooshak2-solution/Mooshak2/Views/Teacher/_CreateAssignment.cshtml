@@ -43,17 +43,17 @@
 			</div>
 			<div class ="row">
 				<div class="col-xs-3">
-					<input type="text" class="form-control" name="milestones[0].name" placeholder="Title" required="required"/>
+					<input type="text" class="form-control" name="milestones[0].name" placeholder="Title"/>
 				</div>
 				<div class="col-xs-2">
-					<input type="text" class="form-control" name="milestones[0].weight" placeholder="Weight" required="required"/>
+					<input type="text" class="form-control" name="milestones[0].weight" placeholder="Weight"/>
 				</div>
 				<div class="col-xs-1">
-					<span class="btn btn-default btn-file">
-						Browse <input type="file" name="milestones[0].file"/>
-					</span>
+                    <div class="custom-buttonfile">
+                        <input type="file" id="file" name="file" class="btn btn-file btn-default filemargin" />
+                    </div>
 				</div>
-				<div class="col-xs-1">
+				<div class="col-md-10">
 					<button type="button" class="btn btn-default addbutton">
 						Add a row
 					</button>
@@ -69,11 +69,11 @@
 					<input type="text" class="form-control" name="weight" placeholder="Weight"/>
 				</div>
 				<div class="col-xs-1">
-					<span class="btn btn-default btn-file">
-						Browse <input type="file" name="file" required="required"/>
-					</span>
+                    <div class="custom-buttonfile">
+                        <input type="file" id="file" name="file" class="btn btn-file btn-default filemargin" />
+                    </div>
 				</div>
-				<div class="col-xs-1">
+				<div class="col-md-10">
 					<button type="button" class="btn btn-default removebtn">
 						Remove Row
 					</button>

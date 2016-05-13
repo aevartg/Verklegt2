@@ -403,3 +403,8 @@ table.table.table-hover td
 {
     padding-top: 10px;
 }
+
+.filemargin
+{
+    margin-top: -10px;
+}
