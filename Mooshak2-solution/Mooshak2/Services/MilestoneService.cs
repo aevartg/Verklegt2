@@ -95,5 +95,14 @@ namespace Mooshak2.Services
 
 			}
 		}
+
+		public void UpdateMilestone(CreateMilestoneViewModel model)
+		{
+			Milestone milestone = GetMilestoneByID(model.Id);
+			milestone.Name = model.Name;
+			milestone.Weight = model.Weight;
+			_db.SaveChanges();
+			new InputOutputService().UpdateInputOutputs(model);
+		}
 	}
 }

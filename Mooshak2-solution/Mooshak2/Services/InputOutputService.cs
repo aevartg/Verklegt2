@@ -91,5 +91,22 @@ namespace Mooshak2.Services
 			_db.SaveChanges();
 			return Tuple.Create(pass, fails, stringList);
 		}
+
+		public List<InputOutput> GetInputOutputsByMilestoneId(int Id)
+		{
+			var inputOutputs = (from x in _db.InputOutputs where x.MilestoneId == Id select x).ToList();
+			return inputOutputs;
+		}
+
+		public void UpdateInputOutputs(CreateMilestoneViewModel model)
+		{
+			var old = GetInputOutputsByMilestoneId(model.Id);
+			foreach (var item in old)
+			{
+				_db.InputOutputs.Remove(item);
+			}
+			_db.SaveChanges();
+			CreateInputOutput(model.Id, model.File);
+		}
 	}
 }
