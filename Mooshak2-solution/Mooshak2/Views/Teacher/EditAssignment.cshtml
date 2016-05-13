@@ -63,17 +63,17 @@
 								</div>
 							</div>
 						</div>
-						<div class="row milestonepadding">
+						<div class="row milestonepadding floater">
 							<div class="form-group">
-								<div class="col-md-10 floater">
+								<div class="col-md-3">
 									<label class="control-label">Date Open:</label>
 									@Html.TextBoxFor(x => x.DateOpen, Model.DateOpen)
 								</div>
-								<div class="col-md-10 floater">
+								<div class="col-md-3">
 									<label class="control-label">Date Close:</label>
 									@Html.TextBoxFor(x => x.DateClose, Model.DateClose)
 								</div>
-								@Html.ActionLink("Cancel", "Index", new { Id = Model.AssignId }, new { @class = "btn btn-default deleteassignment" })
+								@Html.ActionLink("Cancel", "Index", "", new { @class = "btn btn-default cancelassignment" })
 							</div>
 						</div>
 					</div>
@@ -88,8 +88,8 @@
 							{
 								@Html.HiddenFor(x => item.Id)
 								<div class="milestonepadding">
-									@Html.EditorFor(x => item.Name, item.Name, new {placeholder = "title", @class = "form-control milestonefloat"})
-									@Html.EditorFor(x => item.Weight, item.Weight.ToString(), new {placeholder = "Weight", @class = "form-control milestonefloat"})
+									@Html.TextBoxFor(x => item.Name, item.Name, new {placeholder = "title", @class = "form-control milestonefloat"})
+									@Html.TextBoxFor(x => item.Weight, item.Weight.ToString(), new {placeholder = "Weight", @class = "form-control milestonefloat"})
 									<span class="btn btn-default btn-file">
 										Browse <input type="file" name="milestones[0].file" />
 									</span>
