@@ -451,6 +451,7 @@
     <Compile Include="Models\EntityClasses\Milestone.cs" />
     <Compile Include="Models\EntityClasses\Submission.cs" />
     <Compile Include="Models\MilestoneViewModel.cs" />
+    <Compile Include="Models\TeacherViewModels.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AssignmentService.cs" />
@@ -549,6 +550,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
