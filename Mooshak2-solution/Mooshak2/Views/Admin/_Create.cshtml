@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="form-group col-md-3">
-                    @Html.ListBoxFor(x => x.SelectedTeachers, new List<SelectListItem>(), new {id = "selected", @class = "leitarlisti notsearch", size = "15", required = "required" })
+                    @Html.ListBoxFor(x => x.SelectedTeachers, new List<SelectListItem>(), new {id = "selected", @class = "leitarlisti notsearch", size = "15" })
                     @Html.ValidationMessageFor(model => model.SelectedTeachers, "", new {@class = "text-danger"})
                 </div>
                 <div class="form-group col-md-3">
