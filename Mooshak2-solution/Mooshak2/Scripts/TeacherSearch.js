@@ -51,20 +51,3 @@
 				$row.remove();
 			});
 });
-
-$("assignmentform").on("submit", function ()
-{
-    
-	var elems = document.getElementsByClassName("weight");
-	var sum = 0;
-	for (var i = 0; i < elems.length; i++) {
-		sum += Number(elems[i].value);
-	}
-
-	if (sum != 100)
-	{
-		confirm("þetta virkar");
-		return false;
-	}
-
-});
