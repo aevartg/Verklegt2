@@ -418,3 +418,15 @@ table.table.table-hover td
 {
 	color: red;
 }
+
+@font-face
+{
+    font-family: myFirstFont;
+    src: url("/fonts/Bebasneue.otf");
+}
+
+.ci-font
+{
+    font-family: myFirstFont;
+	margin-left: -110px;
+}
