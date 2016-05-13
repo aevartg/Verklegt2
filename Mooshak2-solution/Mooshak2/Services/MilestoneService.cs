@@ -7,11 +7,11 @@ namespace Mooshak2.Services
 {
 	public class MilestoneService
 	{
-		private readonly ApplicationDbContext _db;
+		private readonly IAppDataContext _db;
 
-		public MilestoneService()
+		public MilestoneService(IAppDataContext context)
 		{
-			_db = new ApplicationDbContext();
+			_db = context ?? new ApplicationDbContext();
 		}
 
 		public List<MilestoneNavViewModel> GetMilestoneNavById(int id)
@@ -102,7 +102,7 @@ namespace Mooshak2.Services
 			milestone.Name = model.Name;
 			milestone.Weight = model.Weight;
 			_db.SaveChanges();
-			new InputOutputService().UpdateInputOutputs(model);
+			new InputOutputService(null).UpdateInputOutputs(model);
 		}
 	}
 }

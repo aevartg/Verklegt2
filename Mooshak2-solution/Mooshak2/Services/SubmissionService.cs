@@ -10,11 +10,11 @@ namespace Mooshak2.Services
 {
 	public class SubmissionService
 	{
-		private readonly ApplicationDbContext _db;
+		private readonly IAppDataContext _db;
 
-		public SubmissionService()
+		public SubmissionService(IAppDataContext context)
 		{
-			_db = new ApplicationDbContext();
+			_db = context ?? new ApplicationDbContext();
 		}
 
 		public Submission GetSubmissionById(int id)
@@ -41,7 +41,7 @@ namespace Mooshak2.Services
 				var date = DateTime.Now;
 				if (Helper.BytesToFile(fileExtension, blob))
 				{
-					var temp = new InputOutputService().GetJavascriptResultTuples(milestoneId);
+					var temp = new InputOutputService(null).GetJavascriptResultTuples(milestoneId);
 					var submission = new Submission
 									{
 										UserId = userId,

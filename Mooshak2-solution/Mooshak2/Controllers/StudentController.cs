@@ -13,19 +13,19 @@ namespace Mooshak2.Controllers
 		// GET: Project
 		public ActionResult Index()
 		{
-			var model = new CourseService().GetCourseViewModels();
+			var model = new CourseService(null).GetCourseViewModels();
 			return View(model);
 		}
 
 		public PartialViewResult ContentRender(int id)
 		{
-			var model = new AssignmentService().GetAssignmentViewModel(HttpContext.User.Identity.GetUserId(), id);
+			var model = new AssignmentService(null).GetAssignmentViewModel(HttpContext.User.Identity.GetUserId(), id);
 			return PartialView("_Content", model);
 		}
 
 		public PartialViewResult InputOutputRender(int submissionId, int milestoneId)
 		{
-			var model = new InputOutputService().GetInputsOutputsViewModel(submissionId, milestoneId,
+			var model = new InputOutputService(null).GetInputsOutputsViewModel(submissionId, milestoneId,
 				HttpContext.User.Identity.GetUserId());
 			return PartialView("_InputOutput", model);
 		}
@@ -33,14 +33,14 @@ namespace Mooshak2.Controllers
 		[HttpPost]
 		public PartialViewResult SubmitForm(int id,HttpPostedFileBase file)
 		{
-			new SubmissionService().CreateSubmission(file, id,Path.GetExtension(file.FileName));
-			var model = new AssignmentService().GetAssignmentViewModel(HttpContext.User.Identity.GetUserId(), id);
+			new SubmissionService(null).CreateSubmission(file, id,Path.GetExtension(file.FileName));
+			var model = new AssignmentService(null).GetAssignmentViewModel(HttpContext.User.Identity.GetUserId(), id);
 			return PartialView("_content",model);
 		}
 
 		public ActionResult Download(int submissionId)
 		{
-			var x = new SubmissionService().GetSubmissionById(submissionId);
+			var x = new SubmissionService(null).GetSubmissionById(submissionId);
 			return File(x.Blob, "application/javascript", x.SubmitDate.ToShortDateString() + "_submissionId" + submissionId + x.FileExtension);
 		}
 	}

@@ -14,14 +14,14 @@ namespace Mooshak2.Controllers
 		// GET: Admin
 		public ActionResult Index()
 		{
-			var model = new CourseService().GetAdminNavCourseViewModels();
+			var model = new CourseService(null).GetAdminNavCourseViewModels();
 			return View(model);
 		}
 
 		[HttpGet]
 		public PartialViewResult Create()
 		{
-			UserService connection = new UserService();
+			UserService connection = new UserService(null);
 			var model = new CreateCourseViewModel();
 			model.Teachers = new SelectList(connection.GetAllTeachers(), "Id", "username");
 			model.Students = new SelectList(connection.GetAllStudents(), "Id", "username");
@@ -38,7 +38,7 @@ namespace Mooshak2.Controllers
 			}
 			else
 			{
-				new CourseService().CreateCourse(model); 
+				new CourseService(null).CreateCourse(model); 
 			}
 
 			return RedirectToAction("Index"); 
@@ -53,14 +53,14 @@ namespace Mooshak2.Controllers
 			}
 			else
 			{
-				new CourseService().EditCourse(model);
+				new CourseService(null).EditCourse(model);
 			}
 			return RedirectToAction("Index");
 		}
 
 		public PartialViewResult ListUsers()
 		{
-			UserService connection = new UserService();
+			UserService connection = new UserService(null);
 			ListUsersViewModel model = new ListUsersViewModel();
 			model.AllTeachers = connection.GetAllTeachers();
 			model.AllUsers = connection.GetAllUsers();
@@ -100,7 +100,7 @@ namespace Mooshak2.Controllers
 				{
 					model.UserType = 2;
 				}
-				model.NavModel = new CourseService().GetAdminNavCourseViewModels();
+				model.NavModel = new CourseService(null).GetAdminNavCourseViewModels();
 				return View(model);
 			}
 		}
@@ -114,7 +114,7 @@ namespace Mooshak2.Controllers
 			}
 			else
 			{
-				new UserService().EditUser(model);
+				new UserService(null).EditUser(model);
 
 			}
 			return RedirectToAction("Index");
@@ -123,7 +123,7 @@ namespace Mooshak2.Controllers
 		public PartialViewResult ContentRender(int id)
 		{
 
-			CourseService c = new CourseService();
+			CourseService c = new CourseService(null);
 			var course = c.GetCourseById(id);
 			var model = c.GetEditCourseViewModel(course);
 			return PartialView("_Content", model);
@@ -131,13 +131,13 @@ namespace Mooshak2.Controllers
 
 		public ActionResult DeleteUser(string Id)
 		{
-			new UserService().DeleteUser(Id);
+			new UserService(null).DeleteUser(Id);
 			return RedirectToAction("Index");
 		}
 
 		public ActionResult DeleteCourse(int Id)
 		{
-			new CourseService().DeleteCourse(Id);
+			new CourseService(null).DeleteCourse(Id);
 			return RedirectToAction("Index");
 		}
 

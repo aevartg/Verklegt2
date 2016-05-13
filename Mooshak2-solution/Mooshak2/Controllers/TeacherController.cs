@@ -11,7 +11,7 @@ namespace Mooshak2.Controllers
         // GET: Teacher
         public ActionResult Index()
         {
-			var model = new CourseService().GetCourseViewModels();
+			var model = new CourseService(null).GetCourseViewModels();
 			return View(model);
 		}
 
@@ -32,12 +32,12 @@ namespace Mooshak2.Controllers
 			{
 				return PartialView("_CreateAssignment", model);
 			}
-			var assignmentService = new AssignmentService();
+			var assignmentService = new AssignmentService(null);
 			if (assignmentService.CreateAssignment(model.Name, model.CourseId,model.DateOpen,model.DateClose))
 			{
 				var tempAssignment = assignmentService.GetAssignmentByName(model.CourseId, model.Name);
-				var milestoneService = new MilestoneService();
-				var inputOutputService = new InputOutputService();
+				var milestoneService = new MilestoneService(null);
+				var inputOutputService = new InputOutputService(null);
 				foreach (var x in model.Milestones)
 				{
 					milestoneService.CreateMilestone(tempAssignment.Id, x.Name, x.Weight);
@@ -51,19 +51,19 @@ namespace Mooshak2.Controllers
 		public PartialViewResult ContentRender(int id)
 		{
 			var model = new TeacherAssignmentViewModel();
-			var milestone = new MilestoneService().GetMilestoneByID(id);
+			var milestone = new MilestoneService(null).GetMilestoneByID(id);
 			model.AssignId = milestone.AssignmentId;
 			model.MilestoneName = milestone.Name;
-			model.AssignmentName = new AssignmentService().GetAssignmentById(milestone.AssignmentId).Name;
-			model.Submissions = new SubmissionService().GetSubmissionViewModelsByMilestone(id);
-			model.AllStudents = new UserService().GetAllStudents();
+			model.AssignmentName = new AssignmentService(null).GetAssignmentById(milestone.AssignmentId).Name;
+			model.Submissions = new SubmissionService(null).GetSubmissionViewModelsByMilestone(id);
+			model.AllStudents = new UserService(null).GetAllStudents();
 
 			return PartialView("Content", model);
 		}
 
 		public ActionResult EditAssignment(int Id)
 		{
-			var model = new AssignmentService().GetEditAssignmentViewModel(Id);
+			var model = new AssignmentService(null).GetEditAssignmentViewModel(Id);
 			return View(model);
 
 		}
@@ -72,19 +72,19 @@ namespace Mooshak2.Controllers
 		public ActionResult EditAssignment(EditAssignmentViewModel model)
 		{
 
-				new AssignmentService().EditAssignment(model);
+				new AssignmentService(null).EditAssignment(model);
 				return RedirectToAction("Index");
 			
 		}
 		public ActionResult Download(int submissionId)
 		{
-			var x = new SubmissionService().GetSubmissionById(submissionId);
+			var x = new SubmissionService(null).GetSubmissionById(submissionId);
 			return File(x.Blob, "application/javascript", x.SubmitDate.ToShortDateString() + "_submissionId" + submissionId + x.FileExtension);
 		}
 
 		public ActionResult DeleteAssignment(int Id)
 		{
-			new AssignmentService().DeleteAssignment(Id);
+			new AssignmentService(null).DeleteAssignment(Id);
 			return RedirectToAction("Index");
 		}
 

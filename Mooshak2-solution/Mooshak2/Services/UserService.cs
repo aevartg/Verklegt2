@@ -7,11 +7,11 @@ namespace Mooshak2.Services
 {
 	public class UserService
 	{
-		private readonly ApplicationDbContext _db;
+		private readonly IAppDataContext _db;
 
-		public UserService()
+		public UserService(IAppDataContext context)
 		{
-			_db = new ApplicationDbContext();
+			_db = context ?? new ApplicationDbContext();
 		}
 
 
