@@ -15,23 +15,56 @@
             }
         });
     });
+    var index = 0;
+    $("#assignmentform")
+		.on("click",
+			".addbutton",
+			function () {
+				index++;
+				var $template = $("#assignmenttempplate"),
+					$clone = $template
+						.clone()
+						.removeClass("hide")
+						.removeAttr("id")
+						.attr("data-index", index)
+						.insertBefore($template);
+
+				$clone
+					.find("[name=name]")
+					.attr("name", "milestones[" + index + "].name")
+					.end()
+					.find("[name=weight]")
+					.attr("name", "milestones[" + index + "].weight")
+					.end()
+					.find("[name=file]")
+					.attr("name", "milestones[" + index + "].file")
+					.end();
+			});
+
+    $("#assignmentform")
+		.on("click",
+			".removebtn",
+			function () {
+				var $row = $(this).parents(".form-group"),
+					index = $row.attr("data-index");
+
+				$row.remove();
+			});
 });
 
 $("assignmentform").on("submit", function ()
 {
     
-    var elems = document.getElementsByClassName("weight");
+	var elems = document.getElementsByClassName("weight");
+	var sum = 0;
+	for (var i = 0; i < elems.length; i++) {
+		sum += Number(elems[i].value);
+	}
 
-    var sum = 0;
+	if (sum != 100)
+	{
+		confirm("þetta virkar");
+		return false;
+	}
 
-    for (var i = 0; i < elems.length; i++)
-    {
-        sum += elems[i].value;
-    }
-
-    if (sum == 100)
-    {
-        confirm("þetta virkaði");
-        return false;
-    }
 });

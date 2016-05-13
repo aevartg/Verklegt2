@@ -1,26 +1,78 @@
-﻿$(document).ready(function () {
+﻿$(document)
+	.ready(function()
+	{
+		$(".searchclass option")
+			.each(function()
+			{
+				$(this).attr("searchitem", $(this).text().toLowerCase());
+			});
 
-    $(".searchclass option").each(function () {
-        $(this).attr("searchitem", $(this).text().toLowerCase());
-    });
+		$(".leitarbox")
+			.on("keyup",
+				function()
+				{
+					var searchTerm = $(this).val().toLowerCase();
 
-    $(".leitarbox").on("keyup", function () {
+					$(".searchclass option")
+						.each(function()
+						{
+							if ($(this).filter("[searchitem *= " + searchTerm + "]").length > 0 || searchTerm.length < 1)
+							{
+								$(this).show();
+							}
+							else
+							{
+								$(this).hide();
+							}
+						});
+				});
 
-        var searchTerm = $(this).val().toLowerCase();
+	
 
-        $(".searchclass option").each(function () {
+		$(".userlist1").show();
+		$("input[name$='users']")
+			.click(function () {
+				var selected = $("option:selected");
+				selected.removeAttr("selected");
+				$(".hider").hide();
+				var radio = $(this).val();
+				$(".userlist" + radio).show();
+			});
 
-            if ($(this).filter("[searchitem *= " + searchTerm + "]").length > 0 || searchTerm.length < 1) {
-                $(this).show();
-            } else {
-                $(this).hide();
-            }
+		$("#add")
+	.click(function () {
+		$("#notselected option:selected").appendTo("#selected").removeAttr("selected");
+	});
 
-        });
+		$("#createform")
+			.submit(function () {
+				$("#notselected option:selected").removeAttr("selected");
+				var select = $("#selected");
+				$("option", select).prop("selected", true);
+			});
+		$("#addstudent")
+			.click(function () {
+				$("#notselectedstudent option:selected").appendTo("#selectedstudent").removeAttr("selected");
+			});
 
-    });
+		$("#RemoveTeacher")
+			.click(function () {
+				if ($("#selected option").count < 1) {
+					$("#selected option:selected").appendTo("#notselected").removeAttr("selected");
+				}
+			});
 
-});
+		$("#RemoveStudent")
+			.click(function () {
+				$("#selectedstudent option:selected").appendTo("#notselectedstudent").removeAttr("selected");
+			});
+		$("#createform")
+			.submit(function () {
+				$("#notselectedstudent option:selected").removeAttr("selected");
+				var select = $("#selectedstudent");
+				$("option", select).prop("selected", true);
+			});
+	});
 
 $(document)
 	.on("click",
@@ -39,124 +91,59 @@ $(document)
 		});
 
 
-$("#add")
-	.click(function()
-	{
-		$("#notselected option:selected").appendTo("#selected").removeAttr("selected");
-	});
-
-$("#createform").submit(function()
-{
-	$("#notselected option:selected").removeAttr("selected");
-	var select = $("#selected");
-	$("option", select).prop("selected", true);
-})
-
-$("#addstudent")
-	.click(function () {
-	    $("#notselectedstudent option:selected").appendTo("#selectedstudent").removeAttr("selected");
-	});
-
-$("#RemoveTeacher")
-	.click(function () {
-		if ($("#selected option"))
-		{
-			$("#selected option:selected").appendTo("#notselected").removeAttr("selected");
-		}
-	});
-
-$("#RemoveStudent").click(function()
-{
-	$("#selectedstudent option:selected").appendTo("#notselectedstudent").removeAttr("selected");
-})
-
-$("#createform").submit(function () {
-    $("#notselectedstudent option:selected").removeAttr("selected");
-    var select = $("#selectedstudent");
-    $("option", select).prop("selected", true);
-})
-
-$(document).ready(function()
-{
-	var index = 0;
-	$("#assignmentform")
-		.on("click",
-			".addbutton",
-			function()
-			{
-				index++;
-				var $template = $("#assignmenttempplate"),
-					$clone = $template
-						.clone()
-						.removeClass("hide")
-						.removeAttr("id")
-						.attr("data-index", index)
-						.insertBefore($template);
-
-				$clone
-					.find("[name=name]")
-					.attr("name", "milestones[" + index + "].name")
-					.end()
-					.find("[name=weight]")
-					.attr("name", "milestones[" + index + "].weight")
-					.end()
-					.find("[name=file]")
-					.attr("name", "milestones[" + index + "].file")
-					.end();
-			});
-
-	$("#assignmentform")
-		.on("click",
-			".removebtn",
-			function()
-			{
-				var $row = $(this).parents(".form-group"),
-					index = $row.attr("data-index");
-
-				$row.remove();
-			});
-});
-
 /*
  * https://stackoverflow.com/questions/14972470/c-sharp-mvc3-ajax-beginform-to-upload-file-not-working
  * Used answer 2 unfortunatelly this does mean that IE is not supported.
  */
 
 
-window.addEventListener("submit", function (e) {
-	var form = e.target;
-	if (form.getAttribute("enctype") === "multipart/form-data") {
-		if (form.dataset.ajax) {
-			e.preventDefault();
-			e.stopImmediatePropagation();
-			var xhr = new XMLHttpRequest();
-			xhr.open(form.method, form.action);
-			xhr.onreadystatechange = function () {
-				if (xhr.readyState == 4 && xhr.status == 200) {
-					if (form.dataset.ajaxUpdate) {
-						var updateTarget = document.querySelector(form.dataset.ajaxUpdate);
-						if (updateTarget) {
-							updateTarget.innerHTML = xhr.responseText;
+window.addEventListener("submit",
+	function(e)
+	{
+		var form = e.target;
+		if (form.getAttribute("enctype") === "multipart/form-data")
+		{
+			if (form.dataset.ajax)
+			{
+				e.preventDefault();
+				e.stopImmediatePropagation();
+				var xhr = new XMLHttpRequest();
+				xhr.open(form.method, form.action);
+				xhr.onreadystatechange = function()
+				{
+					if (xhr.readyState == 4 && xhr.status == 200)
+					{
+						if (form.dataset.ajaxUpdate)
+						{
+							var updateTarget = document.querySelector(form.dataset.ajaxUpdate);
+							if (updateTarget)
+							{
+								updateTarget.innerHTML = xhr.responseText;
+							}
 						}
 					}
-				}
-			};
-			xhr.send(new FormData(form));
+				};
+				xhr.send(new FormData(form));
+			}
 		}
-	}
-}, true);
+	},
+	true);
 
 /*sýnir mismunandi töflur fyrir users, teachers og students og afhakar þann sem er valið ef annar listi er valinn*/
-$(document).ready(function () {
-	$(".userlist1").show();
-	$("input[name$='users']").click(function () {
-		var selected = $('option:selected');
-		selected.removeAttr("selected");
-		$(".hider").hide();
-		var radio = $(this).val();
-		$(".userlist" + radio).show();
-	})
-})
+//$(document)
+//	.ready(function()
+//	{
+//		$(".userlist1").show();
+//		$("input[name$='users']")
+//			.click(function()
+//			{
+//				var selected = $("option:selected");
+//				selected.removeAttr("selected");
+//				$(".hider").hide();
+//				var radio = $(this).val();
+//				$(".userlist" + radio).show();
+//			});
+//	});
 
 //$(window).load(function () {
 //	 /*Animate loader off screen*/
@@ -164,22 +151,24 @@ $(document).ready(function () {
 
 //});
 
-$(document).ajaxComplete(function () {
-	// Animate loader off screen
-	$(".se-pre-con").fadeOut("slow");;
-
-});
+$(document)
+	.ajaxComplete(function()
+	{
+		// Animate loader off screen
+		$(".se-pre-con").fadeOut("slow");;
+	});
 
 //$(document).ajaxStart(function()
 //{
 //	$(".se-pre-con").fadeIn("slow");
 //});
 
-$(".loader").click(function ()
-{
-    $("div.injector").addClass("se-pre-con");
-    $(".se-pre-con").fadeIn("slow");
-})
+$(".loader")
+	.click(function()
+	{
+		$("div.injector").addClass("se-pre-con");
+		$(".se-pre-con").fadeIn("slow");
+	});
 
 //$.ajax({
 //	success: function () {
@@ -187,42 +176,15 @@ $(".loader").click(function ()
 //	}
 //});
 
-$(".btn-danger").click(function()
-{
-    var confirmed = confirm("Are you sure you want to continue?");
-
-	if (confirmed == false)
+$(".btn-danger")
+	.click(function()
 	{
-		return false;
-	}
-});
+		var confirmed = confirm("Are you sure you want to continue?");
+
+		if (confirmed == false)
+		{
+			return false;
+		}
+	});
 
 $(".icon-hack").html('<i class="fa fa-plus-square" aria-hidden="true"></i> Add assignment');
-
-
-
-$(document).ready(function()
-{
-	var stringOpenDate = $("div.hidden.open-date").text();
-	var stringCloseDate = $("div.hidden.close-date").text();
-	var resOpen = stringOpenDate.substring(8);
-	var resClose = stringCloseDate.substring(8);
-
-	var openDate = date(resOpen);
-	var closeDate = date(resClose);
-	var q = new Date();
-	var m = q.getMonth() + 1;
-	var d = q.getDay();
-	var y = q.getYear();
-	var now = date(m, d, y);
-
-	if (openDate < now && closeDate > now)
-	{
-		$("div.hidden.open-date").replaceWith("<div class='openD'>(Open)</div>")
-	}
-	else
-	{
-		$("div.hidden.open-date").replaceWith("<div class='openD'>(Not open)</div>")
-	}
-	//náði ekki að compare'a datein :(
-})
