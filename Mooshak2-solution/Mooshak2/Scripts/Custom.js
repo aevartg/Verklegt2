@@ -189,10 +189,16 @@ $(document).ajaxComplete(function () {
 
 });
 
-$(document).ajaxStart(function()
+//$(document).ajaxStart(function()
+//{
+//	$(".se-pre-con").fadeIn("slow");
+//});
+
+$(".loader").click(function ()
 {
-	$(".se-pre-con").fadeIn("slow");
-});
+    $("div.injector").addClass("se-pre-con");
+    $(".se-pre-con").fadeIn("slow");
+})
 
 //$.ajax({
 //	success: function () {
@@ -202,7 +208,8 @@ $(document).ajaxStart(function()
 
 $(".btn-danger").click(function()
 {
-	var confirmed = confirm("Are you sure you want to continue?");
+    var confirmed = confirm("Are you sure you want to continue?");
+
 	if (confirmed == false)
 	{
 		return false;
