@@ -194,11 +194,11 @@ $(document).ajaxStart(function()
 	$(".se-pre-con").fadeIn("slow");
 });
 
-$.ajax({
-	success: function () {
-		$(".se-pre-con").fadeOut("slow");
-	}
-});
+//$.ajax({
+//	success: function () {
+//		$(".se-pre-con").fadeOut("slow");
+//	}
+//});
 
 $(".btn-danger").click(function()
 {

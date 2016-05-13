@@ -75,7 +75,12 @@ namespace Mooshak2.Controllers
 				new AssignmentService().EditAssignment(model);
 				return RedirectToAction("Index");
 			
-
 		}
+		public ActionResult Download(int submissionId)
+		{
+			var x = new SubmissionService().GetSubmissionById(submissionId);
+			return File(x.Blob, "application/javascript", x.SubmitDate.ToShortDateString() + "_submissionId" + submissionId + x.FileExtension);
+		}
+
 	}
 }
