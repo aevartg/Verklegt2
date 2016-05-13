@@ -28,10 +28,10 @@ namespace Mooshak2.Controllers
 		[HttpPost]
 		public ActionResult CreateAssignment(CreateAssignmentViewModel model)
 		{
-			if (!ModelState.IsValid)
-			{
-				return PartialView("_CreateAssignment", model);
-			}
+			//if (!ModelState.IsValid)
+			//{
+			//	return PartialView("_CreateAssignment", model);
+			//}
 			var assignmentService = new AssignmentService(null);
 			if (assignmentService.CreateAssignment(model.Name, model.CourseId,model.DateOpen,model.DateClose))
 			{

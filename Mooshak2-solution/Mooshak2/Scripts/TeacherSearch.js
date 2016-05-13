@@ -16,3 +16,22 @@
         });
     });
 });
+
+$("assignmentform").on("submit", function ()
+{
+    
+    var elems = document.getElementsByClassName("weight");
+
+    var sum = 0;
+
+    for (var i = 0; i < elems.length; i++)
+    {
+        sum += elems[i].value;
+    }
+
+    if (sum == 100)
+    {
+        confirm("þetta virkaði");
+        return false;
+    }
+});

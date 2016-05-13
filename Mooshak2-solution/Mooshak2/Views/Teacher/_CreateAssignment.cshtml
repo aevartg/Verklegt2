@@ -7,6 +7,7 @@
 <script type=@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")>
 </script>
 @Scripts.Render("~/Scripts/Custom.js")
+@Scripts.Render("~/Scripts/TeacherSearch.js")
 <link rel="stylesheet" href="~/Content/sortable-theme-minimal.css" />
 
 <h2>Create Assignment</h2>
@@ -46,7 +47,7 @@
 					<input type="text" class="form-control" name="milestones[0].name" placeholder="Title"/>
 				</div>
 				<div class="col-xs-2">
-					<input type="text" class="form-control" name="milestones[0].weight" placeholder="Weight"/>
+					<input type="text" class="form-control weight" name="milestones[0].weight" placeholder="Weight"/>
 				</div>
 				<div class="col-xs-1">
                     <div class="custom-buttonfile">
@@ -66,7 +67,7 @@
 					<input type="text" class="form-control" name="name" placeholder="Title"/>
 				</div>
 				<div class="col-xs-2">
-					<input type="text" class="form-control" name="weight" placeholder="Weight"/>
+					<input type="text" class="form-control weight" name="weight" placeholder="Weight"/>
 				</div>
 				<div class="col-xs-1">
                     <div class="custom-buttonfile">
