@@ -177,11 +177,11 @@ $(document).ready(function () {
 	});
 });
 
-$(window).load(function () {
-	// Animate loader off screen
-	$(".se-pre-con").fadeOut("slow");;
+//$(window).load(function () {
+//	 /*Animate loader off screen*/
+//	$(".se-pre-con").fadeOut("slow");;
 
-});
+//});
 
 $(document).ajaxComplete(function () {
 	// Animate loader off screen
@@ -199,5 +199,14 @@ $(document).ajaxStart(function()
 //		$(".se-pre-con").fadeOut("slow");
 //	}
 //});
+
+$(".btn-danger").click(function()
+{
+	var confirmed = confirm("Are you sure you want to continue?");
+	if (confirmed == false)
+	{
+		return false;
+	}
+});
 
 $(".icon-hack").html('<i class="fa fa-plus-square" aria-hidden="true"></i> Add assignment');
